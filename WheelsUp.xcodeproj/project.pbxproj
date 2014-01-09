@@ -117,12 +117,12 @@
 			children = (
 				18A3C88E187D1C0800C5E07B /* WHLAppDelegate.h */,
 				18A3C88F187D1C0800C5E07B /* WHLAppDelegate.m */,
-				18A3C891187D1C0900C5E07B /* Main.storyboard */,
 				18A3C894187D1C0900C5E07B /* WHLMasterViewController.h */,
 				18A3C895187D1C0900C5E07B /* WHLMasterViewController.m */,
 				18A3C897187D1C0900C5E07B /* WHLDetailViewController.h */,
 				18A3C898187D1C0900C5E07B /* WHLDetailViewController.m */,
 				18A3C89A187D1C0900C5E07B /* Images.xcassets */,
+				18A3C891187D1C0900C5E07B /* Main.storyboard */,
 				18A3C886187D1C0800C5E07B /* Supporting Files */,
 			);
 			path = WheelsUp;
@@ -467,6 +467,7 @@
 				18A3C8B3187D1C0A00C5E07B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18A3C8B4187D1C0A00C5E07B /* Build configuration list for PBXNativeTarget "WheelsUpTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +476,7 @@
 				18A3C8B6187D1C0A00C5E07B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
