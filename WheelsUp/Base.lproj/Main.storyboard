@@ -152,6 +152,24 @@
             </objects>
             <point key="canvasLocation" x="1799" y="-767"/>
         </scene>
+        <!--View Controller - Flight Details-->
+        <scene sceneID="IfK-l2-z0n">
+            <objects>
+                <viewController title="Flight Details" id="Wan-J8-F2D" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mJY-iz-jyS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jak-7e-WSt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DbV-tf-nrD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9MU-dK-dGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1764" y="45"/>
+        </scene>
         <!--View Controller - Profile-->
         <scene sceneID="4aI-F6-Qrd">
             <objects>
