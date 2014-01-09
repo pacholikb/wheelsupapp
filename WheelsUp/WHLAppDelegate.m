@@ -12,7 +12,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
+    //Parse
+    
+    //Status Bar
+
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
+    
+    //Navigation Bar
+    NSMutableDictionary* titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary:[[UINavigationBar appearance] titleTextAttributes]];
+    
+    [titleBarAttributes setValue: [UIColor whiteColor] forKey: UITextAttributeTextColor];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes: titleBarAttributes];
+    
     return YES;
 }
 							

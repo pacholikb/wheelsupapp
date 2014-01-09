@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Manager;
+
 @interface WHLAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

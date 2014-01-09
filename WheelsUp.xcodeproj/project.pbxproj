@@ -14,14 +14,22 @@
 		18A3C88C187D1C0800C5E07B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A3C88B187D1C0800C5E07B /* main.m */; };
 		18A3C890187D1C0800C5E07B /* WHLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A3C88F187D1C0800C5E07B /* WHLAppDelegate.m */; };
 		18A3C893187D1C0900C5E07B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A3C891187D1C0900C5E07B /* Main.storyboard */; };
-		18A3C896187D1C0900C5E07B /* WHLMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A3C895187D1C0900C5E07B /* WHLMasterViewController.m */; };
-		18A3C899187D1C0900C5E07B /* WHLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A3C898187D1C0900C5E07B /* WHLDetailViewController.m */; };
 		18A3C89B187D1C0900C5E07B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18A3C89A187D1C0900C5E07B /* Images.xcassets */; };
 		18A3C8A2187D1C0900C5E07B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C8A1187D1C0900C5E07B /* XCTest.framework */; };
 		18A3C8A3187D1C0900C5E07B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C87F187D1C0700C5E07B /* Foundation.framework */; };
 		18A3C8A4187D1C0900C5E07B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C883187D1C0800C5E07B /* UIKit.framework */; };
 		18A3C8AC187D1C0900C5E07B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18A3C8AA187D1C0900C5E07B /* InfoPlist.strings */; };
 		18A3C8AE187D1C0900C5E07B /* WheelsUpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A3C8AD187D1C0900C5E07B /* WheelsUpTests.m */; };
+		18DEF23F187E869800090861 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF236187E869800090861 /* RECommonFunctions.m */; };
+		18DEF240187E869800090861 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF238187E869800090861 /* REMenu.m */; };
+		18DEF241187E869800090861 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF23A187E869800090861 /* REMenuContainerView.m */; };
+		18DEF242187E869800090861 /* REMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF23C187E869800090861 /* REMenuItem.m */; };
+		18DEF243187E869800090861 /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF23E187E869800090861 /* REMenuItemView.m */; };
+		18DEF247187E87F700090861 /* WHLMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF246187E87F700090861 /* WHLMenuItemViewController.m */; };
+		18DEF24A187E884C00090861 /* WHLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF249187E884C00090861 /* WHLMenuViewController.m */; };
+		18DEF24E187E8CF100090861 /* WHLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF24D187E8CF100090861 /* WHLSearchViewController.m */; };
+		18DEF252187E8D3000090861 /* WHLRecentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF251187E8D3000090861 /* WHLRecentViewController.m */; };
+		18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF255187E8D4B00090861 /* WHLProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,16 +54,32 @@
 		18A3C88E187D1C0800C5E07B /* WHLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHLAppDelegate.h; sourceTree = "<group>"; };
 		18A3C88F187D1C0800C5E07B /* WHLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHLAppDelegate.m; sourceTree = "<group>"; };
 		18A3C892187D1C0900C5E07B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		18A3C894187D1C0900C5E07B /* WHLMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHLMasterViewController.h; sourceTree = "<group>"; };
-		18A3C895187D1C0900C5E07B /* WHLMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHLMasterViewController.m; sourceTree = "<group>"; };
-		18A3C897187D1C0900C5E07B /* WHLDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHLDetailViewController.h; sourceTree = "<group>"; };
-		18A3C898187D1C0900C5E07B /* WHLDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHLDetailViewController.m; sourceTree = "<group>"; };
 		18A3C89A187D1C0900C5E07B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		18A3C8A0187D1C0900C5E07B /* WheelsUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WheelsUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A3C8A1187D1C0900C5E07B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		18A3C8A9187D1C0900C5E07B /* WheelsUpTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WheelsUpTests-Info.plist"; sourceTree = "<group>"; };
 		18A3C8AB187D1C0900C5E07B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18A3C8AD187D1C0900C5E07B /* WheelsUpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WheelsUpTests.m; sourceTree = "<group>"; };
+		18DEF235187E869800090861 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		18DEF236187E869800090861 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		18DEF237187E869800090861 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
+		18DEF238187E869800090861 /* REMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenu.m; sourceTree = "<group>"; };
+		18DEF239187E869800090861 /* REMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuContainerView.h; sourceTree = "<group>"; };
+		18DEF23A187E869800090861 /* REMenuContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuContainerView.m; sourceTree = "<group>"; };
+		18DEF23B187E869800090861 /* REMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItem.h; sourceTree = "<group>"; };
+		18DEF23C187E869800090861 /* REMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItem.m; sourceTree = "<group>"; };
+		18DEF23D187E869800090861 /* REMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItemView.h; sourceTree = "<group>"; };
+		18DEF23E187E869800090861 /* REMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItemView.m; sourceTree = "<group>"; };
+		18DEF245187E87F700090861 /* WHLMenuItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLMenuItemViewController.h; sourceTree = "<group>"; };
+		18DEF246187E87F700090861 /* WHLMenuItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLMenuItemViewController.m; sourceTree = "<group>"; };
+		18DEF248187E884C00090861 /* WHLMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLMenuViewController.h; sourceTree = "<group>"; };
+		18DEF249187E884C00090861 /* WHLMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLMenuViewController.m; sourceTree = "<group>"; };
+		18DEF24C187E8CF100090861 /* WHLSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLSearchViewController.h; sourceTree = "<group>"; };
+		18DEF24D187E8CF100090861 /* WHLSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLSearchViewController.m; sourceTree = "<group>"; };
+		18DEF250187E8D3000090861 /* WHLRecentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLRecentViewController.h; sourceTree = "<group>"; };
+		18DEF251187E8D3000090861 /* WHLRecentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLRecentViewController.m; sourceTree = "<group>"; };
+		18DEF254187E8D4B00090861 /* WHLProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLProfileViewController.h; sourceTree = "<group>"; };
+		18DEF255187E8D4B00090861 /* WHLProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,9 +110,15 @@
 			isa = PBXGroup;
 			children = (
 				18A3C885187D1C0800C5E07B /* WheelsUp */,
+				18DEF244187E87B800090861 /* Menu */,
+				18DEF24B187E8C7400090861 /* Search */,
+				18DEF24F187E8D0D00090861 /* Recent */,
+				18DEF253187E8D3B00090861 /* Profile */,
+				18A3C886187D1C0800C5E07B /* Supporting Files */,
 				18A3C8A7187D1C0900C5E07B /* WheelsUpTests */,
 				18A3C87E187D1C0700C5E07B /* Frameworks */,
 				18A3C87D187D1C0700C5E07B /* Products */,
+				18DEF234187E869800090861 /* REMenu */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,13 +147,8 @@
 			children = (
 				18A3C88E187D1C0800C5E07B /* WHLAppDelegate.h */,
 				18A3C88F187D1C0800C5E07B /* WHLAppDelegate.m */,
-				18A3C894187D1C0900C5E07B /* WHLMasterViewController.h */,
-				18A3C895187D1C0900C5E07B /* WHLMasterViewController.m */,
-				18A3C897187D1C0900C5E07B /* WHLDetailViewController.h */,
-				18A3C898187D1C0900C5E07B /* WHLDetailViewController.m */,
 				18A3C89A187D1C0900C5E07B /* Images.xcassets */,
 				18A3C891187D1C0900C5E07B /* Main.storyboard */,
-				18A3C886187D1C0800C5E07B /* Supporting Files */,
 			);
 			path = WheelsUp;
 			sourceTree = "<group>";
@@ -137,6 +162,7 @@
 				18A3C88D187D1C0800C5E07B /* WheelsUp-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = WheelsUp;
 			sourceTree = "<group>";
 		};
 		18A3C8A7187D1C0900C5E07B /* WheelsUpTests */ = {
@@ -155,6 +181,62 @@
 				18A3C8AA187D1C0900C5E07B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18DEF234187E869800090861 /* REMenu */ = {
+			isa = PBXGroup;
+			children = (
+				18DEF235187E869800090861 /* RECommonFunctions.h */,
+				18DEF236187E869800090861 /* RECommonFunctions.m */,
+				18DEF237187E869800090861 /* REMenu.h */,
+				18DEF238187E869800090861 /* REMenu.m */,
+				18DEF239187E869800090861 /* REMenuContainerView.h */,
+				18DEF23A187E869800090861 /* REMenuContainerView.m */,
+				18DEF23B187E869800090861 /* REMenuItem.h */,
+				18DEF23C187E869800090861 /* REMenuItem.m */,
+				18DEF23D187E869800090861 /* REMenuItemView.h */,
+				18DEF23E187E869800090861 /* REMenuItemView.m */,
+			);
+			path = REMenu;
+			sourceTree = "<group>";
+		};
+		18DEF244187E87B800090861 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				18DEF245187E87F700090861 /* WHLMenuItemViewController.h */,
+				18DEF246187E87F700090861 /* WHLMenuItemViewController.m */,
+				18DEF248187E884C00090861 /* WHLMenuViewController.h */,
+				18DEF249187E884C00090861 /* WHLMenuViewController.m */,
+			);
+			name = Menu;
+			path = WheelsUp;
+			sourceTree = "<group>";
+		};
+		18DEF24B187E8C7400090861 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				18DEF24C187E8CF100090861 /* WHLSearchViewController.h */,
+				18DEF24D187E8CF100090861 /* WHLSearchViewController.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		18DEF24F187E8D0D00090861 /* Recent */ = {
+			isa = PBXGroup;
+			children = (
+				18DEF250187E8D3000090861 /* WHLRecentViewController.h */,
+				18DEF251187E8D3000090861 /* WHLRecentViewController.m */,
+			);
+			name = Recent;
+			sourceTree = "<group>";
+		};
+		18DEF253187E8D3B00090861 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				18DEF254187E8D4B00090861 /* WHLProfileViewController.h */,
+				18DEF255187E8D4B00090861 /* WHLProfileViewController.m */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,9 +337,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A3C896187D1C0900C5E07B /* WHLMasterViewController.m in Sources */,
-				18A3C899187D1C0900C5E07B /* WHLDetailViewController.m in Sources */,
+				18DEF241187E869800090861 /* REMenuContainerView.m in Sources */,
+				18DEF252187E8D3000090861 /* WHLRecentViewController.m in Sources */,
+				18DEF24A187E884C00090861 /* WHLMenuViewController.m in Sources */,
+				18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */,
+				18DEF242187E869800090861 /* REMenuItem.m in Sources */,
+				18DEF240187E869800090861 /* REMenu.m in Sources */,
+				18DEF23F187E869800090861 /* RECommonFunctions.m in Sources */,
+				18DEF243187E869800090861 /* REMenuItemView.m in Sources */,
+				18DEF24E187E8CF100090861 /* WHLSearchViewController.m in Sources */,
 				18A3C890187D1C0800C5E07B /* WHLAppDelegate.m in Sources */,
+				18DEF247187E87F700090861 /* WHLMenuItemViewController.m in Sources */,
 				18A3C88C187D1C0800C5E07B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
