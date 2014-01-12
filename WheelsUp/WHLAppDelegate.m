@@ -6,7 +6,10 @@
 //  Copyright (c) 2014 Broc Pacholik . All rights reserved.
 //
 
+
 #import "WHLAppDelegate.h"
+#import "REMenu.h"
+#import <Parse/Parse.h>
 
 @implementation WHLAppDelegate
 
@@ -14,6 +17,10 @@
 {
 
     //Parse
+    [Parse setApplicationId:@"mCkWu97Ihyq15GatzIG8j4qznXjHj6Oazw8EiylD"
+                  clientKey:@"ysMXari68iDq8bSnXU85i44W86mEcuxaZHYoJBjx"];
+    
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     //Status Bar
 

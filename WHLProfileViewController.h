@@ -15,4 +15,6 @@
 
 @interface WHLProfileViewController : UIViewController
 
+- (IBAction)logout:(id)sender;
+
 @end

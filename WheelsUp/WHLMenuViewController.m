@@ -67,7 +67,7 @@
                                                                 }
                                                                 else
                                                                 {*/
-                                                                    WHLProfileViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLProfileViewController" ] ;
+                                                                    WHLProfileViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLLoginViewController" ] ;
                                                                     [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
                                                                 
                                                             } ] ;
