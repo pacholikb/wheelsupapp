@@ -73,6 +73,11 @@
 		1858B34518825DFC00A18F32 /* loginBackgroundTeal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1858B34318825DFC00A18F32 /* loginBackgroundTeal.png */; };
 		1858B34618825DFC00A18F32 /* loginBackgroundTeal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1858B34418825DFC00A18F32 /* loginBackgroundTeal@2x.png */; };
 		1858B3491882740D00A18F32 /* WHLNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3481882740C00A18F32 /* WHLNewUserViewController.m */; };
+		1858B34E1883623E00A18F32 /* login-button-small-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1858B34A1883623E00A18F32 /* login-button-small-pressed.png */; };
+		1858B34F1883623E00A18F32 /* login-button-small-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1858B34B1883623E00A18F32 /* login-button-small-pressed@2x.png */; };
+		1858B3501883623E00A18F32 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 1858B34C1883623E00A18F32 /* login-button-small.png */; };
+		1858B3511883623E00A18F32 /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1858B34D1883623E00A18F32 /* login-button-small@2x.png */; };
+		1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */; };
 		18A3C880187D1C0700C5E07B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C87F187D1C0700C5E07B /* Foundation.framework */; };
 		18A3C882187D1C0800C5E07B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C881187D1C0800C5E07B /* CoreGraphics.framework */; };
 		18A3C884187D1C0800C5E07B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C883187D1C0800C5E07B /* UIKit.framework */; };
@@ -197,6 +202,12 @@
 		1858B34418825DFC00A18F32 /* loginBackgroundTeal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginBackgroundTeal@2x.png"; path = "../../../Desktop/Assets/loginBackgroundTeal@2x.png"; sourceTree = "<group>"; };
 		1858B3471882740C00A18F32 /* WHLNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHLNewUserViewController.h; path = WheelsUp/WHLNewUserViewController.h; sourceTree = "<group>"; };
 		1858B3481882740C00A18F32 /* WHLNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHLNewUserViewController.m; path = WheelsUp/WHLNewUserViewController.m; sourceTree = "<group>"; };
+		1858B34A1883623E00A18F32 /* login-button-small-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button-small-pressed.png"; path = "../../../Downloads/ParsePlatform-IntegratingFacebookTutorial-d33a55d/IntegratingFacebookTutorial-iOS/IntegratingFacebookTutorial/login-button-small-pressed.png"; sourceTree = "<group>"; };
+		1858B34B1883623E00A18F32 /* login-button-small-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button-small-pressed@2x.png"; path = "../../../Downloads/ParsePlatform-IntegratingFacebookTutorial-d33a55d/IntegratingFacebookTutorial-iOS/IntegratingFacebookTutorial/login-button-small-pressed@2x.png"; sourceTree = "<group>"; };
+		1858B34C1883623E00A18F32 /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button-small.png"; path = "../../../Downloads/ParsePlatform-IntegratingFacebookTutorial-d33a55d/IntegratingFacebookTutorial-iOS/IntegratingFacebookTutorial/login-button-small.png"; sourceTree = "<group>"; };
+		1858B34D1883623E00A18F32 /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button-small@2x.png"; path = "../../../Downloads/ParsePlatform-IntegratingFacebookTutorial-d33a55d/IntegratingFacebookTutorial-iOS/IntegratingFacebookTutorial/login-button-small@2x.png"; sourceTree = "<group>"; };
+		1858B3521883C5B100A18F32 /* WHLFBProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLFBProfileViewController.h; sourceTree = "<group>"; };
+		1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFBProfileViewController.m; sourceTree = "<group>"; };
 		18A3C87C187D1C0700C5E07B /* WheelsUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheelsUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A3C87F187D1C0700C5E07B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		18A3C881187D1C0800C5E07B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -409,6 +420,10 @@
 		1858B33618824D0C00A18F32 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				1858B34A1883623E00A18F32 /* login-button-small-pressed.png */,
+				1858B34B1883623E00A18F32 /* login-button-small-pressed@2x.png */,
+				1858B34C1883623E00A18F32 /* login-button-small.png */,
+				1858B34D1883623E00A18F32 /* login-button-small@2x.png */,
 				1858B34318825DFC00A18F32 /* loginBackgroundTeal.png */,
 				1858B34418825DFC00A18F32 /* loginBackgroundTeal@2x.png */,
 				1858B33718824D7B00A18F32 /* loginBackground.png */,
@@ -562,6 +577,8 @@
 			children = (
 				18DEF254187E8D4B00090861 /* WHLProfileViewController.h */,
 				18DEF255187E8D4B00090861 /* WHLProfileViewController.m */,
+				1858B3521883C5B100A18F32 /* WHLFBProfileViewController.h */,
+				1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -649,7 +666,9 @@
 				1858B2DA188212D100A18F32 /* .travis.yml in Resources */,
 				1858B2D9188212D100A18F32 /* .gitignore in Resources */,
 				1858B305188212D100A18F32 /* fuitableview.png in Resources */,
+				1858B3511883623E00A18F32 /* login-button-small@2x.png in Resources */,
 				1858B30C188212D100A18F32 /* Lato-Bold.ttf in Resources */,
+				1858B3501883623E00A18F32 /* login-button-small.png in Resources */,
 				18A3C89B187D1C0900C5E07B /* Images.xcassets in Resources */,
 				1858B304188212D100A18F32 /* fuitableview-small.png in Resources */,
 				1858B313188212D100A18F32 /* Lato-Regular.ttf in Resources */,
@@ -660,9 +679,11 @@
 				1858B2FF188212D100A18F32 /* fuipopovercontroller-small.gif in Resources */,
 				1858B30D188212D100A18F32 /* Lato-BoldItalic.ttf in Resources */,
 				1858B301188212D100A18F32 /* fuistepper-small.gif in Resources */,
+				1858B34E1883623E00A18F32 /* login-button-small-pressed.png in Resources */,
 				1858B307188212D100A18F32 /* LICENSE in Resources */,
 				1858B34618825DFC00A18F32 /* loginBackgroundTeal@2x.png in Resources */,
 				1858B33A18824D7B00A18F32 /* loginBackground@2x.png in Resources */,
+				1858B34F1883623E00A18F32 /* login-button-small-pressed@2x.png in Resources */,
 				1858B33918824D7B00A18F32 /* loginBackground.png in Resources */,
 				18A3C88A187D1C0800C5E07B /* InfoPlist.strings in Resources */,
 				1858B2EE188212D100A18F32 /* .gitignore in Resources */,
@@ -709,6 +730,7 @@
 				18DEF242187E869800090861 /* REMenuItem.m in Sources */,
 				1858B2E4188212D100A18F32 /* UIFont+FlatUI.m in Sources */,
 				1858B2E0188212D100A18F32 /* FUISwitch.m in Sources */,
+				1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */,
 				1858B2E8188212D100A18F32 /* UIProgressView+FlatUI.m in Sources */,
 				1858B2ED188212D100A18F32 /* UIToolbar+FlatUI.m in Sources */,
 				1858B2DE188212D100A18F32 /* FUIPopoverBackgroundView.m in Sources */,
