@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YWeatherGetter4iTest-Prefix.pch"
+#import "YWeatherInfoDelegate.h"
+#import "YWeatherUtils.h"
 
-@interface WHLFBProfileViewController : UIViewController <NSURLConnectionDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@interface WHLFBProfileViewController : UIViewController <NSURLConnectionDelegate, YWeatherInfoDelegate>
+
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *headerNameLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *headerImageView;
@@ -25,5 +29,6 @@
 
 - (void)logoutButtonTouchHandler:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UILabel *labelWeatherInfo;
 
 @end

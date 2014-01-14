@@ -181,7 +181,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TF4-CD-uYV">
-                                <rect key="frame" x="0.0" y="222" width="320" height="332"/>
+                                <rect key="frame" x="0.0" y="463" width="320" height="105"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -212,6 +212,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E05-dz-Mgc">
+                                <rect key="frame" x="17" y="235" width="283" height="199"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -220,7 +227,8 @@
                         <outlet property="headerImageView" destination="YdO-4n-rhj" id="hzK-Fb-pwt"/>
                         <outlet property="headerNameLabel" destination="rTg-A0-0Pv" id="A61-ER-Er4"/>
                         <outlet property="headeruserLocation" destination="aom-Mi-y8o" id="x3i-hb-fJK"/>
-                        <outlet property="tableView" destination="TF4-CD-uYV" id="bIw-Xl-dzP"/>
+                        <outlet property="mLabelWeatherInfo" destination="E05-dz-Mgc" id="5gt-pa-APn"/>
+                        <outlet property="tableView" destination="TF4-CD-uYV" id="HZE-Ha-YWP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRh-Tu-qK8" userLabel="First Responder" sceneMemberID="firstResponder"/>

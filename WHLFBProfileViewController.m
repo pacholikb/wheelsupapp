@@ -22,7 +22,6 @@
     [super viewDidLoad];
     
     self.title = @"Facebook Profile";
-    self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
     
     // Add logout navigation bar button
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Log Out" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonTouchHandler:)];
@@ -99,6 +98,10 @@
         }
     }];
 	
+
+    YWeatherUtils* yweatherUtils = [YWeatherUtils getInstance];
+    [yweatherUtils setMAfterRecieveDataDelegate: self];
+    [yweatherUtils queryYahooWeather:@"Tokyo"];
 }
 
 #pragma mark - NSURLConnectionDataDelegate
@@ -117,6 +120,57 @@
     // Add a nice corner radius to the image
     self.headerImageView.layer.cornerRadius = 8.0f;
     self.headerImageView.layer.masksToBounds = YES;
+}
+
+
+#pragma mark - Weather Shit
+
+- (void)gotWeatherInfo:(WeatherInfo *)weatherInfo {
+    NSMutableString* text = nil;
+    if (weatherInfo == nil) {
+        text = [NSMutableString stringWithString:YAHOO_WEATHER_ERROR];
+        [_labelWeatherInfo setText: text];
+        return;
+    }
+    text = [NSMutableString stringWithString:@""];
+    [text appendString:@"***Forecast 1***\n"];
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast1Info.mForecastDate]) {
+        [text appendString:weatherInfo.mForecast1Info.mForecastDate];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mForecast1Info.mForecastTempLowC]]) {
+        [text appendString:[NSString stringWithFormat: @"low: %dºC  high: %dºC", weatherInfo.mForecast1Info.mForecastTempLowC, weatherInfo.mForecast1Info.mForecastTempHighC]];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast1Info.mForecastText]) {
+        [text appendString:weatherInfo.mForecast1Info.mForecastText];
+        [text appendString:@"\n"];
+    }
+    
+    [text appendString:@"\n"];
+    [text appendString:@"***Forecast 2***\n"];
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast2Info.mForecastDate]) {
+        [text appendString:weatherInfo.mForecast2Info.mForecastDate];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mForecast2Info.mForecastTempLowC]]) {
+        [text appendString:[NSString stringWithFormat: @"low: %dºC  high: %dºC", weatherInfo.mForecast2Info.mForecastTempLowC, weatherInfo.mForecast2Info.mForecastTempHighC]];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast2Info.mForecastText]) {
+        [text appendString:weatherInfo.mForecast2Info.mForecastText];
+        [text appendString:@"\n"];
+    }
+    
+    [_labelWeatherInfo setText: text];
+    
+}
+
+- (bool)stringIsNonNilOrEmpty:(NSString*)pString {
+    if (pString != nil && ![pString isEqualToString:@""]) {
+        return YES;
+    }
+    return NO;
 }
 
 
@@ -192,7 +246,6 @@
         [self.rowDataArray replaceObjectAtIndex:3 withObject:[[PFUser currentUser] objectForKey:@"profile"][@"relationship"]];
     }
     
-    [self.tableView reloadData];
     
     // Set the name in the header view label
     if ([[PFUser currentUser] objectForKey:@"profile"][@"name"]) {

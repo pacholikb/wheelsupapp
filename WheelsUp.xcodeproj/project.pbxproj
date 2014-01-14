@@ -78,6 +78,10 @@
 		1858B3501883623E00A18F32 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 1858B34C1883623E00A18F32 /* login-button-small.png */; };
 		1858B3511883623E00A18F32 /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1858B34D1883623E00A18F32 /* login-button-small@2x.png */; };
 		1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */; };
+		1858B3951885223D00A18F32 /* YWeatherUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3941885223D00A18F32 /* YWeatherUtils.m */; };
+		1858B3991885228700A18F32 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3961885228700A18F32 /* TBXML.m */; };
+		1858B39A1885228700A18F32 /* WeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3971885228700A18F32 /* WeatherInfo.m */; };
+		1858B39B1885228700A18F32 /* WOEIDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3981885228700A18F32 /* WOEIDUtils.m */; };
 		18A3C880187D1C0700C5E07B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C87F187D1C0700C5E07B /* Foundation.framework */; };
 		18A3C882187D1C0800C5E07B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C881187D1C0800C5E07B /* CoreGraphics.framework */; };
 		18A3C884187D1C0800C5E07B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C883187D1C0800C5E07B /* UIKit.framework */; };
@@ -208,6 +212,18 @@
 		1858B34D1883623E00A18F32 /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button-small@2x.png"; path = "../../../Downloads/ParsePlatform-IntegratingFacebookTutorial-d33a55d/IntegratingFacebookTutorial-iOS/IntegratingFacebookTutorial/login-button-small@2x.png"; sourceTree = "<group>"; };
 		1858B3521883C5B100A18F32 /* WHLFBProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLFBProfileViewController.h; sourceTree = "<group>"; };
 		1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFBProfileViewController.m; sourceTree = "<group>"; };
+		1858B3861885212900A18F32 /* Consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Consts.h; sourceTree = "<group>"; };
+		1858B3871885212900A18F32 /* WeatherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherInfo.h; sourceTree = "<group>"; };
+		1858B3891885212900A18F32 /* WOEIDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOEIDUtils.h; sourceTree = "<group>"; };
+		1858B38B1885212900A18F32 /* WOEIDUtilsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOEIDUtilsDelegate.h; sourceTree = "<group>"; };
+		1858B38C1885212900A18F32 /* YWeatherInfoDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWeatherInfoDelegate.h; sourceTree = "<group>"; };
+		1858B38D1885212900A18F32 /* YWeatherUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWeatherUtils.h; sourceTree = "<group>"; };
+		1858B3921885214B00A18F32 /* TBXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
+		1858B3931885215300A18F32 /* YWeatherGetter4iTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YWeatherGetter4iTest-Prefix.pch"; sourceTree = "<group>"; };
+		1858B3941885223D00A18F32 /* YWeatherUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWeatherUtils.m; sourceTree = "<group>"; };
+		1858B3961885228700A18F32 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
+		1858B3971885228700A18F32 /* WeatherInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherInfo.m; sourceTree = "<group>"; };
+		1858B3981885228700A18F32 /* WOEIDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOEIDUtils.m; sourceTree = "<group>"; };
 		18A3C87C187D1C0700C5E07B /* WheelsUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheelsUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A3C87F187D1C0700C5E07B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		18A3C881187D1C0800C5E07B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -432,6 +448,25 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		1858B3851885212900A18F32 /* YWeatherGetter4i */ = {
+			isa = PBXGroup;
+			children = (
+				1858B3961885228700A18F32 /* TBXML.m */,
+				1858B3971885228700A18F32 /* WeatherInfo.m */,
+				1858B3981885228700A18F32 /* WOEIDUtils.m */,
+				1858B3931885215300A18F32 /* YWeatherGetter4iTest-Prefix.pch */,
+				1858B3921885214B00A18F32 /* TBXML.h */,
+				1858B3861885212900A18F32 /* Consts.h */,
+				1858B3871885212900A18F32 /* WeatherInfo.h */,
+				1858B3891885212900A18F32 /* WOEIDUtils.h */,
+				1858B38B1885212900A18F32 /* WOEIDUtilsDelegate.h */,
+				1858B38C1885212900A18F32 /* YWeatherInfoDelegate.h */,
+				1858B38D1885212900A18F32 /* YWeatherUtils.h */,
+				1858B3941885223D00A18F32 /* YWeatherUtils.m */,
+			);
+			path = YWeatherGetter4i;
+			sourceTree = "<group>";
+		};
 		18A3C873187D1C0600C5E07B = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +498,7 @@
 		18A3C87E187D1C0700C5E07B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1858B3851885212900A18F32 /* YWeatherGetter4i */,
 				1858B32D18821DBD00A18F32 /* FacebookSDK.framework */,
 				1858B32B188214A000A18F32 /* CoreText.framework */,
 				1858B261188212D000A18F32 /* FlatUIKit-master */,
@@ -723,9 +759,11 @@
 				1858B2EB188212D100A18F32 /* UITabBar+FlatUI.m in Sources */,
 				1858B2E1188212D100A18F32 /* FUITextField.m in Sources */,
 				1858B2EA188212D100A18F32 /* UIStepper+FlatUI.m in Sources */,
+				1858B3951885223D00A18F32 /* YWeatherUtils.m in Sources */,
 				18DEF241187E869800090861 /* REMenuContainerView.m in Sources */,
 				18DEF252187E8D3000090861 /* WHLRecentViewController.m in Sources */,
 				18DEF24A187E884C00090861 /* WHLMenuViewController.m in Sources */,
+				1858B3991885228700A18F32 /* TBXML.m in Sources */,
 				18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */,
 				18DEF242187E869800090861 /* REMenuItem.m in Sources */,
 				1858B2E4188212D100A18F32 /* UIFont+FlatUI.m in Sources */,
@@ -734,6 +772,8 @@
 				1858B2E8188212D100A18F32 /* UIProgressView+FlatUI.m in Sources */,
 				1858B2ED188212D100A18F32 /* UIToolbar+FlatUI.m in Sources */,
 				1858B2DE188212D100A18F32 /* FUIPopoverBackgroundView.m in Sources */,
+				1858B39B1885228700A18F32 /* WOEIDUtils.m in Sources */,
+				1858B39A1885228700A18F32 /* WeatherInfo.m in Sources */,
 				1858B2E5188212D100A18F32 /* UIImage+FlatUI.m in Sources */,
 				18DEF240187E869800090861 /* REMenu.m in Sources */,
 				18DEF23F187E869800090861 /* RECommonFunctions.m in Sources */,

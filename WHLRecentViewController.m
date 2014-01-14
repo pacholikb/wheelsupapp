@@ -23,6 +23,8 @@
     [ self setTitle : @"Recent" ] ;
     
     self.navigationItem.leftBarButtonItem = [[ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
+    
+
 }
 
 
