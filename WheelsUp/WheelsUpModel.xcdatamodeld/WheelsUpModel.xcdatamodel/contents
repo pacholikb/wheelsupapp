@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="City" representedClassName="City" syncable="YES">
+        <attribute name="iata" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Flight" representedClassName="Flight" syncable="YES">
+        <attribute name="deeplink" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flightNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inbounds" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="outbounds" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="searchId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Trip" representedClassName="Trip" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="searchId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trips" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <entity name="Weather" representedClassName="Weather" syncable="YES">
+        <attribute name="conditions" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iconUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tempMax" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tempMin" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="City" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Flight" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Trip" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Weather" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

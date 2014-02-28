@@ -29,6 +29,6 @@
 
 - (void)logoutButtonTouchHandler:(id)sender;
 
-//@property (strong, nonatomic) IBOutlet UILabel *labelWeatherInfo;
+@property (strong, nonatomic) IBOutlet UILabel *labelWeatherInfo;
 
 @end

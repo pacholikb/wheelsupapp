@@ -22,12 +22,23 @@
     self.navigationItem.hidesBackButton = YES;
     [self setTitle : @"Login"];
     
+    self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
+    
     // Check if user is cached and linked to Facebook, if so, bypass login
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         [self performSegueWithIdentifier:@"showFBProfile" sender:self];}
 
-}
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    [self.view addGestureRecognizer:tapGesture];
     
+    _activityIndicator.hidden = YES;
+}
+
+- (void)hideKeyboard:(id)sender
+{
+    [_usernameField resignFirstResponder];
+    [_passwordField resignFirstResponder];
+}
     
 - (IBAction)login:(id)sender {
     NSString *username = [self.usernameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -43,6 +54,8 @@
         [alertView show];
     }
     else {
+        [_activityIndicator startAnimating];
+        _activityIndicator.hidden = NO;
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
             if (error) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!"
@@ -51,14 +64,16 @@
                 [alertView show];
             }
             else {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                NSLog(@"Logged in successfuly");
+                [self.navigationController popViewControllerAnimated:YES];
             }
-            
+            _activityIndicator.hidden = YES;
         }];
     }
 }
 
 - (IBAction)signUp:(id)sender {
+    
 }
 
 - (IBAction)loginButtonTouchHandler:(id)sender {

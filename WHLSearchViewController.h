@@ -7,11 +7,31 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <CoreLocation/CoreLocation.h>
 #import "WHLMenuItemViewController.h"
 #import "WHLMenuViewController.h"
+#import "WHLSearchResultsViewController.h"
+#import "SearchModel.h"
+#import "Flight.h"
+#import "Trip.h"
+#import "DropDownListView.h"
+
+@interface WHLSearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, kDropDownListViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITextField *fromTF;
+@property (strong, nonatomic) IBOutlet UITextField *toTF;
+@property (strong) NSString *fromCode;
+@property (strong) NSString *toCode;
+
+@property (strong, nonatomic) IBOutlet UIButton *searchButton;
+
+@property (strong, nonatomic) Trip *trip;
+@property (strong) NSArray *flights;
+
+@property (strong) DropDownListView * Dropobj;
+
+@property (assign) BOOL dropdownTo;
 
 
-@interface WHLSearchViewController : UIViewController
 
 @end

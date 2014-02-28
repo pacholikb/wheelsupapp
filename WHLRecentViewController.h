@@ -10,10 +10,14 @@
 
 #import "WHLMenuItemViewController.h"
 #import "WHLMenuViewController.h"
+#import "Trip.h"
 
 
+@interface WHLRecentViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@interface WHLRecentViewController : UIViewController
-
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong) NSArray *flights;
+@property (strong) Trip *selectedTrip;
 
 @end

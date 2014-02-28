@@ -7,11 +7,11 @@
 //
 
 #import "WHLMenuViewController.h"
-
+#import "WHLProfileViewController.h"
 #import "WHLSearchViewController.h"
 #import "WHLRecentViewController.h"
-#import "WHLProfileViewController.h"
-
+#import "WHLLoginViewController.h"
+#import <Parse/Parse.h>
 #import "REMenu.h"
 
 @interface WHLMenuViewController ()
@@ -60,16 +60,18 @@
                                                              image : [UIImage imageNamed:@"Icon_Home"]
                                                   highlightedImage : nil
                                                             action : ^( REMenuItem* item ) {
-                                                               /* if( [ PFUser currentUser ] == nil )
+                                                                if( [ PFUser currentUser ] != nil )
                                                                 {
-                                                                    WHLLoginViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"ProfileViewController" ] ;
+                                                                    WHLProfileViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLProfileViewController" ];
                                                                     [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
                                                                 }
                                                                 else
-                                                                {*/
-                                                                    WHLProfileViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLLoginViewController" ] ;
-                                                                    [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
-                                                                
+                                                                {
+                                                                    WHLProfileViewController* viewController1 = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLProfileViewController" ];
+                                                                    
+                                                                    WHLLoginViewController* viewController2 = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLLoginViewController" ] ;
+                                                                    [ weakSelf setViewControllers : @[ viewController1, viewController2 ] animated : NO ] ;
+                                                                }
                                                             } ] ;
     
     searchItem.tag = 0 ;

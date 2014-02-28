@@ -15,6 +15,7 @@
 
 @interface WHLProfileViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 - (IBAction)logout:(id)sender;
 
 @end

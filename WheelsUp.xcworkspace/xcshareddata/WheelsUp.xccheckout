@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1E29AC35-B8B2-48FE-8E57-82E037B16D72</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WheelsUp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>50A2DDD4-BA40-47CB-9E0E-E3B4D3EC5865</key>
+		<string>https://github.com/pacholikb/wheelsupapp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>WheelsUp.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>50A2DDD4-BA40-47CB-9E0E-E3B4D3EC5865</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/pacholikb/wheelsupapp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>50A2DDD4-BA40-47CB-9E0E-E3B4D3EC5865</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>50A2DDD4-BA40-47CB-9E0E-E3B4D3EC5865</string>
+			<key>IDESourceControlWCCName</key>
+			<string>wheelsupapp</string>
+		</dict>
+	</array>
+</dict>
+</plist>
