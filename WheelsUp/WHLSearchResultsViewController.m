@@ -7,7 +7,9 @@
 //
 
 #import "WHLSearchResultsViewController.h"
+#import "WHLFlightDetailsViewController.h"
 #import "WHLNetworkManager.h"
+#import "JMImageCache.h"
 
 @interface WHLSearchResultsViewController ()
 
@@ -38,7 +40,17 @@
     _arrivalCityName = [[_trip.trips firstObject] objectForKey:@"arrival_name"];
     
     _dateFormatter = [[NSDateFormatter alloc] init];
+    [_dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     _dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZ";
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"detailSegue"])
+    {
+        WHLFlightDetailsViewController *controller = segue.destinationViewController;
+        controller.flight = _selectedFlight;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,24 +70,39 @@
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
         
-        UILabel *cityLabel = (UILabel *)[cell viewWithTag:1];
-//        UILabel *firstDayLabel = (UILabel *)[cell viewWithTag:11];
-//        UILabel *secondDayLabel = (UILabel *)[cell viewWithTag:12];
-//        UILabel *thirdDayLabel = (UILabel *)[cell viewWithTag:13];
-//        UILabel *firstConditionsLabel = (UILabel *)[cell viewWithTag:21];
-//        UILabel *secondConditionsLabel = (UILabel *)[cell viewWithTag:22];
-//        UILabel *thirdConditionsLabel = (UILabel *)[cell viewWithTag:23];
-
+        UILabel *cityLabel = (UILabel *)[cell viewWithTag:101];
+        UILabel *countryLabel = (UILabel *)[cell viewWithTag:102];
+        UILabel *priceLabel = (UILabel *)[cell viewWithTag:103];
+        UILabel *timeLabel = (UILabel *)[cell viewWithTag:104];
+        UILabel *stopsLabel = (UILabel *)[cell viewWithTag:105];
+        
+        NSDate *departureDate = [_dateFormatter dateFromString:[[flight.outbounds firstObject] valueForKey:@"departure_time"]];
+        NSDate *arrivalDate = [_dateFormatter dateFromString:[[flight.outbounds lastObject] valueForKey:@"arrival_time"]];
+        NSDateComponents *componentsDeparture = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:departureDate];
+        NSDateComponents *componentsArrival = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:arrivalDate];
+        
+        cityLabel.text = _arrivalCityName;
+        countryLabel.text = [[flight.outbounds firstObject] valueForKey:@"airline_name"];
+        priceLabel.text = [NSString stringWithFormat:@"$%.2f",[flight.price floatValue]];
+        timeLabel.text = [NSString stringWithFormat:@"%02d:%02d - %02d:%02d",componentsDeparture.hour,componentsDeparture.minute,componentsArrival.hour,componentsArrival.minute];
+        stopsLabel.text = ((NSArray *)flight.outbounds).count > 1 ? [NSString stringWithFormat:@"stops: %d",((NSArray *)flight.outbounds).count] : @"direct";
+        
             for(int i = 0; i<3; i++)
             {
                 UILabel *label1 = (UILabel *)[cell viewWithTag:11+i];
                 UILabel *label2 = (UILabel *)[cell viewWithTag:21+i];
+                UILabel *label3 = (UILabel *)[cell viewWithTag:41+i];
+                UIImageView *imageView = (UIImageView *)[cell viewWithTag:31+i];
                 
                 Weather *weather = [_weatherArray objectAtIndex:i];
-                if(weather)
+                NSDictionary *dictionary = [weather.conditions firstObject];
+                
+                if(weather && dictionary)
                 {
                     label1.text = weather.date;
-                    label2.text = [[weather.conditions firstObject] valueForKey:@"value"];//validation needed
+                    label2.text = [dictionary valueForKey:@"value"];//validation needed
+                    label3.text = [NSString stringWithFormat:@"%@C to %@C", weather.tempMin,weather.tempMax];
+                    [imageView setImageWithURL:[NSURL URLWithString:[[weather.iconUrls firstObject] valueForKey:@"value"]] placeholder:nil];
                 }
             }
         
@@ -84,21 +111,24 @@
     else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
+        
         UILabel *cityLabel = (UILabel *)[cell viewWithTag:1];
         UILabel *countryLabel = (UILabel *)[cell viewWithTag:2];
         UILabel *priceLabel = (UILabel *)[cell viewWithTag:3];
         UILabel *timeLabel = (UILabel *)[cell viewWithTag:4];
+        UILabel *stopsLabel = (UILabel *)[cell viewWithTag:5];
         
-        NSDate *departureDate = [_dateFormatter dateFromString:[[flight.outbounds lastObject] valueForKey:@"departure_time"]];
+        NSDate *departureDate = [_dateFormatter dateFromString:[[flight.outbounds firstObject] valueForKey:@"departure_time"]];
         NSDate *arrivalDate = [_dateFormatter dateFromString:[[flight.outbounds lastObject] valueForKey:@"arrival_time"]];
         NSDateComponents *componentsDeparture = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:departureDate];
         NSDateComponents *componentsArrival = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:arrivalDate];
     
-        countryLabel.text = [[flight.outbounds firstObject] valueForKey:@"departure_name"];
-        cityLabel.text = [[flight.outbounds lastObject] valueForKey:@"arrival_name"];
+        cityLabel.text = _arrivalCityName;
+        countryLabel.text = [[flight.outbounds firstObject] valueForKey:@"airline_name"];
         priceLabel.text = [NSString stringWithFormat:@"$%.2f",[flight.price floatValue]];
-        timeLabel.text = [NSString stringWithFormat:@"%2d:%2d - %2d:%2d",componentsDeparture.hour,componentsDeparture.minute,componentsArrival.hour,componentsArrival.minute];
+        timeLabel.text = [NSString stringWithFormat:@"%02d:%02d - %02d:%02d",componentsDeparture.hour,componentsDeparture.minute,componentsArrival.hour,componentsArrival.minute];
+        stopsLabel.text = ((NSArray *)flight.outbounds).count > 1 ? [NSString stringWithFormat:@"stops: %d",((NSArray *)flight.outbounds).count] : @"direct";
+        
     }
     
     return cell;
@@ -122,7 +152,7 @@
     Flight *flight = [_flights objectAtIndex:indexPath.row];
     
     if(_selectedFlight == flight)
-        return 150.0;
+        return 180.0;
     else
         return 65.0;
 }
@@ -139,12 +169,52 @@
     UILabel *fromLabel = (UILabel *) [view viewWithTag:1];
     fromLabel.text = _departureCityName;
     
+    UIButton *sortByPriceButton = (UIButton *)[view viewWithTag:2];
+    UIButton *sortByDateButton = (UIButton *)[view viewWithTag:3];
+    
+    [sortByPriceButton addTarget:self action:@selector(sortByPrice:) forControlEvents:UIControlEventTouchUpInside];
+    [sortByDateButton addTarget:self action:@selector(sortByDate:) forControlEvents:UIControlEventTouchUpInside];
+    
     return view;
+}
+
+- (void)sortByPrice:(id)sender
+{
+    NSArray *sortedArray;
+    sortedArray = [_flights sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSNumber *first = [(Flight*)a price];
+        NSNumber *second = [(Flight*)b price];
+        return [first compare:second];
+    }];
+    
+    _flights = sortedArray;
+    
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+}
+
+- (void)sortByDate:(id)sender
+{
+    NSArray *sortedArray;
+    sortedArray = [_flights sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSDate *first = [_dateFormatter dateFromString: [[[(Flight*)a outbounds] firstObject] valueForKey:@"departure_time"]];
+        NSDate *second = [_dateFormatter dateFromString: [[[(Flight*)b outbounds] firstObject] valueForKey:@"departure_time"]];
+        return [first compare:second];
+    }];
+    
+    _flights = sortedArray;
+    
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _selectedFlight = [_flights objectAtIndex:indexPath.row];
+    
+    [self performSegueWithIdentifier:@"detailSegue" sender:nil];
     
     if(_weatherArray && _weatherArray.count > 0)
     {

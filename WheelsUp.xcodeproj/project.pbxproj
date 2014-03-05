@@ -44,7 +44,9 @@
 		18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF255187E8D4B00090861 /* WHLProfileViewController.m */; };
 		19F6E2421F904C7E97087016 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A59C2C53E162414CA5B0802A /* libPods.a */; };
 		C613A05018B359AD00918DE8 /* WHLSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C613A04F18B359AD00918DE8 /* WHLSearchResultsViewController.m */; };
+		C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */; };
 		C63B984118C077D000D9C03F /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B984018C077D000D9C03F /* Trip.m */; };
+		C63B984418C09E0500D9C03F /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B984318C09E0500D9C03F /* Weather.m */; };
 		C640A91718BF39B3003FA7DB /* Flight.m in Sources */ = {isa = PBXBuildFile; fileRef = C640A91618BF39B3003FA7DB /* Flight.m */; };
 		C640A93018BF6498003FA7DB /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = C640A92F18BF6498003FA7DB /* City.m */; };
 		C640A93418BF658A003FA7DB /* input.csv in Resources */ = {isa = PBXBuildFile; fileRef = C640A93318BF658A003FA7DB /* input.csv */; };
@@ -55,7 +57,6 @@
 		C6D2BCA818ACDB7D00998759 /* WheelsUpModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6D2BCA618ACDB7D00998759 /* WheelsUpModel.xcdatamodeld */; };
 		C6D2BCAB18ACDBA600998759 /* WHLNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D2BCAA18ACDBA600998759 /* WHLNetworkManager.m */; };
 		C6D2BCB218ACE74500998759 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D2BCB118ACE74500998759 /* SearchModel.m */; };
-		C6FC4CFC18B7BC9E00C53254 /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FC4CFB18B7BC9E00C53254 /* Weather.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,8 +126,12 @@
 		A59C2C53E162414CA5B0802A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C613A04E18B359AD00918DE8 /* WHLSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHLSearchResultsViewController.h; path = WheelsUp/WHLSearchResultsViewController.h; sourceTree = "<group>"; };
 		C613A04F18B359AD00918DE8 /* WHLSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHLSearchResultsViewController.m; path = WheelsUp/WHLSearchResultsViewController.m; sourceTree = "<group>"; };
+		C627662918C5C7DA00D80043 /* WHLFlightDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLFlightDetailsViewController.h; sourceTree = "<group>"; };
+		C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFlightDetailsViewController.m; sourceTree = "<group>"; };
 		C63B983F18C077D000D9C03F /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trip.h; path = model/Trip.h; sourceTree = SOURCE_ROOT; };
 		C63B984018C077D000D9C03F /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Trip.m; path = model/Trip.m; sourceTree = SOURCE_ROOT; };
+		C63B984218C09E0500D9C03F /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = model/Weather.h; sourceTree = SOURCE_ROOT; };
+		C63B984318C09E0500D9C03F /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weather.m; path = model/Weather.m; sourceTree = SOURCE_ROOT; };
 		C640A91518BF39B3003FA7DB /* Flight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flight.h; path = model/Flight.h; sourceTree = SOURCE_ROOT; };
 		C640A91618BF39B3003FA7DB /* Flight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Flight.m; path = model/Flight.m; sourceTree = SOURCE_ROOT; };
 		C640A92E18BF6498003FA7DB /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
@@ -140,8 +145,6 @@
 		C6D2BCAA18ACDBA600998759 /* WHLNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLNetworkManager.m; sourceTree = "<group>"; };
 		C6D2BCB018ACE74500998759 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
 		C6D2BCB118ACE74500998759 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
-		C6FC4CFA18B7BC9E00C53254 /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = model/Weather.h; sourceTree = SOURCE_ROOT; };
-		C6FC4CFB18B7BC9E00C53254 /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weather.m; path = model/Weather.m; sourceTree = SOURCE_ROOT; };
 		D9DAE4B87EDE4B688220D663 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -337,6 +340,8 @@
 		18DEF24B187E8C7400090861 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				C627662918C5C7DA00D80043 /* WHLFlightDetailsViewController.h */,
+				C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */,
 				18DEF24C187E8CF100090861 /* WHLSearchViewController.h */,
 				18DEF24D187E8CF100090861 /* WHLSearchViewController.m */,
 				C613A04E18B359AD00918DE8 /* WHLSearchResultsViewController.h */,
@@ -371,14 +376,14 @@
 			children = (
 				C640A92E18BF6498003FA7DB /* City.h */,
 				C640A92F18BF6498003FA7DB /* City.m */,
-				C6FC4CFA18B7BC9E00C53254 /* Weather.h */,
-				C6FC4CFB18B7BC9E00C53254 /* Weather.m */,
 				C640A91518BF39B3003FA7DB /* Flight.h */,
 				C640A91618BF39B3003FA7DB /* Flight.m */,
 				C6D2BCB018ACE74500998759 /* SearchModel.h */,
 				C6D2BCB118ACE74500998759 /* SearchModel.m */,
 				C63B983F18C077D000D9C03F /* Trip.h */,
 				C63B984018C077D000D9C03F /* Trip.m */,
+				C63B984218C09E0500D9C03F /* Weather.h */,
+				C63B984318C09E0500D9C03F /* Weather.m */,
 				C640A93318BF658A003FA7DB /* input.csv */,
 			);
 			path = model;
@@ -530,7 +535,9 @@
 				C640A91718BF39B3003FA7DB /* Flight.m in Sources */,
 				18DEF24A187E884C00090861 /* WHLMenuViewController.m in Sources */,
 				C63B984118C077D000D9C03F /* Trip.m in Sources */,
+				C63B984418C09E0500D9C03F /* Weather.m in Sources */,
 				18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */,
+				C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */,
 				18DEF242187E869800090861 /* REMenuItem.m in Sources */,
 				1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */,
 				18DEF240187E869800090861 /* REMenu.m in Sources */,
@@ -539,7 +546,6 @@
 				18DEF243187E869800090861 /* REMenuItemView.m in Sources */,
 				18DEF24E187E8CF100090861 /* WHLSearchViewController.m in Sources */,
 				1858B335188235CE00A18F32 /* WHLLoginViewController.m in Sources */,
-				C6FC4CFC18B7BC9E00C53254 /* Weather.m in Sources */,
 				18A3C890187D1C0800C5E07B /* WHLAppDelegate.m in Sources */,
 				18DEF247187E87F700090861 /* WHLMenuItemViewController.m in Sources */,
 				18A3C88C187D1C0800C5E07B /* main.m in Sources */,

@@ -52,7 +52,8 @@
                                                          @"best_fare.deeplink":                     @"deeplink",
                                                          @"best_fare.deeplink_params.trip_id":                     @"tripId",
                                                          @"best_fare.deeplink_params.search_id":                     @"searchId",
-                                                         @"outbound_segments":                     @"outbounds"
+                                                         @"outbound_segments":                     @"outbounds",
+                                                         @"inbound_segments":                     @"inbounds"
                                                          
                                                          }];
     flightMapping.identificationAttributes = @[ @"flightNumber" ];
@@ -102,7 +103,7 @@
                                                          @"@metadata.routing.parameters.location":     @"location",
                                                          @"date":                                            @"date",
                                                          @"tempMaxC":                                       @"tempMax",
-                                                         @"weatherIconUrl":                                       @"iconUrl",
+                                                         @"weatherIconUrl":                                       @"iconUrls",
                                                          @"weatherDesc":                                       @"conditions",
                                                          @"tempMinC":                                     @"tempMin"
                                                          }];
@@ -157,7 +158,7 @@
     }
     else
     {
-        NSDictionary *flightsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:searchId, @"search_id", tripId, @"trip_id", @"route", @"fares_query_type", @"as34fg3dfvasse", @"id", nil];
+        NSDictionary *flightsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:searchId, @"search_id", tripId, @"trip_id", @"route", @"fares_query_type", @"as34fg3dfvasse", @"id", @"USD", @"currency_code", nil];
     
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:flightsDictionary

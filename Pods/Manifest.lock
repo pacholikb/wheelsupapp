@@ -1,5 +1,6 @@
 PODS:
   - AFNetworking (1.3.3)
+  - JMImageCache (0.4.0)
   - KDropDownMultipleSelection (1.0)
   - RestKit (0.20.3):
     - RestKit/Core
@@ -17,17 +18,22 @@ PODS:
   - RestKit/Support (0.20.3):
     - TransitionKit (= 1.1.1)
   - SOCKit (1.1)
+  - SVProgressHUD (1.0)
   - TransitionKit (1.1.1)
 
 DEPENDENCIES:
+  - JMImageCache
   - KDropDownMultipleSelection (~> 1.0)
   - RestKit (~> 0.20.0rc)
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
+  JMImageCache: 4d764ca5819ce5b0b3bb1efb85c29977768c54bd
   KDropDownMultipleSelection: 051e9f138c1ae62d12f686ecb385492ad2f25e9d
   RestKit: 1f181c180105a92f11ec4f6cd7de37625e516d83
   SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
+  SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
   TransitionKit: d0e3344aac92991395d4c2e72d9c5a8ceeb12910
 
 COCOAPODS: 0.29.0

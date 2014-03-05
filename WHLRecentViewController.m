@@ -12,6 +12,7 @@
 #import "Flight.h"
 #import "WHLNetworkManager.h"
 #import "WHLSearchResultsViewController.h"
+#import "SVProgressHUD.h"
 
 @interface WHLRecentViewController ()
 
@@ -89,7 +90,8 @@
 {
     NSDictionary *dictionary = [_selectedTrip.trips firstObject];
         __weak typeof (self) wself = self;
-        
+    
+    [SVProgressHUD showWithStatus:@"Searching." maskType:SVProgressHUDMaskTypeBlack];
         [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:[dictionary valueForKey:@"departure_code"] to:[dictionary valueForKey:@"arrival_code"] success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             
             if(mappingResult.array.count > 0) {
@@ -97,6 +99,7 @@
                 
                 [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:tripFound.searchId andTripId:[[tripFound.trips firstObject] valueForKey:@"id"] success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                     
+                    [SVProgressHUD dismiss];
                     
                     if(mappingResult.array.count > 0)
                     {
@@ -107,15 +110,17 @@
                         [wself showDialogWithTitle:@"Oops!" andMessage:@"No flights found!"];
                     
                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                    
+                    [SVProgressHUD dismiss];
                 } numberOfTimes:5];
                 
             }
-            else
+            else {
+                [SVProgressHUD dismiss];
                 [wself showDialogWithTitle:@"Oops!" andMessage:@"No route found!"];
+            }
             
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            
+            [SVProgressHUD dismiss];
         }];
     
 }
@@ -134,10 +139,11 @@
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    [fetchRequest setFetchBatchSize:10];
+    [fetchRequest setFetchLimit:10];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];

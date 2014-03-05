@@ -11,6 +11,7 @@
 #import "REMenu.h"
 #import "City.h"
 #import <Parse/Parse.h>
+#import "SVProgressHUD.h"
 
 @interface WHLSearchViewController ()
 
@@ -83,20 +84,20 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
         [fetchRequest setEntity:entity];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",_fromTF.text];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",[_fromTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
         
         [fetchRequest setPredicate:predicate];
         
         NSError *error;
         NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
-        
-        if(error)
-            NSLog(@"%@",error);
+
         
         if(results && results.count > 0) {
             City *city = (City *)[results firstObject];
             _fromCode = city.iata;
         }
+        else
+            [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
         
     }
     else if(textField == _toTF && textField.text.length > 0)
@@ -107,19 +108,19 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
         [fetchRequest setEntity:entity];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",_toTF.text];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",[_toTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
         
         [fetchRequest setPredicate:predicate];
         
         NSError *error;
         NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
         
-        if(error)
-            NSLog(@"%@",error);
         
         if(results && results.count > 0)
             _toCode = ((City *)[results firstObject]).iata;
-        
+        else
+            [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
+            
     }
     
 }
@@ -135,6 +136,7 @@
     {
         __weak typeof (self) wself = self;
         
+        [SVProgressHUD showWithStatus:@"Searching." maskType:SVProgressHUDMaskTypeBlack];
         [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             
             if(mappingResult.array.count > 0) {
@@ -142,6 +144,7 @@
                 
                 [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:wself.trip.searchId andTripId:[[wself.trip.trips firstObject] valueForKey:@"id"] success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                     
+                    [SVProgressHUD dismiss];
                     
                     if(mappingResult.array.count > 0)
                     {
@@ -152,7 +155,7 @@
                         [wself showDialogWithTitle:@"Oops!" andMessage:@"No flights found!"];
         
                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                    
+                    [SVProgressHUD dismiss];
                 } numberOfTimes:5];
                 
             }
@@ -160,7 +163,7 @@
                 [wself showDialogWithTitle:@"Oops!" andMessage:@"No route found!"];
             
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            
+            [SVProgressHUD dismiss];
         }];
         
     }
@@ -195,36 +198,13 @@
         
         CLLocation *location = [locations firstObject];
         
-        SearchModel *search = [SearchModel new];
-        search.longitude = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
-        search.latitude = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
-        search.radius = @"50";
-        
-        __weak typeof (UITextField *) tf = _fromTF;
-        __weak typeof (self) wself = self;
-        
-//        [[RKObjectManager sharedManager] getObjectsAtPathForRouteNamed:@"airportsRoute" object:search parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-//            NSLog(@"load airports success %@",mappingResult.array);
-//            
-//            if(mappingResult.array.count > 0)
-//            {
-//                wself.airportsFrom = mappingResult.array;
-//                wself.airportFrom = (Airport *)[wself.airportsFrom firstObject];
-//                tf.text = wself.airportFrom.name;
-//                
-//                if(mappingResult.array.count > 1)
-//                    [wself showPopUpWithTitle:@"Select Departure Airport" withOption:_airportsFrom xy:CGPointMake(35, 140) isMultiple:NO];
-//                
-//            }
-//            else
-//                [wself showDialogWithTitle:@"Oops!" andMessage:@"No airports found for the given location."];
-//            
-//        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-//            NSLog(@"load airports failure %@",error);
-//            
-//            [wself showDialogWithTitle:@"Oops!" andMessage:@"Error while searching fo airports."];
-//            
-//        }];
+        [[CLGeocoder new] reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error){
+            CLPlacemark *placemark = placemarks[0];
+            NSLog(@"Found %@", placemark.locality);
+            
+            _fromTF.text = placemark.locality;
+            [self textFieldDidEndEditing:_fromTF];
+        }];
         
     }
 }

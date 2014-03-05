@@ -19,11 +19,10 @@
 {
     NSError *error = nil;
     NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"WheelsUpModel" ofType:@"momd"]];
-    // NOTE: Due to an iOS 5 bug, the managed object model returned is immutable.
+
     NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] mutableCopy];
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     
-    // Initialize the Core Data stack
     [managedObjectStore createPersistentStoreCoordinator];
     
     NSArray * searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -45,7 +44,6 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [PFFacebookUtils initializeFacebook];
-
     
     //Status Bar
 

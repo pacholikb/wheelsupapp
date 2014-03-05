@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-JMImageCache.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-KDropDownMultipleSelection.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,6 +25,11 @@
 			<false/>
 		</dict>
 		<key>Pods-SOCKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09A170E9A7B94E7888BCFFE3</key>
+		<key>1B0F5C3DBDB44657BEB0D638</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1219E79C40864F738A1418AE</key>
+		<key>404B6F01030C452FA4D0A8BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3A7579BE91A049B8B559971F</key>
+		<key>516ECAA81C784EACA973420D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B5E81BB4393F4FE49E774DEC</key>
+		<key>56C775E24CDA4376B24A6EE4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D1B1E3023F2D4E018BDB86F8</key>
+		<key>6110415C1C7C4DE09BFA82FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D87B3791B49E45ABB6B36B3B</key>
+		<key>8D299E5E55C640408B795B94</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AFEF75CC5B5B468784056B1E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E83AC71B429147FEA93CB944</key>
 		<dict>
 			<key>primary</key>
 			<true/>
