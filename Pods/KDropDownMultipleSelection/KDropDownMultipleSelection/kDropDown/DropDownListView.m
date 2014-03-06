@@ -131,7 +131,7 @@
         imgarrow.image=nil;
     
     [cell addSubview:imgarrow];
-    cell.textLabel.text = [[_kDropDownOption objectAtIndex:row] name];
+    cell.textLabel.text = [_kDropDownOption objectAtIndex:row];
     return cell;
 }
 

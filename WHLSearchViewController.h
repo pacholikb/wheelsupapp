@@ -29,7 +29,7 @@
 @property (strong) NSArray *flights;
 
 @property (strong) DropDownListView * Dropobj;
-
+@property (strong) NSArray *dropdownOptions;
 @property (assign) BOOL dropdownTo;
 
 

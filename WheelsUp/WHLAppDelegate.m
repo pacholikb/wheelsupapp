@@ -89,11 +89,17 @@
                 NSArray *lineComponents=[line componentsSeparatedByString:@","];
                 if(lineComponents){
                  
+                    NSString *string0=[lineComponents objectAtIndex:0];
+                    
+                    if([string0 isEqualToString:@"\"City\""]) {
+            
                         NSString *string1=[lineComponents objectAtIndex:1];
                         NSString *string2=[lineComponents objectAtIndex:2];
+                        NSString *string3=[lineComponents objectAtIndex:5];
                         NSManagedObject *object=[NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:context];
                         [object setValue:[string1 stringByReplacingOccurrencesOfString:@"\"" withString:@""] forKey:@"name"];
                         [object setValue:[string2 stringByReplacingOccurrencesOfString:@"\"" withString:@""] forKey:@"iata"];
+                        [object setValue:[string3 stringByReplacingOccurrencesOfString:@"\"" withString:@""] forKey:@"country"];
                         NSError *error;
                         count++;
                         if(count>=1000){
@@ -103,6 +109,7 @@
                             count=0;
                             
                         }
+                    }
                     
                 }
                 

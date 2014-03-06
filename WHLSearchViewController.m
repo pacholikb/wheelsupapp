@@ -93,8 +93,16 @@
 
         
         if(results && results.count > 0) {
-            City *city = (City *)[results firstObject];
-            _fromCode = city.iata;
+            if(results.count > 1) {
+                _dropdownTo = NO;
+                _dropdownOptions = results;
+                [self showPopUpWithTitle:@"Choose City" withOption:_dropdownOptions xy:CGPointMake(35, 125) isMultiple:NO];
+            }
+            else {
+                City *city = (City *)[results firstObject];
+                _fromCode = city.iata;
+                _fromTF.text = city.name;
+            }
         }
         else
             [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
@@ -117,7 +125,16 @@
         
         
         if(results && results.count > 0)
-            _toCode = ((City *)[results firstObject]).iata;
+            if(results.count > 1) {
+                _dropdownTo = YES;
+                _dropdownOptions = results;
+                [self showPopUpWithTitle:@"Choose City" withOption:_dropdownOptions xy:CGPointMake(35, 170) isMultiple:NO];
+            }
+            else {
+                City *city = (City *)[results firstObject];
+                _toCode = city.iata;
+                _toTF.text = city.name;
+            }
         else
             [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
             
@@ -221,8 +238,12 @@
     else
         size = CGSizeMake(250, 230);
     
+    NSMutableArray *options = [NSMutableArray new];
+    for(City *city in arrOptions)
+        [options addObject:[NSString stringWithFormat:@"%@, %@",city.name,city.country]];
+    
     [_Dropobj fadeOut];
-    _Dropobj = [[DropDownListView alloc] initWithTitle:popupTitle options:arrOptions xy:point size:size isMultiple:isMultiple];
+    _Dropobj = [[DropDownListView alloc] initWithTitle:popupTitle options:options xy:point size:size isMultiple:isMultiple];
     _Dropobj.delegate = self;
     [_Dropobj showInView:self.view animated:YES];
     
@@ -235,13 +256,18 @@
 }
 
 - (void)DropDownListView:(DropDownListView *)dropdownListView didSelectedIndex:(NSInteger)anIndex {
+    City *city = [_dropdownOptions objectAtIndex:anIndex];
     
-    
-}
-
-- (void)DropDownListView:(DropDownListView *)dropdownListView Datalist:(NSMutableArray*)ArryData{
-    
-    NSLog(@"didSelectedIndex ");
+    if(_dropdownTo)
+    {
+        _toCode = city.iata;
+        _toTF.text = city.name;
+    }
+    else
+    {
+        _fromCode = city.iata;
+        _fromTF.text = city.name;
+    }
 }
 
 - (void)DropDownListViewDidCancel{

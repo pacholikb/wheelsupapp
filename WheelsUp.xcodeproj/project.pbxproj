@@ -48,8 +48,8 @@
 		C63B984118C077D000D9C03F /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B984018C077D000D9C03F /* Trip.m */; };
 		C63B984418C09E0500D9C03F /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B984318C09E0500D9C03F /* Weather.m */; };
 		C640A91718BF39B3003FA7DB /* Flight.m in Sources */ = {isa = PBXBuildFile; fileRef = C640A91618BF39B3003FA7DB /* Flight.m */; };
-		C640A93018BF6498003FA7DB /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = C640A92F18BF6498003FA7DB /* City.m */; };
 		C640A93418BF658A003FA7DB /* input.csv in Resources */ = {isa = PBXBuildFile; fileRef = C640A93318BF658A003FA7DB /* input.csv */; };
+		C6413DE118C8AD26003B333D /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = C6413DE018C8AD26003B333D /* City.m */; };
 		C68CB25218B649D400F0B1E0 /* ResultsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C68CB25118B649D400F0B1E0 /* ResultsHeaderView.xib */; };
 		C6D2BCA218ACBDDA00998759 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA118ACBDDA00998759 /* Parse.framework */; };
 		C6D2BCA418ACBEF700998759 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */; };
@@ -134,9 +134,9 @@
 		C63B984318C09E0500D9C03F /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weather.m; path = model/Weather.m; sourceTree = SOURCE_ROOT; };
 		C640A91518BF39B3003FA7DB /* Flight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flight.h; path = model/Flight.h; sourceTree = SOURCE_ROOT; };
 		C640A91618BF39B3003FA7DB /* Flight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Flight.m; path = model/Flight.m; sourceTree = SOURCE_ROOT; };
-		C640A92E18BF6498003FA7DB /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
-		C640A92F18BF6498003FA7DB /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		C640A93318BF658A003FA7DB /* input.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.csv; sourceTree = SOURCE_ROOT; };
+		C6413DDF18C8AD26003B333D /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = model/City.h; sourceTree = SOURCE_ROOT; };
+		C6413DE018C8AD26003B333D /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = model/City.m; sourceTree = SOURCE_ROOT; };
 		C68CB25118B649D400F0B1E0 /* ResultsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsHeaderView.xib; sourceTree = "<group>"; };
 		C6D2BCA118ACBDDA00998759 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
 		C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK.framework; sourceTree = "<group>"; };
@@ -374,8 +374,6 @@
 		C6D2BCAC18ACDF0000998759 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				C640A92E18BF6498003FA7DB /* City.h */,
-				C640A92F18BF6498003FA7DB /* City.m */,
 				C640A91518BF39B3003FA7DB /* Flight.h */,
 				C640A91618BF39B3003FA7DB /* Flight.m */,
 				C6D2BCB018ACE74500998759 /* SearchModel.h */,
@@ -384,6 +382,8 @@
 				C63B984018C077D000D9C03F /* Trip.m */,
 				C63B984218C09E0500D9C03F /* Weather.h */,
 				C63B984318C09E0500D9C03F /* Weather.m */,
+				C6413DDF18C8AD26003B333D /* City.h */,
+				C6413DE018C8AD26003B333D /* City.m */,
 				C640A93318BF658A003FA7DB /* input.csv */,
 			);
 			path = model;
@@ -528,8 +528,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6D2BCA818ACDB7D00998759 /* WheelsUpModel.xcdatamodeld in Sources */,
-				C640A93018BF6498003FA7DB /* City.m in Sources */,
 				C613A05018B359AD00918DE8 /* WHLSearchResultsViewController.m in Sources */,
+				C6413DE118C8AD26003B333D /* City.m in Sources */,
 				18DEF241187E869800090861 /* REMenuContainerView.m in Sources */,
 				18DEF252187E8D3000090861 /* WHLRecentViewController.m in Sources */,
 				C640A91718BF39B3003FA7DB /* Flight.m in Sources */,
