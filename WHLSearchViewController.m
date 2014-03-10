@@ -33,6 +33,14 @@
     
     [WHLNetworkManager sharedInstance].locationManager.delegate = self;
     [[WHLNetworkManager sharedInstance].locationManager startUpdatingLocation];
+    
+    [_stopsSC addTarget:self action:@selector(stopsChanged:) forControlEvents:UIControlEventValueChanged];
+    [_stopsSC setSelectedSegmentIndex:2];
+    
+    _maxPrice = 0;
+    _adultsCount = 1;
+    _childrenCount = 0;
+    _numberOfStops = @"two_plus";
 }
 
 - (IBAction)gpsAction:(id)sender {
@@ -65,12 +73,13 @@
 {
     [_fromTF resignFirstResponder];
     [_toTF resignFirstResponder];
+    [_maxPriceTF resignFirstResponder];
     return NO;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [_Dropobj fadeOut];
+
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -139,6 +148,10 @@
             [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
             
     }
+    else if(textField == _maxPriceTF)
+    {
+        _maxPrice = [_maxPriceTF.text integerValue];
+    }
     
 }
 
@@ -148,18 +161,23 @@
     [_toTF resignFirstResponder];
 
     if (_fromCode.length == 0 || _toCode.length == 0)
-        [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out all the fields!"];
+        [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
     else
     {
         __weak typeof (self) wself = self;
         
-        [SVProgressHUD showWithStatus:@"Searching." maskType:SVProgressHUDMaskTypeBlack];
-        [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [SVProgressHUD showWithStatus:@"Searching..." maskType:SVProgressHUDMaskTypeBlack];
+        
+        NSString *adults = [NSString stringWithFormat:@"%d",_adultsCount];
+        NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
+        NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%d",_maxPrice] : nil;
+        
+        [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             
             if(mappingResult.array.count > 0) {
                 wself.trip = [mappingResult.array firstObject];
                 
-                [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:wself.trip.searchId andTripId:[[wself.trip.trips firstObject] valueForKey:@"id"] success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:wself.trip.searchId andTripId:[[wself.trip.trips firstObject] valueForKey:@"id"] stops:_numberOfStops maxrrice:maxPrice success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                     
                     [SVProgressHUD dismiss];
                     
@@ -172,14 +190,16 @@
                         [wself showDialogWithTitle:@"Oops!" andMessage:@"No flights found!"];
         
                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                    [wself showDialogWithTitle:@"Oops!" andMessage:@"Please try again"];
                     [SVProgressHUD dismiss];
-                } numberOfTimes:5];
+                } numberOfTimes:8];
                 
             }
             else
                 [wself showDialogWithTitle:@"Oops!" andMessage:@"No route found!"];
             
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            [wself showDialogWithTitle:@"Oops!" andMessage:@"Please try again"];
             [SVProgressHUD dismiss];
         }];
         
@@ -289,8 +309,6 @@
         size = CGSizeMake(ceil(boundingBox.width), ceil(boundingBox.height));
     }
     else{
-        
-        
         size = [lbl.text sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
     }
     return size;
@@ -305,6 +323,54 @@
                                               otherButtonTitles:nil];
     
     [alertView show];
+}
+
+#pragma pickerView delegate
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if(pickerView == _adultsPicker)
+        _adultsCount = row+1;
+    else
+        _childrenCount = row;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if(pickerView == _adultsPicker)
+        return 10;
+    else
+        return 11;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if(pickerView == _adultsPicker)
+        return [NSString stringWithFormat:@"%d",row+1];
+    else
+        return [NSString stringWithFormat:@"%d",row];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (void)stopsChanged:(UISegmentedControl *)sender
+{
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            _numberOfStops = @"none";
+            break;
+        case 1:
+            _numberOfStops = @"one";
+            break;
+        case 2:
+            _numberOfStops = @"two_plus";
+            
+        default:
+            break;
+    }
 }
 
 @end

@@ -16,7 +16,7 @@
 #import "Trip.h"
 #import "DropDownListView.h"
 
-@interface WHLSearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, kDropDownListViewDelegate>
+@interface WHLSearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, kDropDownListViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITextField *fromTF;
 @property (strong, nonatomic) IBOutlet UITextField *toTF;
@@ -32,6 +32,16 @@
 @property (strong) NSArray *dropdownOptions;
 @property (assign) BOOL dropdownTo;
 
+@property (strong, nonatomic) IBOutlet UIPickerView *adultsPicker;
+@property (strong, nonatomic) IBOutlet UIPickerView *childrenPicker;
 
+@property (strong, nonatomic) IBOutlet UITextField *maxPriceTF;
+
+@property (strong, nonatomic) IBOutlet UISegmentedControl *stopsSC;
+
+@property (assign) NSInteger maxPrice;
+@property (assign) NSInteger adultsCount;
+@property (assign) NSInteger childrenCount;
+@property (strong) NSString *numberOfStops;
 
 @end

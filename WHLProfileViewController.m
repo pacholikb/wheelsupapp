@@ -23,13 +23,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        NSLog(@"Current user: %@", currentUser.username);
-    }
-    else {
-        [self performSegueWithIdentifier:@"showLogin" sender:self];
-    }
     
     [ self setTitle : @"Profile" ] ;
     
@@ -42,7 +37,7 @@
 
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 @end
 

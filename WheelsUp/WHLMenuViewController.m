@@ -43,14 +43,17 @@
                                                             image : [UIImage imageNamed:@"Icon_Home"]
                                                  highlightedImage : nil
                                                            action : ^( REMenuItem* item ) {
+                                                               
                                                                WHLSearchViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLSearchViewController" ] ;
                                                                [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
+                                                               
                                                            } ] ;
     
     REMenuItem* recentItem = [ [ REMenuItem alloc ] initWithTitle : @"Recent"
                                                             image : [UIImage imageNamed:@"Icon_Home"]
                                                  highlightedImage : nil
                                                            action : ^( REMenuItem* item ) {
+                                                               
                                                                WHLRecentViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLRecentViewController" ] ;
                                                                [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
                                                                
@@ -60,18 +63,10 @@
                                                              image : [UIImage imageNamed:@"Icon_Home"]
                                                   highlightedImage : nil
                                                             action : ^( REMenuItem* item ) {
-                                                                if( [ PFUser currentUser ] != nil )
-                                                                {
-                                                                    WHLProfileViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLProfileViewController" ];
+                                                            
+                                                                    WHLLoginViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLLoginViewController" ];
                                                                     [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
-                                                                }
-                                                                else
-                                                                {
-                                                                    WHLProfileViewController* viewController1 = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLProfileViewController" ];
-                                                                    
-                                                                    WHLLoginViewController* viewController2 = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLLoginViewController" ] ;
-                                                                    [ weakSelf setViewControllers : @[ viewController1, viewController2 ] animated : NO ] ;
-                                                                }
+                                                              
                                                             } ] ;
     
     searchItem.tag = 0 ;

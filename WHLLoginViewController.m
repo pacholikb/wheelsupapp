@@ -9,6 +9,7 @@
 #import "WHLProfileViewController.h"
 #import "WHLLoginViewController.h"
 #import <Parse/Parse.h>
+#import "REMenu.h"
 
 @interface WHLLoginViewController ()
 
@@ -25,13 +26,17 @@
     self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
     
     // Check if user is cached and linked to Facebook, if so, bypass login
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-        [self performSegueWithIdentifier:@"showFBProfile" sender:self];}
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+        [self performSegueWithIdentifier:@"showFBProfile" sender:self];
+    else if([PFUser currentUser])
+        [self performSegueWithIdentifier:@"showProfile" sender:self];
 
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
     [self.view addGestureRecognizer:tapGesture];
     
     _activityIndicator.hidden = YES;
+    
+    self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
 }
 
 - (void)hideKeyboard:(id)sender
@@ -65,7 +70,7 @@
             }
             else {
                 NSLog(@"Logged in successfuly");
-                [self.navigationController popViewControllerAnimated:YES];
+                [self performSegueWithIdentifier:@"showProfile" sender:nil];
             }
             _activityIndicator.hidden = YES;
         }];
@@ -90,10 +95,10 @@
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
-            [self.navigationController popViewControllerAnimated:YES];
+            [self performSegueWithIdentifier:@"showFBProfile" sender:nil];
         } else {
             NSLog(@"User with facebook logged in!");
-            [self.navigationController popViewControllerAnimated:YES];
+            [self performSegueWithIdentifier:@"showFBProfile" sender:nil];
         }
     }];
     

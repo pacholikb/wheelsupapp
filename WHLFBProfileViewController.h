@@ -27,8 +27,4 @@
 @property (nonatomic, strong) NSMutableArray *rowDataArray;
 @property (nonatomic, strong) NSMutableData *imageData;
 
-- (void)logoutButtonTouchHandler:(id)sender;
-
-@property (strong, nonatomic) IBOutlet UILabel *labelWeatherInfo;
-
 @end

@@ -42,6 +42,28 @@
     _dateFormatter = [[NSDateFormatter alloc] init];
     [_dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     _dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZ";
+    
+    SearchModel *search = [SearchModel new];
+    search.location = _arrivalCityName;
+    
+    __weak typeof (self) wself = self;
+    [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : _arrivalCityName, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        wself.weatherArray = mappingResult.array;
+        [wself.tableView reloadData];
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"weather failure %@",error);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                            message:@"Couldn't get weather info"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        
+        [alertView show];
+
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -66,70 +88,25 @@
     UITableViewCell *cell;
     Flight *flight = [_flights objectAtIndex:indexPath.row];
     
-    if(_selectedFlight == flight)
-    {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         
-        UILabel *cityLabel = (UILabel *)[cell viewWithTag:101];
-        UILabel *countryLabel = (UILabel *)[cell viewWithTag:102];
-        UILabel *priceLabel = (UILabel *)[cell viewWithTag:103];
-        UILabel *timeLabel = (UILabel *)[cell viewWithTag:104];
-        UILabel *stopsLabel = (UILabel *)[cell viewWithTag:105];
+    UILabel *cityLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *countryLabel = (UILabel *)[cell viewWithTag:2];
+    UILabel *priceLabel = (UILabel *)[cell viewWithTag:3];
+    UILabel *timeLabel = (UILabel *)[cell viewWithTag:4];
+    UILabel *stopsLabel = (UILabel *)[cell viewWithTag:5];
         
-        NSDate *departureDate = [_dateFormatter dateFromString:[[flight.outbounds firstObject] valueForKey:@"departure_time"]];
-        NSDate *arrivalDate = [_dateFormatter dateFromString:[[flight.outbounds lastObject] valueForKey:@"arrival_time"]];
-        NSDateComponents *componentsDeparture = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:departureDate];
-        NSDateComponents *componentsArrival = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:arrivalDate];
-        
-        cityLabel.text = _arrivalCityName;
-        countryLabel.text = [[flight.outbounds firstObject] valueForKey:@"airline_name"];
-        priceLabel.text = [NSString stringWithFormat:@"$%.2f",[flight.price floatValue]];
-        timeLabel.text = [NSString stringWithFormat:@"%02d:%02d - %02d:%02d",componentsDeparture.hour,componentsDeparture.minute,componentsArrival.hour,componentsArrival.minute];
-        stopsLabel.text = ((NSArray *)flight.outbounds).count > 1 ? [NSString stringWithFormat:@"stops: %d",((NSArray *)flight.outbounds).count] : @"direct";
-        
-            for(int i = 0; i<3; i++)
-            {
-                UILabel *label1 = (UILabel *)[cell viewWithTag:11+i];
-                UILabel *label2 = (UILabel *)[cell viewWithTag:21+i];
-                UILabel *label3 = (UILabel *)[cell viewWithTag:41+i];
-                UIImageView *imageView = (UIImageView *)[cell viewWithTag:31+i];
-                
-                Weather *weather = [_weatherArray objectAtIndex:i];
-                NSDictionary *dictionary = [weather.conditions firstObject];
-                
-                if(weather && dictionary)
-                {
-                    label1.text = weather.date;
-                    label2.text = [dictionary valueForKey:@"value"];//validation needed
-                    label3.text = [NSString stringWithFormat:@"%@C to %@C", weather.tempMin,weather.tempMax];
-                    [imageView setImageWithURL:[NSURL URLWithString:[[weather.iconUrls firstObject] valueForKey:@"value"]] placeholder:nil];
-                }
-            }
-        
-
-    }
-    else
-    {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        
-        UILabel *cityLabel = (UILabel *)[cell viewWithTag:1];
-        UILabel *countryLabel = (UILabel *)[cell viewWithTag:2];
-        UILabel *priceLabel = (UILabel *)[cell viewWithTag:3];
-        UILabel *timeLabel = (UILabel *)[cell viewWithTag:4];
-        UILabel *stopsLabel = (UILabel *)[cell viewWithTag:5];
-        
-        NSDate *departureDate = [_dateFormatter dateFromString:[[flight.outbounds firstObject] valueForKey:@"departure_time"]];
-        NSDate *arrivalDate = [_dateFormatter dateFromString:[[flight.outbounds lastObject] valueForKey:@"arrival_time"]];
-        NSDateComponents *componentsDeparture = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:departureDate];
-        NSDateComponents *componentsArrival = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:arrivalDate];
+    NSDate *departureDate = [_dateFormatter dateFromString:[[flight.outbounds firstObject] valueForKey:@"departure_time"]];
+    NSDate *arrivalDate = [_dateFormatter dateFromString:[[flight.outbounds lastObject] valueForKey:@"arrival_time"]];
+    NSDateComponents *componentsDeparture = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:departureDate];
+    NSDateComponents *componentsArrival = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:arrivalDate];
     
-        cityLabel.text = _arrivalCityName;
-        countryLabel.text = [[flight.outbounds firstObject] valueForKey:@"airline_name"];
-        priceLabel.text = [NSString stringWithFormat:@"$%.2f",[flight.price floatValue]];
-        timeLabel.text = [NSString stringWithFormat:@"%02d:%02d - %02d:%02d",componentsDeparture.hour,componentsDeparture.minute,componentsArrival.hour,componentsArrival.minute];
-        stopsLabel.text = ((NSArray *)flight.outbounds).count > 1 ? [NSString stringWithFormat:@"stops: %d",((NSArray *)flight.outbounds).count] : @"direct";
-        
-    }
+    cityLabel.text = _arrivalCityName;
+    countryLabel.text = [[flight.outbounds firstObject] valueForKey:@"airline_name"];
+    priceLabel.text = [NSString stringWithFormat:@"$%.2f",[flight.price floatValue]];
+    timeLabel.text = [NSString stringWithFormat:@"%02d:%02d - %02d:%02d",componentsDeparture.hour,componentsDeparture.minute,componentsArrival.hour,componentsArrival.minute];
+    stopsLabel.text = ((NSArray *)flight.outbounds).count > 1 ? [NSString stringWithFormat:@"stops: %d",((NSArray *)flight.outbounds).count - 1] : @"direct";
+    
     
     return cell;
 }
@@ -149,31 +126,56 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Flight *flight = [_flights objectAtIndex:indexPath.row];
-    
-    if(_selectedFlight == flight)
-        return 180.0;
-    else
-        return 65.0;
+    return 65.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 80;
+    if(!_weatherArray || _weatherArray.count < 3)
+        return 44;
+    else
+        return 170;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[[NSBundle mainBundle] loadNibNamed:@"ResultsHeaderView" owner:nil options:nil] objectAtIndex:0];
+    UIView *view;
+    
+    if(!_weatherArray || _weatherArray.count < 3)
+        view = [[[NSBundle mainBundle] loadNibNamed:@"ResultsHeaderView" owner:nil options:nil] objectAtIndex:1];
+    else
+        view = [[[NSBundle mainBundle] loadNibNamed:@"ResultsHeaderView" owner:nil options:nil] objectAtIndex:0];
     
     UILabel *fromLabel = (UILabel *) [view viewWithTag:1];
-    fromLabel.text = _departureCityName;
+    fromLabel.text = [NSString stringWithFormat:@"%@ - %@",_departureCityName,_arrivalCityName];
     
     UIButton *sortByPriceButton = (UIButton *)[view viewWithTag:2];
     UIButton *sortByDateButton = (UIButton *)[view viewWithTag:3];
     
     [sortByPriceButton addTarget:self action:@selector(sortByPrice:) forControlEvents:UIControlEventTouchUpInside];
     [sortByDateButton addTarget:self action:@selector(sortByDate:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *weatherLabel = (UILabel *)[view viewWithTag:4];
+    weatherLabel.text = [NSString stringWithFormat:@"Weather in %@:",_arrivalCityName];
+
+    for(int i = 0; i<3; i++)
+    {
+        UILabel *label1 = (UILabel *)[view viewWithTag:11+i];
+        UILabel *label2 = (UILabel *)[view viewWithTag:21+i];
+        UILabel *label3 = (UILabel *)[view viewWithTag:41+i];
+        UIImageView *imageView = (UIImageView *)[view viewWithTag:31+i];
+        
+        Weather *weather = [_weatherArray objectAtIndex:i];
+        NSDictionary *dictionary = [weather.conditions firstObject];
+        
+        if(weather && dictionary)
+        {
+            label1.text = weather.date;
+            label2.text = [dictionary valueForKey:@"value"];//validation needed
+            label3.text = [NSString stringWithFormat:@"%@C to %@C", weather.tempMin,weather.tempMax];
+            [imageView setImageWithURL:[NSURL URLWithString:[[weather.iconUrls firstObject] valueForKey:@"value"]] placeholder:nil];
+        }
+    }
     
     return view;
 }
@@ -216,45 +218,45 @@
     
     [self performSegueWithIdentifier:@"detailSegue" sender:nil];
     
-    if(_weatherArray && _weatherArray.count > 0)
-    {
-        [self.tableView beginUpdates];
-        [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView endUpdates];
-    }
-    else
-    {
-        SearchModel *search = [SearchModel new];
-        search.location = _arrivalCityName;
-        
-        __weak typeof (self) wself = self;
-        [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : _arrivalCityName, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        
-            wself.weatherArray = mappingResult.array;
-            NSLog(@"weather success %@",_weatherArray);
-        
-            if(wself.weatherArray.count > 0)
-            {
-                [wself.tableView beginUpdates];
-                [wself.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                [wself.tableView endUpdates];
-            }
-            else
-                wself.selectedFlight = nil;
-        
-        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            NSLog(@"weather failure %@",error);
-        
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                            message:@"Couldn't get weather info"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        
-            [alertView show];
-            wself.selectedFlight = nil;
-        }];
-    }
+//    if(_weatherArray && _weatherArray.count > 0)
+//    {
+//        [self.tableView beginUpdates];
+//        [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationFade];
+//        [self.tableView endUpdates];
+//    }
+//    else
+//    {
+//        SearchModel *search = [SearchModel new];
+//        search.location = _arrivalCityName;
+//        
+//        __weak typeof (self) wself = self;
+//        [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : _arrivalCityName, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+//        
+//            wself.weatherArray = mappingResult.array;
+//            NSLog(@"weather success %@",_weatherArray);
+//        
+//            if(wself.weatherArray.count > 0)
+//            {
+//                [wself.tableView beginUpdates];
+//                [wself.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//                [wself.tableView endUpdates];
+//            }
+//            else
+//                wself.selectedFlight = nil;
+//        
+//        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+//            NSLog(@"weather failure %@",error);
+//        
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
+//                                                            message:@"Couldn't get weather info"
+//                                                           delegate:nil
+//                                                  cancelButtonTitle:@"Ok"
+//                                                  otherButtonTitles:nil];
+//        
+//            [alertView show];
+//            wself.selectedFlight = nil;
+//        }];
+//    }
 }
 
 @end

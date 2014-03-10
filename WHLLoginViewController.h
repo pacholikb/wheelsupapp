@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)login:(id)sender;
-- (IBAction)signUp:(id)sender;
 
 - (IBAction)loginButtonTouchHandler:(id)sender;
 @end

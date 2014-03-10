@@ -116,7 +116,7 @@
     
 }
 
-- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to adults:(NSString *)adults children:(NSString *)children success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
 {
     if(!_dateFormatter) {
@@ -127,7 +127,12 @@
     NSString *date = [_dateFormatter stringFromDate:[NSDate date]];
     
     NSDictionary *tripDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[from uppercaseString], @"departure_code", [to uppercaseString], @"arrival_code", date, @"outbound_date", nil];
-    NSDictionary *body = [NSDictionary dictionaryWithObjectsAndKeys: [NSArray arrayWithObject:tripDictionary], @"trips", @"1", @"adults_count", nil ];
+    NSMutableDictionary *body = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSArray arrayWithObject:tripDictionary], @"trips", nil ];
+    
+    if(adults)
+        [body setValue:adults forKey:@"adults_count"];
+    if(children)
+        [body setValue:children forKey:@"children_count"];
     
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:body
@@ -148,7 +153,7 @@
     [op start];
 }
 
-- (void)makeFlightRequestWithSearchId :(NSString *)searchId andTripId:(NSString *)tripId success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+- (void)makeFlightRequestWithSearchId :(NSString *)searchId andTripId:(NSString *)tripId stops:(NSString *)stops maxrrice:(NSString *)maxPrice success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                                failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure numberOfTimes:(NSUInteger)nTimes
 {
     if(nTimes <= 0)
@@ -158,27 +163,32 @@
     }
     else
     {
-        NSDictionary *flightsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:searchId, @"search_id", tripId, @"trip_id", @"route", @"fares_query_type", @"as34fg3dfvasse", @"id", @"USD", @"currency_code", nil];
+        NSMutableDictionary *flightsDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:searchId, @"search_id", tripId, @"trip_id", @"route", @"fares_query_type", @"as34fg3dfvasse", @"id", @"USD", @"currency_code", nil];
+        
+        if(stops)
+            [flightsDictionary setValue:[NSArray arrayWithObject:stops] forKey:@"stop_types"];
+        if(maxPrice)
+            [flightsDictionary setValue:maxPrice forKey:@"price_max_usd"];
     
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:flightsDictionary
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
-        NSLog(@"%@",flightsDictionary);
+        //NSLog(@"%@",flightsDictionary);
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://api.wego.com/flights/api/k/2/fares?api_key=362145dfb72cb3ce293d&ts_code=7756f"]];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:jsonData ];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-        RKManagedObjectRequestOperation *op = [[RKObjectManager sharedManager] managedObjectRequestOperationWithRequest:request managedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        RKManagedObjectRequestOperation *op = [[RKObjectManager sharedManager] managedObjectRequestOperationWithRequest:request managedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {  
             if(mappingResult.array && mappingResult.array.count > 0) {
                 if(success)success(operation, mappingResult);
             }
             else {
-                [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:searchId andTripId:tripId success:success failure:failure numberOfTimes:nTimes-1];
+                [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:searchId andTripId:tripId stops:stops maxrrice:maxPrice success:success failure:failure numberOfTimes:nTimes-1];
             }
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:searchId andTripId:tripId success:success failure:failure numberOfTimes:nTimes-1];
+            [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:searchId andTripId:tripId stops:stops maxrrice:maxPrice success:success failure:failure numberOfTimes:nTimes-1];
         }];
     
         [op performSelector:@selector(start) withObject:nil afterDelay:1];

@@ -25,9 +25,9 @@
 - (void)configureObjectManager :(RKManagedObjectStore *)managedObjectStore;
 - (NSDictionary *)getApiKeysParams;
 
-- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to adults:(NSString *)adults children:(NSString *)children success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
-- (void)makeFlightRequestWithSearchId :(NSString *)searchId andTripId:(NSString *)tripId success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+- (void)makeFlightRequestWithSearchId :(NSString *)searchId andTripId:(NSString *)tripId stops:(NSString *)stops maxrrice:(NSString *)maxPrice success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                                failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure numberOfTimes:(NSUInteger)nTimes;
 
 @end

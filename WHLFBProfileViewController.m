@@ -8,7 +8,7 @@
 
 #import "WHLFBProfileViewController.h"
 #import <Parse/Parse.h>
-
+#import "REMenu.h"
 
 @interface WHLFBProfileViewController ()
 
@@ -22,20 +22,6 @@
     [super viewDidLoad];
     
     self.title = @"Facebook Profile";
-    
-    // Add logout navigation bar button
-    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Log Out" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonTouchHandler:)];
-    self.navigationItem.leftBarButtonItem = logoutButton;
-    
-    // Load table header view from nib
-//    [[NSBundle mainBundle] loadNibNamed:@"TableHeaderView" owner:self options:nil];
-//    self.tableView.tableHeaderView = self.headerView;
-    
-    // Create array for table row titles
-    self.rowTitleArray = @[@"Location", @"Gender", @"Date of Birth", @"Relationship"];
-    
-    // Set default values for the table row data
-    self.rowDataArray = [@[@"N/A", @"N/A", @"N/A", @"N/A"] mutableCopy];
     
     // If the user is already logged in, display any previously cached values before we get the latest from Facebook.
     if ([PFUser currentUser]) {
@@ -92,16 +78,32 @@
         } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
                     isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
             NSLog(@"The facebook session was invalidated");
-            [self logoutButtonTouchHandler:nil];
+            [self logoutAction:nil];
         } else {
             NSLog(@"Some other error: %@", error);
         }
     }];
 	
+    self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
+    
+}
 
-//    YWeatherUtils* yweatherUtils = [YWeatherUtils getInstance];
-//    [yweatherUtils setMAfterRecieveDataDelegate: self];
-//    [yweatherUtils queryYahooWeather:@"Tokyo"];
+- (IBAction)facebookShare:(id)sender {
+    
+    [FBWebDialogs presentRequestsDialogModallyWithSession:nil message:@"Check this out" title:@"WheelsUp" parameters:nil handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+        if (error) {
+            // Case A: Error launching the dialog or sending request.
+            NSLog(@"Error sending request.");
+        } else {
+            if (result == FBWebDialogResultDialogNotCompleted) {
+                // Case B: User clicked the "x" icon
+                NSLog(@"User canceled request.");
+            } else {
+                NSLog(@"Request Sent.");
+            }
+        }
+    }];
+    
 }
 
 #pragma mark - NSURLConnectionDataDelegate
@@ -122,106 +124,53 @@
     self.headerImageView.layer.masksToBounds = YES;
 }
 
-
-#pragma mark - Weather Shit
 //
-//- (void)gotWeatherInfo:(WeatherInfo *)weatherInfo {
-//    NSMutableString* text = nil;
-//    if (weatherInfo == nil) {
-//        text = [NSMutableString stringWithString:YAHOO_WEATHER_ERROR];
-//        [_labelWeatherInfo setText: text];
-//        return;
-//    }
-//    text = [NSMutableString stringWithString:@""];
-//    [text appendString:@"***Forecast 1***\n"];
-//    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast1Info.mForecastDate]) {
-//        [text appendString:weatherInfo.mForecast1Info.mForecastDate];
-//        [text appendString:@"\n"];
-//    }
-//    if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mForecast1Info.mForecastTempLowC]]) {
-//        [text appendString:[NSString stringWithFormat: @"low: %dºC  high: %dºC", weatherInfo.mForecast1Info.mForecastTempLowC, weatherInfo.mForecast1Info.mForecastTempHighC]];
-//        [text appendString:@"\n"];
-//    }
-//    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast1Info.mForecastText]) {
-//        [text appendString:weatherInfo.mForecast1Info.mForecastText];
-//        [text appendString:@"\n"];
-//    }
-//    
-//    [text appendString:@"\n"];
-//    [text appendString:@"***Forecast 2***\n"];
-//    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast2Info.mForecastDate]) {
-//        [text appendString:weatherInfo.mForecast2Info.mForecastDate];
-//        [text appendString:@"\n"];
-//    }
-//    if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mForecast2Info.mForecastTempLowC]]) {
-//        [text appendString:[NSString stringWithFormat: @"low: %dºC  high: %dºC", weatherInfo.mForecast2Info.mForecastTempLowC, weatherInfo.mForecast2Info.mForecastTempHighC]];
-//        [text appendString:@"\n"];
-//    }
-//    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast2Info.mForecastText]) {
-//        [text appendString:weatherInfo.mForecast2Info.mForecastText];
-//        [text appendString:@"\n"];
-//    }
-//    
-//    [_labelWeatherInfo setText: text];
-//    
+//#pragma mark - UITableViewDataSource
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    // Return the number of rows in the section.
+//    return self.rowTitleArray.count;
 //}
 //
-//- (bool)stringIsNonNilOrEmpty:(NSString*)pString {
-//    if (pString != nil && ![pString isEqualToString:@""]) {
-//        return YES;
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    if (cell == nil) {
+//        // Create the cell and add the labels
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake( 0.0f, 0.0f, 120.0f, 44.0f)];
+//        titleLabel.tag = 1; // We use the tag to set it later
+//        titleLabel.textAlignment = NSTextAlignmentRight;
+//        titleLabel.font = [UIFont boldSystemFontOfSize:13.0f];
+//        titleLabel.backgroundColor = [UIColor clearColor];
+//        
+//        UILabel *dataLabel = [[UILabel alloc] initWithFrame:CGRectMake( 130.0f, 0.0f, 165.0f, 44.0f)];
+//        dataLabel.tag = 2; // We use the tag to set it later
+//        dataLabel.font = [UIFont systemFontOfSize:15.0f];
+//        dataLabel.backgroundColor = [UIColor clearColor];
+//        
+//        [cell.contentView addSubview:titleLabel];
+//        [cell.contentView addSubview:dataLabel];
 //    }
-//    return NO;
+//    
+//    // Cannot select these cells
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    
+//    // Access labels in the cell using the tag #
+//    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
+//    UILabel *dataLabel = (UILabel *)[cell viewWithTag:2];
+//    
+//    // Display the data in the table
+//    titleLabel.text = [self.rowTitleArray objectAtIndex:indexPath.row];
+//    dataLabel.text = [self.rowDataArray objectAtIndex:indexPath.row];
+//    
+//    return cell;
 //}
-
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return self.rowTitleArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        // Create the cell and add the labels
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake( 0.0f, 0.0f, 120.0f, 44.0f)];
-        titleLabel.tag = 1; // We use the tag to set it later
-        titleLabel.textAlignment = NSTextAlignmentRight;
-        titleLabel.font = [UIFont boldSystemFontOfSize:13.0f];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        
-        UILabel *dataLabel = [[UILabel alloc] initWithFrame:CGRectMake( 130.0f, 0.0f, 165.0f, 44.0f)];
-        dataLabel.tag = 2; // We use the tag to set it later
-        dataLabel.font = [UIFont systemFontOfSize:15.0f];
-        dataLabel.backgroundColor = [UIColor clearColor];
-        
-        [cell.contentView addSubview:titleLabel];
-        [cell.contentView addSubview:dataLabel];
-    }
-    
-    // Cannot select these cells
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    // Access labels in the cell using the tag #
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
-    UILabel *dataLabel = (UILabel *)[cell viewWithTag:2];
-    
-    // Display the data in the table
-    titleLabel.text = [self.rowTitleArray objectAtIndex:indexPath.row];
-    dataLabel.text = [self.rowDataArray objectAtIndex:indexPath.row];
-    
-    return cell;
-}
 
 
 #pragma mark - ()
-
-- (void)logoutButtonTouchHandler:(id)sender {
-    // Logout user, this automatically clears the cache
+- (IBAction)logoutAction:(id)sender {
     [PFUser logOut];
     
     // Return to login view controller
