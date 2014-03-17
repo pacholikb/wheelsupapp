@@ -111,7 +111,7 @@
                     
                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                     [SVProgressHUD dismiss];
-                } numberOfTimes:5];
+                } numberOfTimes:8];
                 
             }
             else {

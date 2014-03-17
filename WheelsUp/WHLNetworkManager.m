@@ -131,8 +131,12 @@
     
     if(adults)
         [body setValue:adults forKey:@"adults_count"];
+    else
+        [body setValue:@"1" forKey:@"adults_count"];
     if(children)
         [body setValue:children forKey:@"children_count"];
+    
+    NSLog(@"%@",body);
     
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:body

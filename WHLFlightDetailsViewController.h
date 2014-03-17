@@ -14,5 +14,6 @@
 @property (nonatomic, strong) Flight *flight;
 @property (nonatomic, strong) NSArray *outbounds;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
+@property (nonatomic, strong) NSDateFormatter* dateFormatterOutput;
 
 @end

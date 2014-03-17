@@ -34,6 +34,10 @@
     [_dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     _dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZ";
     [_dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    
+    NSString *localFormat = [NSDateFormatter dateFormatFromTemplate:@"MMM dd hh:mm a" options:0 locale:[NSLocale currentLocale]];
+    _dateFormatterOutput = [[NSDateFormatter alloc] init];
+    _dateFormatterOutput.dateFormat = localFormat;
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,11 +109,13 @@
         
         fromCodeLabel.text = [outbound valueForKey:@"departure_code"];
         fromNameLabel.text = [outbound valueForKey:@"departure_name"];
-        fromTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d",componentsDeparture.hour,componentsDeparture.minute];
+        //fromTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d",componentsDeparture.hour,componentsDeparture.minute];
+        fromTimeLabel.text = [_dateFormatterOutput stringFromDate:departureDate];
         
         toCodeLabel.text = [outbound valueForKey:@"arrival_code"];
         toNameLabel.text = [outbound valueForKey:@"arrival_name"];
-        toTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d",componentsArrival.hour,componentsArrival.minute];
+        //toTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d",componentsArrival.hour,componentsArrival.minute];
+        toTimeLabel.text = [_dateFormatterOutput stringFromDate:arrivalDate];
         
         [airlineLogoImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.mediawego.com/images/flights/airlines/120x40t/%@.gif",[outbound valueForKey:@"airline_code"]]] placeholder:nil];
     }
