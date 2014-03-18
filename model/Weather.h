@@ -2,7 +2,7 @@
 //  Weather.h
 //  WheelsUp
 //
-//  Created by Konrad Przyludzki on 28.02.2014.
+//  Created by Konrad Przyludzki on 10.03.2014.
 //  Copyright (c) 2014 Broc Pacholik . All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 @interface Weather : NSManagedObject
 
 @property (nonatomic, retain) id conditions;
-@property (nonatomic, retain) NSString * date;
+@property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) id iconUrls;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSString * tempMax;

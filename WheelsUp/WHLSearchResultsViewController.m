@@ -15,26 +15,13 @@
 
 @end
 
-@implementation WHLSearchResultsViewController
+CLLocationCoordinate2D coordinateArray[2];
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@implementation WHLSearchResultsViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     _departureCityName = [[_trip.trips firstObject] objectForKey:@"departure_name"];
     _arrivalCityName = [[_trip.trips firstObject] objectForKey:@"arrival_name"];
@@ -46,11 +33,57 @@
     SearchModel *search = [SearchModel new];
     search.location = _arrivalCityName;
     
+    _directionLabel.text = [NSString stringWithFormat:@"%@ - %@", _departureCityName, _arrivalCityName];
+    
     __weak typeof (self) wself = self;
     [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : _arrivalCityName, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         wself.weatherArray = mappingResult.array;
-        [wself.tableView reloadData];
+        if(wself.weatherArray.count >= 3) {
+          
+            [wself.scrollView setContentSize:CGSizeMake(640, 140)];
+            
+            wself.weatherLabelHeader.text = [NSString stringWithFormat:@"Weather in %@:",wself.arrivalCityName];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE"];
+            
+            Weather *weatherFirst = [wself.weatherArray objectAtIndex:0];
+            NSDictionary *dictionaryFirst = [weatherFirst.conditions firstObject];
+            
+            if(weatherFirst && dictionaryFirst)
+            {
+                NSString *dayName = [dateFormatter stringFromDate:weatherFirst.date];
+                wself.dayLabelFirst.text = dayName;
+                wself.conditionsLabelFirst.text = [dictionaryFirst valueForKey:@"value"];//validation needed
+                wself.tempLabelFirst.text = [NSString stringWithFormat:@"high of %@C", weatherFirst.tempMax];
+                [wself.weatherIconFirst setImageWithURL:[NSURL URLWithString:[[weatherFirst.iconUrls firstObject] valueForKey:@"value"]] placeholder:nil];
+            }
+            
+            Weather *weatherSecond = [wself.weatherArray objectAtIndex:1];
+            NSDictionary *dictionarySecond = [weatherSecond.conditions firstObject];
+            
+            if(weatherSecond && dictionarySecond)
+            {
+                NSString *dayName = [dateFormatter stringFromDate:weatherSecond.date];
+                wself.dayLabelSecond.text = dayName;
+                wself.conditionsLabelSecond.text = [dictionarySecond valueForKey:@"value"];//validation needed
+                wself.tempLabelSecond.text = [NSString stringWithFormat:@"high of %@C", weatherSecond.tempMax];
+                [wself.weatherIconSecond setImageWithURL:[NSURL URLWithString:[[weatherSecond.iconUrls firstObject] valueForKey:@"value"]] placeholder:nil];
+            }
+            
+            Weather *weatherThird = [wself.weatherArray objectAtIndex:2];
+            NSDictionary *dictionaryThird = [weatherThird.conditions firstObject];
+            
+            if(weatherThird && dictionaryThird)
+            {
+                NSString *dayName = [dateFormatter stringFromDate:weatherThird.date];
+                wself.dayLabelThird.text = dayName;
+                wself.conditionsLabelThird.text = [dictionaryThird valueForKey:@"value"];//validation needed
+                wself.tempLabelThird.text = [NSString stringWithFormat:@"high of %@C", weatherThird.tempMax];
+                [wself.weatherIconThird setImageWithURL:[NSURL URLWithString:[[weatherThird.iconUrls firstObject] valueForKey:@"value"]] placeholder:nil];
+            }
+        }
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"weather failure %@",error);
@@ -64,6 +97,39 @@
         [alertView show];
 
     }];
+
+    _mapView.userInteractionEnabled = NO;
+
+    [[CLGeocoder new] geocodeAddressString:_departureCityName completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark *p = [placemarks firstObject];
+        coordinateArray[0] = p.location.coordinate;
+        
+        [[CLGeocoder new] geocodeAddressString:_arrivalCityName completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLPlacemark *p = [placemarks firstObject];
+            coordinateArray[1] = p.location.coordinate;
+            
+            wself.routeLine = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
+            MKMapRect rect = [wself.routeLine boundingMapRect];
+            [wself.mapView setVisibleMapRect:rect edgePadding:UIEdgeInsetsMake(10, 10, 10, 10) animated:NO];
+            [wself.mapView addOverlay:wself.routeLine];
+            wself.mapView.userInteractionEnabled = NO;
+            
+        }];
+    }];
+
+    
+}
+
+- (void)viewDidLayoutSubviews
+{
+    if(_weatherArray.count >= 3)
+        [_scrollView setContentSize:CGSizeMake(640, 140)];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if(scrollView == _scrollView)
+        NSLog(@"1 %f",_scrollView.contentSize.width);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -129,58 +195,26 @@
     return 65.0;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
 {
-    if(!_weatherArray || _weatherArray.count < 3)
-        return 44;
-    else
-        return 170;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view;
-    
-    if(!_weatherArray || _weatherArray.count < 3)
-        view = [[[NSBundle mainBundle] loadNibNamed:@"ResultsHeaderView" owner:nil options:nil] objectAtIndex:1];
-    else
-        view = [[[NSBundle mainBundle] loadNibNamed:@"ResultsHeaderView" owner:nil options:nil] objectAtIndex:0];
-    
-    UILabel *fromLabel = (UILabel *) [view viewWithTag:1];
-    fromLabel.text = [NSString stringWithFormat:@"%@ - %@",_departureCityName,_arrivalCityName];
-    
-    UIButton *sortByPriceButton = (UIButton *)[view viewWithTag:2];
-    UIButton *sortByDateButton = (UIButton *)[view viewWithTag:3];
-    
-    [sortByPriceButton addTarget:self action:@selector(sortByPrice:) forControlEvents:UIControlEventTouchUpInside];
-    [sortByDateButton addTarget:self action:@selector(sortByDate:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *weatherLabel = (UILabel *)[view viewWithTag:4];
-    weatherLabel.text = [NSString stringWithFormat:@"Weather in %@:",_arrivalCityName];
-
-    for(int i = 0; i<3; i++)
+    if(overlay == self.routeLine)
     {
-        UILabel *label1 = (UILabel *)[view viewWithTag:11+i];
-        UILabel *label2 = (UILabel *)[view viewWithTag:21+i];
-        UILabel *label3 = (UILabel *)[view viewWithTag:41+i];
-        UIImageView *imageView = (UIImageView *)[view viewWithTag:31+i];
-        
-        Weather *weather = [_weatherArray objectAtIndex:i];
-        NSDictionary *dictionary = [weather.conditions firstObject];
-        
-        if(weather && dictionary)
+        if(nil == self.routeLineView)
         {
-            label1.text = weather.date;
-            label2.text = [dictionary valueForKey:@"value"];//validation needed
-            label3.text = [NSString stringWithFormat:@"%@C to %@C", weather.tempMin,weather.tempMax];
-            [imageView setImageWithURL:[NSURL URLWithString:[[weather.iconUrls firstObject] valueForKey:@"value"]] placeholder:nil];
+            self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
+            self.routeLineView.fillColor = [UIColor orangeColor];
+            self.routeLineView.strokeColor = [UIColor orangeColor];
+            self.routeLineView.lineWidth = 5;
+            
         }
+        
+        return self.routeLineView;
     }
     
-    return view;
+    return nil;
 }
 
-- (void)sortByPrice:(id)sender
+- (IBAction)sortByPrice:(id)sender
 {
     NSArray *sortedArray;
     sortedArray = [_flights sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
@@ -196,7 +230,7 @@
     [self.tableView endUpdates];
 }
 
-- (void)sortByDate:(id)sender
+- (IBAction)sortByDate:(id)sender
 {
     NSArray *sortedArray;
     sortedArray = [_flights sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
@@ -218,45 +252,6 @@
     
     [self performSegueWithIdentifier:@"detailSegue" sender:nil];
     
-//    if(_weatherArray && _weatherArray.count > 0)
-//    {
-//        [self.tableView beginUpdates];
-//        [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationFade];
-//        [self.tableView endUpdates];
-//    }
-//    else
-//    {
-//        SearchModel *search = [SearchModel new];
-//        search.location = _arrivalCityName;
-//        
-//        __weak typeof (self) wself = self;
-//        [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : _arrivalCityName, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-//        
-//            wself.weatherArray = mappingResult.array;
-//            NSLog(@"weather success %@",_weatherArray);
-//        
-//            if(wself.weatherArray.count > 0)
-//            {
-//                [wself.tableView beginUpdates];
-//                [wself.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//                [wself.tableView endUpdates];
-//            }
-//            else
-//                wself.selectedFlight = nil;
-//        
-//        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-//            NSLog(@"weather failure %@",error);
-//        
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
-//                                                            message:@"Couldn't get weather info"
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"Ok"
-//                                                  otherButtonTitles:nil];
-//        
-//            [alertView show];
-//            wself.selectedFlight = nil;
-//        }];
-//    }
 }
 
 @end

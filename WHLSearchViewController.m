@@ -7,6 +7,7 @@
 //
 
 #import "WHLSearchViewController.h"
+#import "WHLMoreViewController.h"
 #import "WHLNetworkManager.h"
 #import "REMenu.h"
 #import "City.h"
@@ -33,14 +34,133 @@
     
     [WHLNetworkManager sharedInstance].locationManager.delegate = self;
     [[WHLNetworkManager sharedInstance].locationManager startUpdatingLocation];
-    
-    [_stopsSC addTarget:self action:@selector(stopsChanged:) forControlEvents:UIControlEventValueChanged];
-    [_stopsSC setSelectedSegmentIndex:2];
-    
+        
     _maxPrice = 0;
     _adultsCount = 1;
     _childrenCount = 0;
-    _numberOfStops = @"two_plus";
+
+}
+
+- (IBAction)somewhereHotAction:(id)sender {
+    
+    [SVProgressHUD showWithStatus:@"Searching..." maskType:SVProgressHUDMaskTypeBlack];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error;
+    NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    City *result = [results objectAtIndex: arc4random() % results.count];
+    
+    __weak typeof (self) wself = self;
+    [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : result.name, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        int sum = 0;
+        for(Weather *w in mappingResult.array)
+            sum += [w.tempMax integerValue];
+        
+        if(sum >0 && sum/mappingResult.array.count > 30)
+        {
+            _toTF.text = [NSString stringWithFormat:@"%@, %@",result.name, result.country];
+            _toCode = result.iata;
+            
+            __weak typeof (self) wself = self;
+            
+            NSString *adults = [NSString stringWithFormat:@"%d",_adultsCount];
+            NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
+            NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
+            
+            [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                
+                if(mappingResult.array.count > 0) {
+                    wself.trip = [mappingResult.array firstObject];
+                    
+                    [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:wself.trip.searchId andTripId:[[wself.trip.trips firstObject] valueForKey:@"id"] stops:_numberOfStops maxrrice:maxPrice success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                        
+                        if(mappingResult.array.count > 0)
+                        {
+                            [SVProgressHUD dismiss];
+                            
+                            wself.flights = mappingResult.array;
+                            [wself performSegueWithIdentifier:@"resultsSegue" sender:nil];
+                        }
+                        else
+                            [wself somewhereHotAction:nil];
+                        
+                    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                        [wself somewhereHotAction:nil];
+                    } numberOfTimes:8];
+                    
+                }
+                else
+                    [wself anywhereAction:nil];
+                
+            } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                [wself somewhereHotAction:nil];
+            }];
+        }
+        else
+            [wself somewhereHotAction:nil];
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"weather failure %@",error);
+        
+        [wself somewhereHotAction:nil];
+        
+    }];
+}
+
+- (IBAction)anywhereAction:(id)sender {
+    [SVProgressHUD showWithStatus:@"Searching..." maskType:SVProgressHUDMaskTypeBlack];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
+    [fetchRequest setEntity:entity];
+  
+    NSError *error;
+    NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    City *result = [results objectAtIndex: arc4random() % results.count];
+    _toTF.text = [NSString stringWithFormat:@"%@, %@",result.name,result.country];
+    _toCode = result.iata;
+    
+    __weak typeof (self) wself = self;
+    
+    NSString *adults = [NSString stringWithFormat:@"%d",_adultsCount];
+    NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
+    NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
+    
+    [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        
+        if(mappingResult.array.count > 0) {
+            wself.trip = [mappingResult.array firstObject];
+            
+            [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:wself.trip.searchId andTripId:[[wself.trip.trips firstObject] valueForKey:@"id"] stops:_numberOfStops maxrrice:maxPrice success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                
+                if(mappingResult.array.count > 0)
+                {
+                    [SVProgressHUD dismiss];
+                    
+                    wself.flights = mappingResult.array;
+                    [wself performSegueWithIdentifier:@"resultsSegue" sender:nil];
+                }
+                else
+                    [wself anywhereAction:nil];
+                
+            } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                [wself anywhereAction:nil];
+            } numberOfTimes:8];
+            
+        }
+        else
+            [wself anywhereAction:nil];
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        [wself anywhereAction:nil];
+    }];
+
 }
 
 - (IBAction)gpsAction:(id)sender {
@@ -67,13 +187,18 @@
         controller.flights = _flights;
         controller.trip = _trip;
     }
+    else if([segue.identifier isEqualToString:@"moreSegue"])
+    {
+        WHLMoreViewController *controller = segue.destinationViewController;
+        controller.parent = self;
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [_fromTF resignFirstResponder];
     [_toTF resignFirstResponder];
-    [_maxPriceTF resignFirstResponder];
+
     return NO;
 }
 
@@ -110,7 +235,7 @@
             else {
                 City *city = (City *)[results firstObject];
                 _fromCode = city.iata;
-                _fromTF.text = city.name;
+                _fromTF.text = [NSString stringWithFormat:@"%@, %@",city.name,city.country];
             }
         }
         else
@@ -142,15 +267,11 @@
             else {
                 City *city = (City *)[results firstObject];
                 _toCode = city.iata;
-                _toTF.text = city.name;
+                _toTF.text = [NSString stringWithFormat:@"%@, %@",city.name,city.country];
             }
         else
             [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
             
-    }
-    else if(textField == _maxPriceTF)
-    {
-        _maxPrice = [_maxPriceTF.text integerValue];
     }
     
 }
@@ -168,9 +289,9 @@
         
         [SVProgressHUD showWithStatus:@"Searching..." maskType:SVProgressHUDMaskTypeBlack];
         
-        NSString *adults = [NSString stringWithFormat:@"%d",_adultsCount];
-        NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
-        NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%d",_maxPrice] : nil;
+        NSString *adults = [NSString stringWithFormat:@"%ld",_adultsCount];
+        NSString *children = [NSString stringWithFormat:@"%ld",_childrenCount];
+        NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
         
         [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             
@@ -325,52 +446,5 @@
     [alertView show];
 }
 
-#pragma pickerView delegate
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    if(pickerView == _adultsPicker)
-        _adultsCount = row+1;
-    else
-        _childrenCount = row;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    if(pickerView == _adultsPicker)
-        return 10;
-    else
-        return 11;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if(pickerView == _adultsPicker)
-        return [NSString stringWithFormat:@"%d",row+1];
-    else
-        return [NSString stringWithFormat:@"%d",row];
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (void)stopsChanged:(UISegmentedControl *)sender
-{
-    switch (sender.selectedSegmentIndex) {
-        case 0:
-            _numberOfStops = @"none";
-            break;
-        case 1:
-            _numberOfStops = @"one";
-            break;
-        case 2:
-            _numberOfStops = @"two_plus";
-            
-        default:
-            break;
-    }
-}
 
 @end

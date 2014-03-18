@@ -46,10 +46,12 @@
 		C613A05018B359AD00918DE8 /* WHLSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C613A04F18B359AD00918DE8 /* WHLSearchResultsViewController.m */; };
 		C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */; };
 		C63B984118C077D000D9C03F /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B984018C077D000D9C03F /* Trip.m */; };
-		C63B984418C09E0500D9C03F /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B984318C09E0500D9C03F /* Weather.m */; };
+		C63E9A0E18CDD0ED00CB8C8C /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E9A0D18CDD0ED00CB8C8C /* Weather.m */; };
+		C63E9A1118CDDBD700CB8C8C /* WHLMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E9A1018CDDBD700CB8C8C /* WHLMoreViewController.m */; };
 		C640A91718BF39B3003FA7DB /* Flight.m in Sources */ = {isa = PBXBuildFile; fileRef = C640A91618BF39B3003FA7DB /* Flight.m */; };
 		C640A93418BF658A003FA7DB /* input.csv in Resources */ = {isa = PBXBuildFile; fileRef = C640A93318BF658A003FA7DB /* input.csv */; };
 		C6413DE118C8AD26003B333D /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = C6413DE018C8AD26003B333D /* City.m */; };
+		C672AAB318D1A3350039C737 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C672AAB218D1A3350039C737 /* MapKit.framework */; };
 		C68CB25218B649D400F0B1E0 /* ResultsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C68CB25118B649D400F0B1E0 /* ResultsHeaderView.xib */; };
 		C6D2BCA218ACBDDA00998759 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA118ACBDDA00998759 /* Parse.framework */; };
 		C6D2BCA418ACBEF700998759 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */; };
@@ -130,13 +132,16 @@
 		C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFlightDetailsViewController.m; sourceTree = "<group>"; };
 		C63B983F18C077D000D9C03F /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trip.h; path = model/Trip.h; sourceTree = SOURCE_ROOT; };
 		C63B984018C077D000D9C03F /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Trip.m; path = model/Trip.m; sourceTree = SOURCE_ROOT; };
-		C63B984218C09E0500D9C03F /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = model/Weather.h; sourceTree = SOURCE_ROOT; };
-		C63B984318C09E0500D9C03F /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weather.m; path = model/Weather.m; sourceTree = SOURCE_ROOT; };
+		C63E9A0C18CDD0ED00CB8C8C /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = model/Weather.h; sourceTree = SOURCE_ROOT; };
+		C63E9A0D18CDD0ED00CB8C8C /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weather.m; path = model/Weather.m; sourceTree = SOURCE_ROOT; };
+		C63E9A0F18CDDBD700CB8C8C /* WHLMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLMoreViewController.h; sourceTree = "<group>"; };
+		C63E9A1018CDDBD700CB8C8C /* WHLMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLMoreViewController.m; sourceTree = "<group>"; };
 		C640A91518BF39B3003FA7DB /* Flight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flight.h; path = model/Flight.h; sourceTree = SOURCE_ROOT; };
 		C640A91618BF39B3003FA7DB /* Flight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Flight.m; path = model/Flight.m; sourceTree = SOURCE_ROOT; };
 		C640A93318BF658A003FA7DB /* input.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.csv; sourceTree = SOURCE_ROOT; };
 		C6413DDF18C8AD26003B333D /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = model/City.h; sourceTree = SOURCE_ROOT; };
 		C6413DE018C8AD26003B333D /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = model/City.m; sourceTree = SOURCE_ROOT; };
+		C672AAB218D1A3350039C737 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C68CB25118B649D400F0B1E0 /* ResultsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsHeaderView.xib; sourceTree = "<group>"; };
 		C6D2BCA118ACBDDA00998759 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
 		C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK.framework; sourceTree = "<group>"; };
@@ -153,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C672AAB318D1A3350039C737 /* MapKit.framework in Frameworks */,
 				1858B32C188214A000A18F32 /* CoreText.framework in Frameworks */,
 				1858B25E1881FD7300A18F32 /* AudioToolbox.framework in Frameworks */,
 				1858B25A1881FC2400A18F32 /* CFNetwork.framework in Frameworks */,
@@ -243,6 +249,7 @@
 		18A3C87E187D1C0700C5E07B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C672AAB218D1A3350039C737 /* MapKit.framework */,
 				C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */,
 				1858B32B188214A000A18F32 /* CoreText.framework */,
 				C6D2BCA118ACBDDA00998759 /* Parse.framework */,
@@ -342,6 +349,8 @@
 			children = (
 				C627662918C5C7DA00D80043 /* WHLFlightDetailsViewController.h */,
 				C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */,
+				C63E9A0F18CDDBD700CB8C8C /* WHLMoreViewController.h */,
+				C63E9A1018CDDBD700CB8C8C /* WHLMoreViewController.m */,
 				18DEF24C187E8CF100090861 /* WHLSearchViewController.h */,
 				18DEF24D187E8CF100090861 /* WHLSearchViewController.m */,
 				C613A04E18B359AD00918DE8 /* WHLSearchResultsViewController.h */,
@@ -380,10 +389,10 @@
 				C6D2BCB118ACE74500998759 /* SearchModel.m */,
 				C63B983F18C077D000D9C03F /* Trip.h */,
 				C63B984018C077D000D9C03F /* Trip.m */,
-				C63B984218C09E0500D9C03F /* Weather.h */,
-				C63B984318C09E0500D9C03F /* Weather.m */,
 				C6413DDF18C8AD26003B333D /* City.h */,
 				C6413DE018C8AD26003B333D /* City.m */,
+				C63E9A0C18CDD0ED00CB8C8C /* Weather.h */,
+				C63E9A0D18CDD0ED00CB8C8C /* Weather.m */,
 				C640A93318BF658A003FA7DB /* input.csv */,
 			);
 			path = model;
@@ -535,14 +544,15 @@
 				C640A91718BF39B3003FA7DB /* Flight.m in Sources */,
 				18DEF24A187E884C00090861 /* WHLMenuViewController.m in Sources */,
 				C63B984118C077D000D9C03F /* Trip.m in Sources */,
-				C63B984418C09E0500D9C03F /* Weather.m in Sources */,
 				18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */,
 				C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */,
 				18DEF242187E869800090861 /* REMenuItem.m in Sources */,
 				1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */,
+				C63E9A0E18CDD0ED00CB8C8C /* Weather.m in Sources */,
 				18DEF240187E869800090861 /* REMenu.m in Sources */,
 				18DEF23F187E869800090861 /* RECommonFunctions.m in Sources */,
 				C6D2BCAB18ACDBA600998759 /* WHLNetworkManager.m in Sources */,
+				C63E9A1118CDDBD700CB8C8C /* WHLMoreViewController.m in Sources */,
 				18DEF243187E869800090861 /* REMenuItemView.m in Sources */,
 				18DEF24E187E8CF100090861 /* WHLSearchViewController.m in Sources */,
 				1858B335188235CE00A18F32 /* WHLLoginViewController.m in Sources */,
