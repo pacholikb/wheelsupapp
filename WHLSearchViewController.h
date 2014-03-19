@@ -14,6 +14,7 @@
 #import "SearchModel.h"
 #import "Flight.h"
 #import "Trip.h"
+#import "City.h"
 #import "DropDownListView.h"
 
 @interface WHLSearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, kDropDownListViewDelegate>

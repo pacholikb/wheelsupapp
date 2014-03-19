@@ -47,13 +47,13 @@
     RKEntityMapping *flightMapping = [RKEntityMapping mappingForEntityForName:@"Flight" inManagedObjectStore:managedObjectStore];
     [flightMapping addAttributeMappingsFromDictionary:@{
                                                         
-                                                         @"id":                     @"flightNumber",
-                                                         @"best_fare.price":                     @"price",
+                                                         @"id":                                     @"flightNumber",
+                                                         @"best_fare.price":                        @"price",
                                                          @"best_fare.deeplink":                     @"deeplink",
-                                                         @"best_fare.deeplink_params.trip_id":                     @"tripId",
-                                                         @"best_fare.deeplink_params.search_id":                     @"searchId",
-                                                         @"outbound_segments":                     @"outbounds",
-                                                         @"inbound_segments":                     @"inbounds"
+                                                         @"best_fare.deeplink_params.trip_id":      @"tripId",
+                                                         @"best_fare.deeplink_params.search_id":    @"searchId",
+                                                         @"outbound_segments":                      @"outbounds",
+                                                         @"inbound_segments":                       @"inbounds"
                                                          
                                                          }];
     flightMapping.identificationAttributes = @[ @"flightNumber" ];
@@ -68,10 +68,10 @@
     RKEntityMapping *tripMapping = [RKEntityMapping mappingForEntityForName:@"Trip" inManagedObjectStore:managedObjectStore];
     [tripMapping addAttributeMappingsFromDictionary:@{
                                                       
-                                                        @"key":                 @"key",
+                                                        @"key":               @"key",
                                                         @"trips":             @"trips",
-                                                        @"created_at":          @"createdAt",
-                                                        @"id":                   @"searchId"
+                                                        @"created_at":        @"createdAt",
+                                                        @"id":                @"searchId"
                                                         
                                                         }];
     tripMapping.identificationAttributes = @[ @"key" ];
@@ -101,17 +101,40 @@
     RKEntityMapping *weatherMapping = [RKEntityMapping mappingForEntityForName:@"Weather" inManagedObjectStore:managedObjectStore];
     [weatherMapping addAttributeMappingsFromDictionary:@{
                                                          @"@metadata.routing.parameters.location":     @"location",
-                                                         @"date":                                            @"date",
-                                                         @"tempMaxC":                                       @"tempMax",
-                                                         @"weatherIconUrl":                                       @"iconUrls",
-                                                         @"weatherDesc":                                       @"conditions",
-                                                         @"tempMinC":                                     @"tempMin"
+                                                         @"date":                                      @"date",
+                                                         @"tempMaxC":                                  @"tempMax",
+                                                         @"weatherIconUrl":                            @"iconUrls",
+                                                         @"weatherDesc":                               @"conditions",
+                                                         @"tempMinC":                                  @"tempMin"
                                                          }];
     weatherMapping.identificationAttributes = @[ @"location", @"date" ];
     
     responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:weatherMapping method:RKRequestMethodGET pathPattern:nil keyPath:@"data.weather" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
     [_weatherObjectManager addResponseDescriptor:responseDescriptor];
+    //
+    
+    //Event entity
+    _eventsObjectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://api.eventful.com/json/events/search"]];
+    _eventsObjectManager.managedObjectStore = managedObjectStore;
+    
+    [_eventsObjectManager.router.routeSet addRoute:[RKRoute routeWithName:@"eventRoute" pathPattern:@"" method:RKRequestMethodGET]];
+    
+    RKEntityMapping *eventMapping = [RKEntityMapping mappingForEntityForName:@"Event" inManagedObjectStore:managedObjectStore];
+    [eventMapping addAttributeMappingsFromDictionary:@{
+                                                         @"id":                        @"eventId",
+                                                         @"title":                     @"title",
+                                                         @"url":                        @"url",
+                                                         @"start_time":                 @"startTime",
+                                                         @"description":                @"desc",
+                                                         @"venue_name":                 @"venueName",
+                                                         @"image.medium.url":           @"imageUrl"
+                                                         }];
+    eventMapping.identificationAttributes = @[ @"eventId" ];
+    
+    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping method:RKRequestMethodGET pathPattern:nil keyPath:@"events.event" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    [_eventsObjectManager addResponseDescriptor:responseDescriptor];
     //
     
 }

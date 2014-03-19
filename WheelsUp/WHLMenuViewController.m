@@ -25,7 +25,7 @@
 - ( void ) viewDidLoad
 {
     [ super viewDidLoad ] ;
-    
+        
     if( REUIKitIsFlatMode() )
     {
         [ self.navigationBar performSelector : @selector( setBarTintColor: ) withObject : [ UIColor colorWithRed : 84 / 255.0 green : 155 / 255.0 blue : 199 / 255.0 alpha : 1 ] ] ;

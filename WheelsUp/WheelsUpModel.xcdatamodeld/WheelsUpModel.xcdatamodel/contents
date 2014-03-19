@@ -5,6 +5,15 @@
         <attribute name="iata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Flight" representedClassName="Flight" syncable="YES">
         <attribute name="deeplink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flightNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -33,5 +42,6 @@
         <element name="Flight" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Trip" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Weather" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Event" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

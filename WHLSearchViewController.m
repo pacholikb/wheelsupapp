@@ -218,7 +218,13 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
         [fetchRequest setEntity:entity];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",[_fromTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        NSString *city;
+        if([_fromTF.text rangeOfString:@","].location != NSNotFound)
+            city = [_fromTF.text substringToIndex:[_fromTF.text rangeOfString:@","].location];
+        else
+            city = _fromTF.text;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",[city stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
         
         [fetchRequest setPredicate:predicate];
         
@@ -250,7 +256,13 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
         [fetchRequest setEntity:entity];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",[_toTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        NSString *city;
+        if([_toTF.text rangeOfString:@","].location != NSNotFound)
+            city = [_toTF.text substringToIndex:[_toTF.text rangeOfString:@","].location];
+        else
+            city = _toTF.text;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",[city stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
         
         [fetchRequest setPredicate:predicate];
         
@@ -403,11 +415,13 @@
     {
         _toCode = city.iata;
         _toTF.text = city.name;
+        [self textFieldDidEndEditing:_toTF];
     }
     else
     {
         _fromCode = city.iata;
         _fromTF.text = city.name;
+        [self textFieldDidEndEditing:_fromTF];
     }
 }
 

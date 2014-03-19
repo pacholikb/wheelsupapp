@@ -35,6 +35,8 @@
     
     [managedObjectStore createManagedObjectContexts];
     
+    [RKMIMETypeSerialization registerClass:[RKNSJSONSerialization class] forMIMEType:@"text/javascript"];
+    
     [[WHLNetworkManager sharedInstance] configureObjectManager:managedObjectStore];
 
     //Parse
@@ -62,6 +64,18 @@
         [defaults setBool:YES forKey:@"initialized"];
         [defaults synchronize];
     }
+    
+    UIViewController *firstController;
+
+    if([defaults boolForKey:@"intro"])
+        firstController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WHLMenuViewController"];
+    else
+        firstController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"introViewController"];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = firstController;
+    [self.window makeKeyAndVisible];
+    
     
     return YES;
 }
