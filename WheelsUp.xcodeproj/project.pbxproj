@@ -51,7 +51,10 @@
 		C640A91718BF39B3003FA7DB /* Flight.m in Sources */ = {isa = PBXBuildFile; fileRef = C640A91618BF39B3003FA7DB /* Flight.m */; };
 		C640A93418BF658A003FA7DB /* input.csv in Resources */ = {isa = PBXBuildFile; fileRef = C640A93318BF658A003FA7DB /* input.csv */; };
 		C6413DE118C8AD26003B333D /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = C6413DE018C8AD26003B333D /* City.m */; };
+		C650F18B18D8579D00BEB4F4 /* WHLPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C650F18A18D8579D00BEB4F4 /* WHLPageViewController.m */; };
+		C650F18F18D85BD000BEB4F4 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C650F18E18D85BD000BEB4F4 /* PageContentViewController.m */; };
 		C672AAB318D1A3350039C737 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C672AAB218D1A3350039C737 /* MapKit.framework */; };
+		C67F6A7D18D7331300D93491 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C67F6A7C18D7331300D93491 /* Event.m */; };
 		C68CB25218B649D400F0B1E0 /* ResultsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C68CB25118B649D400F0B1E0 /* ResultsHeaderView.xib */; };
 		C6D2BCA218ACBDDA00998759 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA118ACBDDA00998759 /* Parse.framework */; };
 		C6D2BCA418ACBEF700998759 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */; };
@@ -141,7 +144,13 @@
 		C640A93318BF658A003FA7DB /* input.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.csv; sourceTree = SOURCE_ROOT; };
 		C6413DDF18C8AD26003B333D /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = model/City.h; sourceTree = SOURCE_ROOT; };
 		C6413DE018C8AD26003B333D /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = model/City.m; sourceTree = SOURCE_ROOT; };
+		C650F18918D8579D00BEB4F4 /* WHLPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLPageViewController.h; sourceTree = "<group>"; };
+		C650F18A18D8579D00BEB4F4 /* WHLPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLPageViewController.m; sourceTree = "<group>"; };
+		C650F18D18D85BD000BEB4F4 /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
+		C650F18E18D85BD000BEB4F4 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		C672AAB218D1A3350039C737 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C67F6A7B18D7331300D93491 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = model/Event.h; sourceTree = SOURCE_ROOT; };
+		C67F6A7C18D7331300D93491 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = model/Event.m; sourceTree = SOURCE_ROOT; };
 		C68CB25118B649D400F0B1E0 /* ResultsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsHeaderView.xib; sourceTree = "<group>"; };
 		C6D2BCA118ACBDDA00998759 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
 		C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK.framework; sourceTree = "<group>"; };
@@ -280,6 +289,10 @@
 				18A3C891187D1C0900C5E07B /* Main.storyboard */,
 				C6D2BCA918ACDBA600998759 /* WHLNetworkManager.h */,
 				C6D2BCAA18ACDBA600998759 /* WHLNetworkManager.m */,
+				C650F18918D8579D00BEB4F4 /* WHLPageViewController.h */,
+				C650F18D18D85BD000BEB4F4 /* PageContentViewController.h */,
+				C650F18E18D85BD000BEB4F4 /* PageContentViewController.m */,
+				C650F18A18D8579D00BEB4F4 /* WHLPageViewController.m */,
 			);
 			path = WheelsUp;
 			sourceTree = "<group>";
@@ -385,6 +398,8 @@
 			children = (
 				C640A91518BF39B3003FA7DB /* Flight.h */,
 				C640A91618BF39B3003FA7DB /* Flight.m */,
+				C67F6A7B18D7331300D93491 /* Event.h */,
+				C67F6A7C18D7331300D93491 /* Event.m */,
 				C6D2BCB018ACE74500998759 /* SearchModel.h */,
 				C6D2BCB118ACE74500998759 /* SearchModel.m */,
 				C63B983F18C077D000D9C03F /* Trip.h */,
@@ -545,6 +560,7 @@
 				18DEF24A187E884C00090861 /* WHLMenuViewController.m in Sources */,
 				C63B984118C077D000D9C03F /* Trip.m in Sources */,
 				18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */,
+				C650F18F18D85BD000BEB4F4 /* PageContentViewController.m in Sources */,
 				C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */,
 				18DEF242187E869800090861 /* REMenuItem.m in Sources */,
 				1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */,
@@ -552,6 +568,8 @@
 				18DEF240187E869800090861 /* REMenu.m in Sources */,
 				18DEF23F187E869800090861 /* RECommonFunctions.m in Sources */,
 				C6D2BCAB18ACDBA600998759 /* WHLNetworkManager.m in Sources */,
+				C650F18B18D8579D00BEB4F4 /* WHLPageViewController.m in Sources */,
+				C67F6A7D18D7331300D93491 /* Event.m in Sources */,
 				C63E9A1118CDDBD700CB8C8C /* WHLMoreViewController.m in Sources */,
 				18DEF243187E869800090861 /* REMenuItemView.m in Sources */,
 				18DEF24E187E8CF100090861 /* WHLSearchViewController.m in Sources */,
@@ -725,7 +743,7 @@
 				GCC_PREFIX_HEADER = "WheelsUp/WheelsUp-Prefix.pch";
 				INFOPLIST_FILE = "WheelsUp/WheelsUp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EFF2B23B-3340-49A4-B6E8-2453E94043F9";
+				PROVISIONING_PROFILE = "C4E47CEE-C157-44BD-A5E8-00F91410EA74";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

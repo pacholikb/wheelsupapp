@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong)CLLocationManager *locationManager;
 @property (nonatomic, strong)RKObjectManager *weatherObjectManager;
+@property (nonatomic, strong)RKObjectManager *eventsObjectManager;
 @property (nonatomic, strong)NSDictionary *apiKeys;
 
 @property (strong) NSDateFormatter *dateFormatter;

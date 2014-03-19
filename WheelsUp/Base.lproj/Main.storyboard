@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Z6H-6z-gIA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -622,6 +622,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZf-LZ-iKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1364" y="1510"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="fZX-4E-zCR">
+            <objects>
+                <pageViewController storyboardIdentifier="introViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="djB-Bv-iMt" customClass="WHLPageViewController" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="Z6H-6z-gIA" kind="modal" identifier="menuSegue" id="h4o-fE-09h"/>
+                    </connections>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qbh-Fq-8bH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-566" y="64"/>
+        </scene>
+        <!--Page Content View Controller-->
+        <scene sceneID="mnW-Y7-XKl">
+            <objects>
+                <viewController storyboardIdentifier="PageContentViewController" id="qjw-DO-h6I" customClass="PageContentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iHt-M5-599"/>
+                        <viewControllerLayoutGuide type="bottom" id="ijV-pf-huM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bh6-m4-gmC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ki-6N-pkE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0s-Eq-Xt5">
+                                <rect key="frame" x="137" y="523" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="quitSlideshow:" destination="qjw-DO-h6I" eventType="touchUpInside" id="LG6-Vm-J88"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ijV-pf-huM" firstAttribute="top" secondItem="V0s-Eq-Xt5" secondAttribute="bottom" constant="15" id="xcd-xS-TdG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="6ki-6N-pkE" id="YDC-mZ-RuG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xme-c5-umG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-566" y="842"/>
         </scene>
         <!--Login View Controller - Profile-->
         <scene sceneID="4aI-F6-Qrd">

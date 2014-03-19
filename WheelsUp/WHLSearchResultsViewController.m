@@ -112,11 +112,49 @@ CLLocationCoordinate2D coordinateArray[2];
             MKMapRect rect = [wself.routeLine boundingMapRect];
             [wself.mapView setVisibleMapRect:rect edgePadding:UIEdgeInsetsMake(10, 10, 10, 10) animated:NO];
             [wself.mapView addOverlay:wself.routeLine];
-            wself.mapView.userInteractionEnabled = NO;
+//            wself.mapView.userInteractionEnabled = YES;
             
         }];
     }];
 
+    NSString *location = [NSString stringWithFormat:@"%@, %@",[[_trip.trips firstObject] objectForKey:@"arrival_name"],[[_trip.trips firstObject] objectForKey:@"arrival_country_name"]];
+    
+    [[WHLNetworkManager sharedInstance].eventsObjectManager getObjectsAtPathForRouteNamed:@"eventRoute" object:nil parameters:@{@"app_key" : @"TS2pw8MnQv7kNhKP", @"location" : location, @"date" : @"This Week", @"page_size" : @"3", @"image_sizes" : @"medium" } success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        wself.eventsArray = mappingResult.array;
+        
+        int x = wself.scrollView.contentSize.width + 20;
+        for(Event *event in wself.eventsArray)
+        {
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, 20, 200, 40)];
+            UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, 50, 200, 20)];
+            
+            titleLabel.font = [UIFont systemFontOfSize:15];
+            titleLabel.textColor = [UIColor darkGrayColor];
+            titleLabel.numberOfLines = 2;
+            dateLabel.font = [UIFont systemFontOfSize:13];
+            dateLabel.textColor = [UIColor darkGrayColor];
+            
+            titleLabel.text = event.title;
+            dateLabel.text = [NSString stringWithFormat:@"%@",event.startTime];
+            
+            [wself.scrollView addSubview:titleLabel];
+            [wself.scrollView addSubview:dateLabel];
+            
+            if(event.imageUrl.length > 0)
+            {
+                UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(x+220, 20, 60, 60)];
+                [img setImageWithURL:[NSURL URLWithString:event.imageUrl] placeholder:nil];
+                
+                [wself.scrollView addSubview:img];
+            }
+            
+            [wself.scrollView setContentSize:CGSizeMake(wself.scrollView.contentSize.width+320, 140)];
+            x+=320;
+        }
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        ;
+    }];
     
 }
 
