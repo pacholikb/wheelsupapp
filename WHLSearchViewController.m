@@ -7,19 +7,20 @@
 //
 
 #import "WHLSearchViewController.h"
-#import "WHLMoreViewController.h"
+#import "PassangersViewController.h"
+#import "WhereViewController.h"
 #import "WHLNetworkManager.h"
 #import "REMenu.h"
 #import "City.h"
 #import <Parse/Parse.h>
 #import "SVProgressHUD.h"
+#import "MZFormSheetController.h"
 
 @interface WHLSearchViewController ()
 
 @end
 
 @implementation WHLSearchViewController
-
 
 - (void)viewDidLoad
 {
@@ -28,9 +29,7 @@
     
      self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
     
-    
     _fromTF.delegate = self;
-    _toTF.delegate = self;
     
     [WHLNetworkManager sharedInstance].locationManager.delegate = self;
     [[WHLNetworkManager sharedInstance].locationManager startUpdatingLocation];
@@ -38,7 +37,7 @@
     _maxPrice = 0;
     _adultsCount = 1;
     _childrenCount = 0;
-
+ 
 }
 
 - (IBAction)somewhereHotAction:(id)sender {
@@ -63,7 +62,6 @@
         
         if(sum >0 && sum/mappingResult.array.count > 30)
         {
-            _toTF.text = [NSString stringWithFormat:@"%@, %@",result.name, result.country];
             _toCode = result.iata;
             
             __weak typeof (self) wself = self;
@@ -123,7 +121,6 @@
     NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     City *result = [results objectAtIndex: arc4random() % results.count];
-    _toTF.text = [NSString stringWithFormat:@"%@, %@",result.name,result.country];
     _toCode = result.iata;
     
     __weak typeof (self) wself = self;
@@ -170,7 +167,19 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
+
+}
+
+- (IBAction)whereAction:(id)sender {
+    WhereViewController *where = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WhereViewController"];
+    where.parent = self;
+    [self presentOnSheet:where];
+}
+
+- (IBAction)passengersAction:(id)sender {
+    PassangersViewController *passangers = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PassangersViewController"];
+    passangers.parent = self;
+    [self presentOnSheet:passangers];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -187,24 +196,36 @@
         controller.flights = _flights;
         controller.trip = _trip;
     }
-    else if([segue.identifier isEqualToString:@"moreSegue"])
-    {
-        WHLMoreViewController *controller = segue.destinationViewController;
-        controller.parent = self;
-    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [_fromTF resignFirstResponder];
-    [_toTF resignFirstResponder];
-
+    [_maxPriceTF resignFirstResponder];
     return NO;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-
+- (IBAction)showHideFilters:(id)sender {
+    float alpha;
+    if(_isFiltersViewVisible)
+        alpha = 0.0;
+    else
+        alpha = 1.0;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        _filtersView.alpha = alpha;
+    } completion:^(BOOL finished) {
+        if(finished) {
+            _isFiltersViewVisible = !_isFiltersViewVisible;
+            if(_isFiltersViewVisible)
+               [_showHideFiltersButton setTitle:@"-" forState:UIControlStateNormal];
+            else {
+                [_showHideFiltersButton setTitle:@"+" forState:UIControlStateNormal];
+                _maxPrice = 0;
+                _maxPriceTF.text = @"";
+            }
+        }
+    }];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -234,7 +255,6 @@
         
         if(results && results.count > 0) {
             if(results.count > 1) {
-                _dropdownTo = NO;
                 _dropdownOptions = results;
                 [self showPopUpWithTitle:@"Choose City" withOption:_dropdownOptions xy:CGPointMake(35, 125) isMultiple:NO];
             }
@@ -248,42 +268,9 @@
             [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
         
     }
-    else if(textField == _toTF && textField.text.length > 0)
+    if(textField == _maxPriceTF)
     {
-        _toCode = nil;
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        NSString *city;
-        if([_toTF.text rangeOfString:@","].location != NSNotFound)
-            city = [_toTF.text substringToIndex:[_toTF.text rangeOfString:@","].location];
-        else
-            city = _toTF.text;
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",[city stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        
-        [fetchRequest setPredicate:predicate];
-        
-        NSError *error;
-        NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
-        
-        
-        if(results && results.count > 0)
-            if(results.count > 1) {
-                _dropdownTo = YES;
-                _dropdownOptions = results;
-                [self showPopUpWithTitle:@"Choose City" withOption:_dropdownOptions xy:CGPointMake(35, 170) isMultiple:NO];
-            }
-            else {
-                City *city = (City *)[results firstObject];
-                _toCode = city.iata;
-                _toTF.text = [NSString stringWithFormat:@"%@, %@",city.name,city.country];
-            }
-        else
-            [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
-            
+        _maxPrice = [_maxPriceTF.text integerValue];
     }
     
 }
@@ -291,7 +278,7 @@
 - (void)findFlights
 {
     [_fromTF resignFirstResponder];
-    [_toTF resignFirstResponder];
+    [_maxPriceTF resignFirstResponder];
 
     if (_fromCode.length == 0 || _toCode.length == 0)
         [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
@@ -340,8 +327,41 @@
     
 }
 
+- (void)presentOnSheet:(UIViewController *)controller
+{
+    [_fromTF resignFirstResponder];
+    [_maxPriceTF resignFirstResponder];
+    
+    MZFormSheetController *sheet = [[MZFormSheetController alloc] initWithSize:CGSizeMake(280, 200) viewController:controller];
+    sheet.shouldDismissOnBackgroundViewTap = YES;
+    sheet.transitionStyle = MZFormSheetTransitionStyleFade;
+    [[MZFormSheetController sharedBackgroundWindow] setBackgroundBlurEffect:YES];
+    [[MZFormSheetController sharedBackgroundWindow] setBlurRadius:5.0];
+     
+    [self mz_presentFormSheetController:sheet animated:YES completionHandler:nil];
+}
+
 - (IBAction)searchAction:(id)sender {
-    [self findFlights];
+    switch (_searchMode) {
+        case anywhere:
+        {
+            [self anywhereAction:nil];
+            break;
+        }
+        case somewhereHot:
+        {
+            [self somewhereHotAction:nil];
+            break;
+        }
+        case place:
+        {
+            [self findFlights];
+            break;
+        }
+        
+        default:
+            break;
+    }
 }
 
 #pragma locationFramework delegate
@@ -404,25 +424,16 @@
     [_Dropobj SetBackGroundDropDwon_R:0.0 G:108.0 B:194.0 alpha:0.70];
     
     [_fromTF resignFirstResponder];
-    [_toTF resignFirstResponder];
-    
+
 }
 
 - (void)DropDownListView:(DropDownListView *)dropdownListView didSelectedIndex:(NSInteger)anIndex {
     City *city = [_dropdownOptions objectAtIndex:anIndex];
     
-    if(_dropdownTo)
-    {
-        _toCode = city.iata;
-        _toTF.text = city.name;
-        [self textFieldDidEndEditing:_toTF];
-    }
-    else
-    {
-        _fromCode = city.iata;
-        _fromTF.text = city.name;
-        [self textFieldDidEndEditing:_fromTF];
-    }
+    _fromCode = city.iata;
+    _fromTF.text = city.name;
+    [self textFieldDidEndEditing:_fromTF];
+    
 }
 
 - (void)DropDownListViewDidCancel{

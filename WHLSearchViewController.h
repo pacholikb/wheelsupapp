@@ -19,8 +19,14 @@
 
 @interface WHLSearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, kDropDownListViewDelegate>
 
+typedef enum {
+    anywhere,
+    somewhereHot,
+    place
+} SearchMode;
+
 @property (strong, nonatomic) IBOutlet UITextField *fromTF;
-@property (strong, nonatomic) IBOutlet UITextField *toTF;
+@property (strong, nonatomic) IBOutlet UIButton *passangersBtn;
 @property (strong) NSString *fromCode;
 @property (strong) NSString *toCode;
 
@@ -31,11 +37,18 @@
 
 @property (strong) DropDownListView * Dropobj;
 @property (strong) NSArray *dropdownOptions;
-@property (assign) BOOL dropdownTo;
 
 @property (assign) NSInteger maxPrice;
 @property (assign) NSInteger adultsCount;
 @property (assign) NSInteger childrenCount;
 @property (strong) NSString *numberOfStops;
+
+@property (strong, nonatomic) IBOutlet UIButton *showHideFiltersButton;
+@property (assign) BOOL isFiltersViewVisible;
+@property (strong, nonatomic) IBOutlet UIView *filtersView;
+@property (strong, nonatomic) IBOutlet UITextField *maxPriceTF;
+@property (strong, nonatomic) IBOutlet UIButton *whereButton;
+
+@property (nonatomic, assign) SearchMode searchMode;
 
 @end
