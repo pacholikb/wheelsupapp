@@ -138,6 +138,65 @@
             
         }  
     }
+    
+    //filter
+    filePath = [[NSBundle mainBundle] pathForResource:@"filtered city list" ofType:@"csv"];
+    if (filePath) {
+        NSString * myText = [[NSString alloc]
+                             initWithContentsOfFile:filePath
+                             encoding:NSUTF8StringEncoding
+                             error:nil];
+        if (myText) {
+            __block int count = 0;
+            
+            
+            [myText enumerateLinesUsingBlock:^(NSString * line, BOOL * stop) {
+                
+                NSArray *lineComponents=[line componentsSeparatedByString:@","];
+                if(lineComponents){
+                    
+                    NSString *string0=[lineComponents objectAtIndex:0];
+                    
+                    if([string0 isEqualToString:@"City"]) {
+                        
+                        NSString *string1=[lineComponents objectAtIndex:1];
+                        NSString *string2=[lineComponents objectAtIndex:2];
+                        
+                        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                        NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:context];
+                        [fetchRequest setEntity:entity];
+                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"iata ==[c] %@",string2];
+                        [fetchRequest setPredicate:predicate];
+                        NSError *error;
+                        NSManagedObject *object = [[context executeFetchRequest:fetchRequest error:&error] firstObject];
+                        
+                        if(object) {
+                            [object setValue:[NSNumber numberWithBool:YES] forKey:@"filtered"];
+                        }
+                        
+                        count++;
+                        if(count>=100){
+                            if (![context save:&error]) {
+                                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                            }
+                            count=0;
+                            
+                        }
+                    }
+                    
+                }
+                
+                
+                
+            }];
+            NSLog(@"done importing");
+            NSError *error;
+            if (![context save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+            
+        }  
+    }
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

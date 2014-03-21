@@ -33,7 +33,7 @@ CLLocationCoordinate2D coordinateArray[2];
     SearchModel *search = [SearchModel new];
     search.location = _arrivalCityName;
     
-    _directionLabel.text = [NSString stringWithFormat:@"%@ - %@", _departureCityName, _arrivalCityName];
+    _directionLabel.text = [NSString stringWithFormat:@"%@ - %@", [[_trip.trips firstObject] objectForKey:@"departure_code"], [[_trip.trips firstObject] objectForKey:@"arrival_code"]];
     
     __weak typeof (self) wself = self;
     [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : _arrivalCityName, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
