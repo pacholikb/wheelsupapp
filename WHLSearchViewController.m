@@ -42,6 +42,14 @@
 
 - (IBAction)somewhereHotAction:(id)sender {
     
+    [_fromTF resignFirstResponder];
+    [_maxPriceTF resignFirstResponder];
+    
+    if (_fromCode.length == 0) {
+        [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
+        return ;
+    }
+    
     [SVProgressHUD showWithStatus:@"Searching..." maskType:SVProgressHUDMaskTypeBlack];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -111,6 +119,15 @@
 }
 
 - (IBAction)anywhereAction:(id)sender {
+    
+    [_fromTF resignFirstResponder];
+    [_maxPriceTF resignFirstResponder];
+    
+    if (_fromCode.length == 0) {
+        [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
+        return ;
+    }
+
     [SVProgressHUD showWithStatus:@"Searching..." maskType:SVProgressHUDMaskTypeBlack];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
