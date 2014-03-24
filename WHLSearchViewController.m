@@ -27,7 +27,10 @@
     [super viewDidLoad];
     [ self setTitle : @"Search" ] ;
     
-     self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
+    self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle :@"Menu"
+                                                                                style :UIBarButtonItemStyleBordered
+                                                                               target :self.navigationController
+                                                                               action :@selector( toggleMenu ) ] ;
     
     _fromTF.delegate = self;
     
@@ -362,6 +365,12 @@
 }
 
 - (IBAction)searchAction:(id)sender {
+    
+    UIImage *searchButtonImage = [UIImage imageNamed:@"Button1.png"];
+    
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchButton setImage:searchButtonImage forState:UIControlStateNormal];
+    
     switch (_searchMode) {
         case anywhere:
         {

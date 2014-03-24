@@ -21,7 +21,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Facebook Profile";
+    self.title = @"Profile";
     
     // If the user is already logged in, display any previously cached values before we get the latest from Facebook.
     if ([PFUser currentUser]) {

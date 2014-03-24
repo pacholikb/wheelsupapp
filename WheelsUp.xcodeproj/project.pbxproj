@@ -20,6 +20,10 @@
 		1858B335188235CE00A18F32 /* WHLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B334188235CE00A18F32 /* WHLLoginViewController.m */; };
 		1858B3491882740D00A18F32 /* WHLNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3481882740C00A18F32 /* WHLNewUserViewController.m */; };
 		1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */; };
+		189863B018DFF40300B2C5F5 /* Button1.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863AE18DFF40300B2C5F5 /* Button1.png */; };
+		189863B118DFF40300B2C5F5 /* Button1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863AF18DFF40300B2C5F5 /* Button1@2x.png */; };
+		189863B418DFF59800B2C5F5 /* Oval.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863B218DFF59800B2C5F5 /* Oval.png */; };
+		189863B518DFF59800B2C5F5 /* Oval@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863B318DFF59800B2C5F5 /* Oval@2x.png */; };
 		18A3C880187D1C0700C5E07B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C87F187D1C0700C5E07B /* Foundation.framework */; };
 		18A3C882187D1C0800C5E07B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C881187D1C0800C5E07B /* CoreGraphics.framework */; };
 		18A3C884187D1C0800C5E07B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3C883187D1C0800C5E07B /* UIKit.framework */; };
@@ -89,8 +93,6 @@
 /* Begin PBXFileReference section */
 		1817876D18DC41A9001A0B60 /* Button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Button1.png; path = "../../../Desktop/random /Button1.png"; sourceTree = "<group>"; };
 		1817876E18DC41A9001A0B60 /* Button1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Button1@2x.png"; path = "../../../Desktop/random /Button1@2x.png"; sourceTree = "<group>"; };
-		1817877118DC44A6001A0B60 /* Oval.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Oval.png; path = "../../../Desktop/random /Oval.png"; sourceTree = "<group>"; };
-		1817877218DC44A6001A0B60 /* Oval@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Oval@2x.png"; path = "../../../Desktop/random /Oval@2x.png"; sourceTree = "<group>"; };
 		1858B24B1881FBE900A18F32 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1858B24D1881FBF000A18F32 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1858B24F1881FBF900A18F32 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -109,6 +111,10 @@
 		1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFBProfileViewController.m; sourceTree = "<group>"; };
 		1881CB4A18D98A0A00D3F2B2 /* homebg(320x568).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homebg(320x568).png"; path = "../../../Desktop/random /homebg(320x568).png"; sourceTree = "<group>"; };
 		1881CB4B18D98A0A00D3F2B2 /* homebg(320x568)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homebg(320x568)@2x.png"; path = "../../../Desktop/random /homebg(320x568)@2x.png"; sourceTree = "<group>"; };
+		189863AE18DFF40300B2C5F5 /* Button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button1.png; sourceTree = "<group>"; };
+		189863AF18DFF40300B2C5F5 /* Button1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button1@2x.png"; sourceTree = "<group>"; };
+		189863B218DFF59800B2C5F5 /* Oval.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Oval.png; sourceTree = "<group>"; };
+		189863B318DFF59800B2C5F5 /* Oval@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oval@2x.png"; sourceTree = "<group>"; };
 		18A3C87C187D1C0700C5E07B /* WheelsUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheelsUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A3C87F187D1C0700C5E07B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		18A3C881187D1C0800C5E07B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -262,10 +268,10 @@
 		1858B33618824D0C00A18F32 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				1817877118DC44A6001A0B60 /* Oval.png */,
-				1817877218DC44A6001A0B60 /* Oval@2x.png */,
-				1817876D18DC41A9001A0B60 /* Button1.png */,
-				1817876E18DC41A9001A0B60 /* Button1@2x.png */,
+				189863B218DFF59800B2C5F5 /* Oval.png */,
+				189863B318DFF59800B2C5F5 /* Oval@2x.png */,
+				189863AE18DFF40300B2C5F5 /* Button1.png */,
+				189863AF18DFF40300B2C5F5 /* Button1@2x.png */,
 				1881CB4A18D98A0A00D3F2B2 /* homebg(320x568).png */,
 				1881CB4B18D98A0A00D3F2B2 /* homebg(320x568)@2x.png */,
 			);
@@ -291,6 +297,8 @@
 				18A3C87D187D1C0700C5E07B /* Products */,
 				18DEF234187E869800090861 /* REMenu */,
 				D9DAE4B87EDE4B688220D663 /* Pods.xcconfig */,
+				1817876D18DC41A9001A0B60 /* Button1.png */,
+				1817876E18DC41A9001A0B60 /* Button1@2x.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -573,11 +581,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189863B518DFF59800B2C5F5 /* Oval@2x.png in Resources */,
+				189863B418DFF59800B2C5F5 /* Oval.png in Resources */,
+				189863B118DFF40300B2C5F5 /* Button1@2x.png in Resources */,
 				C68CB25218B649D400F0B1E0 /* ResultsHeaderView.xib in Resources */,
 				C6D2BCA518ACBF7F00998759 /* Main.storyboard in Resources */,
 				18A3C89B187D1C0900C5E07B /* Images.xcassets in Resources */,
 				18A3C88A187D1C0800C5E07B /* InfoPlist.strings in Resources */,
 				C688C35118DC2A65003D8B0F /* filtered city list.csv in Resources */,
+				189863B018DFF40300B2C5F5 /* Button1.png in Resources */,
 				C640A93418BF658A003FA7DB /* input.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

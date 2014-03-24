@@ -54,8 +54,8 @@
     //Navigation Bar
     NSMutableDictionary* titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary:[[UINavigationBar appearance] titleTextAttributes]];
     
-    [titleBarAttributes setValue: [UIColor whiteColor] forKey: NSForegroundColorAttributeName];
-    
+    [titleBarAttributes setValue: [ UIColor lightGrayColor] forKey: NSForegroundColorAttributeName];
+     
     [[UINavigationBar appearance] setTitleTextAttributes: titleBarAttributes];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
