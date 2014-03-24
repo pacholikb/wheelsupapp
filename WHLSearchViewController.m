@@ -27,7 +27,10 @@
     [super viewDidLoad];
     [ self setTitle : @"Search" ] ;
     
-     self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
+    self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle :@"Menu"
+                                                                                style :UIBarButtonItemStyleBordered
+                                                                               target :self.navigationController
+                                                                               action :@selector( toggleMenu ) ] ;
     
     _fromTF.delegate = self;
     
@@ -38,6 +41,12 @@
     _adultsCount = 1;
     _childrenCount = 0;
  
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchProgressEvent:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
+}
+
+- (void)touchProgressEvent:(id)sender
+{
+    [SVProgressHUD showErrorWithStatus:@"Canceled"];
 }
 
 - (IBAction)somewhereHotAction:(id)sender {
@@ -97,7 +106,7 @@
                         
                     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                         [wself somewhereHotAction:nil];
-                    } numberOfTimes:8];
+                    } numberOfTimes:4];
                     
                 }
                 else
@@ -168,7 +177,7 @@
                 
             } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                 [wself anywhereAction:nil];
-            } numberOfTimes:8];
+            } numberOfTimes:4];
             
         }
         else
@@ -193,6 +202,9 @@
 - (IBAction)whereAction:(id)sender {
     WhereViewController *where = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WhereViewController"];
     where.parent = self;
+    if(_searchMode == place)
+        where.placeName = _whereButton.titleLabel.text;
+    
     [self presentOnSheet:where];
 }
 
@@ -248,6 +260,20 @@
     }];
 }
 
+-(void)animateTextField:(UITextField*)textField up:(BOOL)up
+{
+    const int movementDistance = -180; // tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
+    
+    int movement = (up ? movementDistance : -movementDistance);
+    
+    [UIView beginAnimations: @"animateTextField" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     
@@ -284,15 +310,24 @@
                 _fromTF.text = [NSString stringWithFormat:@"%@, %@",city.name,city.country];
             }
         }
-        else
+        else {
             [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
+            _fromTF.text = @"";
+        }
         
     }
     if(textField == _maxPriceTF)
     {
         _maxPrice = [_maxPriceTF.text integerValue];
+        [self animateTextField:_maxPriceTF up:NO];
     }
     
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if(textField == _maxPriceTF)
+        [self animateTextField:_maxPriceTF up:YES];
 }
 
 - (void)findFlights
@@ -362,6 +397,12 @@
 }
 
 - (IBAction)searchAction:(id)sender {
+    
+    UIImage *searchButtonImage = [UIImage imageNamed:@"Button1.png"];
+    
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchButton setImage:searchButtonImage forState:UIControlStateNormal];
+    
     switch (_searchMode) {
         case anywhere:
         {
@@ -390,7 +431,7 @@
 {
     NSLog(@"locationManager didFailWithError %@",error);
     
-    [self showDialogWithTitle:@"Oops!" andMessage:@"Could not find your location."];
+    //[self showDialogWithTitle:@"Oops!" andMessage:@"Could not find your location."];
     
     [[WHLNetworkManager sharedInstance].locationManager stopUpdatingLocation];
     [WHLNetworkManager sharedInstance].locationManager.delegate = nil;

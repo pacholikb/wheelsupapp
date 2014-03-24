@@ -69,8 +69,8 @@
     UILabel *toLabel = (UILabel *)[cell viewWithTag:2];
     
     NSDictionary *dictionary = [trip.trips firstObject];
-    fromLabel.text = [NSString stringWithFormat:@"%@, %@",[dictionary valueForKey:@"departure_name"],[dictionary valueForKey:@"departure_country_name"]];
-    toLabel.text = [NSString stringWithFormat:@"%@, %@",[dictionary valueForKey:@"arrival_name"],[dictionary valueForKey:@"arrival_country_name"]];
+    fromLabel.text = [NSString stringWithFormat:@"%@,\n%@",[dictionary valueForKey:@"departure_name"],[dictionary valueForKey:@"departure_country_name"]];
+    toLabel.text = [NSString stringWithFormat:@"%@,\n%@",[dictionary valueForKey:@"arrival_name"],[dictionary valueForKey:@"arrival_country_name"]];
     
     return cell;
 }

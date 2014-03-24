@@ -39,7 +39,6 @@
 
 @property (strong) NSArray *weatherArray;
 @property (strong) Flight *selectedFlight;
-@property (strong) NSArray *eventsArray;
 
 @property (strong) Trip *trip;
 @property (strong) NSString *departureCityName;

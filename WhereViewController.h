@@ -18,4 +18,6 @@
 @property (strong) DropDownListView * Dropobj;
 @property (strong) NSArray *dropdownOptions;
 
+@property (strong) NSString *placeName;
+
 @end

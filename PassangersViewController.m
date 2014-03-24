@@ -68,19 +68,20 @@
     NSString *adultsPart;
     NSString *childrenPart = @"";
     
-    if(_parent.adultsCount == 1)
+    if(_parent.adultsCount == 1 && _parent.childrenCount == 0)
         adultsPart = @"Solo";
+    else if(_parent.adultsCount == 1)
+        adultsPart = @"With an adult";
     else
-        adultsPart = [NSString stringWithFormat:@"%d adults",_parent.adultsCount];
+        adultsPart = [NSString stringWithFormat:@"With %d adults",_parent.adultsCount];
     
     if (_parent.childrenCount == 1)
-        childrenPart = @" with a child";
+        childrenPart = @" and a child";
     else if(_parent.childrenCount > 1)
-        childrenPart = [NSString stringWithFormat:@" with %d children",_parent.childrenCount];
+        childrenPart = [NSString stringWithFormat:@" and %d children",_parent.childrenCount];
     
     NSLog(@"%@",[NSString stringWithFormat:@"%@%@",adultsPart,childrenPart]);
-    _parent.passangersBtn.titleLabel.text = [NSString stringWithFormat:@"%@%@",adultsPart,childrenPart];
-    _parent.passangersBtn.titleLabel.textColor = [UIColor darkGrayColor];
+    [_parent.passangersBtn setTitle:[NSString stringWithFormat:@"%@%@",adultsPart,childrenPart] forState:UIControlStateNormal];
     
     [self mz_dismissFormSheetControllerAnimated:YES completionHandler:nil];
 }

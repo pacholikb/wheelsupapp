@@ -14,20 +14,13 @@
 
 @implementation WhereViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _toTF.delegate = self;
+    if(_placeName)
+        _toTF.text = _placeName;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

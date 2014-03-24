@@ -24,6 +24,12 @@
 #define COCOAPODS_VERSION_MINOR_KDropDownMultipleSelection 0
 #define COCOAPODS_VERSION_PATCH_KDropDownMultipleSelection 0
 
+// MDCFocusView
+#define COCOAPODS_POD_AVAILABLE_MDCFocusView
+#define COCOAPODS_VERSION_MAJOR_MDCFocusView 0
+#define COCOAPODS_VERSION_MINOR_MDCFocusView 1
+#define COCOAPODS_VERSION_PATCH_MDCFocusView 0
+
 // RestKit
 #define COCOAPODS_POD_AVAILABLE_RestKit
 #define COCOAPODS_VERSION_MAJOR_RestKit 0
