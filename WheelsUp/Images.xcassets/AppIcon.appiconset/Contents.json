@@ -1,37 +1,39 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
       "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "wheelslogo29.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "iphone",
       "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "wheelslogo29@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "WheelsIcon80.png",
+      "filename" : "wheelslogo40.png",
       "scale" : "2x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "WheelsIcon57.png",
+      "filename" : "wheelslogo57.png",
       "scale" : "1x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "WheelsIcon57@2x.png",
+      "filename" : "wheelslogo57@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "WheelsIcon120.png",
+      "filename" : "wheelslogo60.png",
       "scale" : "2x"
     },
     {
