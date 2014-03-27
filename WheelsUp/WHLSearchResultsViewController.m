@@ -98,7 +98,7 @@ CLLocationCoordinate2D coordinateArray[2];
 
     }];
 
-    _mapView.userInteractionEnabled = NO;
+    _mapView.userInteractionEnabled = YES;
 
     [[CLGeocoder new] geocodeAddressString:_departureCityName completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark *p = [placemarks firstObject];

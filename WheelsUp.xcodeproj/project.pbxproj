@@ -20,6 +20,20 @@
 		1858B335188235CE00A18F32 /* WHLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B334188235CE00A18F32 /* WHLLoginViewController.m */; };
 		1858B3491882740D00A18F32 /* WHLNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3481882740C00A18F32 /* WHLNewUserViewController.m */; };
 		1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */; };
+		1861157018E3DE22007E5453 /* instr3_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156A18E3DE22007E5453 /* instr3_5s@2x.png */; };
+		1861157118E3DE22007E5453 /* instr3_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156B18E3DE22007E5453 /* instr3_5s.png */; };
+		1861157218E3DE22007E5453 /* instr2_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156C18E3DE22007E5453 /* instr2_5s.png */; };
+		1861157318E3DE22007E5453 /* instr2_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156D18E3DE22007E5453 /* instr2_5s@2x.png */; };
+		1861157418E3DE22007E5453 /* instr1_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156E18E3DE22007E5453 /* instr1_5s.png */; };
+		1861157518E3DE22007E5453 /* instr1_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156F18E3DE22007E5453 /* instr1_5s@2x.png */; };
+		1870931D18E3D7C000EE8075 /* GoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870930F18E3D7C000EE8075 /* GoButton.png */; };
+		1870931E18E3D7C000EE8075 /* GoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931018E3D7C000EE8075 /* GoButton@2x.png */; };
+		1870931F18E3D7C000EE8075 /* instr3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931118E3D7C000EE8075 /* instr3@2x.png */; };
+		1870932018E3D7C000EE8075 /* instr3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931218E3D7C000EE8075 /* instr3.png */; };
+		1870932118E3D7C000EE8075 /* instr2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931318E3D7C000EE8075 /* instr2.png */; };
+		1870932218E3D7C000EE8075 /* instr2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931418E3D7C000EE8075 /* instr2@2x.png */; };
+		1870932318E3D7C000EE8075 /* Instr1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931518E3D7C000EE8075 /* Instr1.png */; };
+		1870932418E3D7C000EE8075 /* Instr1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931618E3D7C000EE8075 /* Instr1@2x.png */; };
 		189863B018DFF40300B2C5F5 /* Button1.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863AE18DFF40300B2C5F5 /* Button1.png */; };
 		189863B118DFF40300B2C5F5 /* Button1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863AF18DFF40300B2C5F5 /* Button1@2x.png */; };
 		189863B418DFF59800B2C5F5 /* Oval.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863B218DFF59800B2C5F5 /* Oval.png */; };
@@ -105,6 +119,20 @@
 		1858B3481882740C00A18F32 /* WHLNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHLNewUserViewController.m; path = WheelsUp/WHLNewUserViewController.m; sourceTree = "<group>"; };
 		1858B3521883C5B100A18F32 /* WHLFBProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLFBProfileViewController.h; sourceTree = "<group>"; };
 		1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFBProfileViewController.m; sourceTree = "<group>"; };
+		1861156A18E3DE22007E5453 /* instr3_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr3_5s@2x.png"; sourceTree = "<group>"; };
+		1861156B18E3DE22007E5453 /* instr3_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr3_5s.png; sourceTree = "<group>"; };
+		1861156C18E3DE22007E5453 /* instr2_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr2_5s.png; sourceTree = "<group>"; };
+		1861156D18E3DE22007E5453 /* instr2_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr2_5s@2x.png"; sourceTree = "<group>"; };
+		1861156E18E3DE22007E5453 /* instr1_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr1_5s.png; sourceTree = "<group>"; };
+		1861156F18E3DE22007E5453 /* instr1_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr1_5s@2x.png"; sourceTree = "<group>"; };
+		1870930F18E3D7C000EE8075 /* GoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoButton.png; sourceTree = "<group>"; };
+		1870931018E3D7C000EE8075 /* GoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoButton@2x.png"; sourceTree = "<group>"; };
+		1870931118E3D7C000EE8075 /* instr3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr3@2x.png"; sourceTree = "<group>"; };
+		1870931218E3D7C000EE8075 /* instr3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr3.png; sourceTree = "<group>"; };
+		1870931318E3D7C000EE8075 /* instr2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr2.png; sourceTree = "<group>"; };
+		1870931418E3D7C000EE8075 /* instr2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr2@2x.png"; sourceTree = "<group>"; };
+		1870931518E3D7C000EE8075 /* Instr1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instr1.png; sourceTree = "<group>"; };
+		1870931618E3D7C000EE8075 /* Instr1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Instr1@2x.png"; sourceTree = "<group>"; };
 		1881CB4A18D98A0A00D3F2B2 /* homebg(320x568).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homebg(320x568).png"; path = "../../../Desktop/random /homebg(320x568).png"; sourceTree = "<group>"; };
 		1881CB4B18D98A0A00D3F2B2 /* homebg(320x568)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homebg(320x568)@2x.png"; path = "../../../Desktop/random /homebg(320x568)@2x.png"; sourceTree = "<group>"; };
 		189863AE18DFF40300B2C5F5 /* Button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button1.png; sourceTree = "<group>"; };
@@ -261,6 +289,20 @@
 		1858B33618824D0C00A18F32 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				1861156A18E3DE22007E5453 /* instr3_5s@2x.png */,
+				1861156B18E3DE22007E5453 /* instr3_5s.png */,
+				1861156C18E3DE22007E5453 /* instr2_5s.png */,
+				1861156D18E3DE22007E5453 /* instr2_5s@2x.png */,
+				1861156E18E3DE22007E5453 /* instr1_5s.png */,
+				1861156F18E3DE22007E5453 /* instr1_5s@2x.png */,
+				1870930F18E3D7C000EE8075 /* GoButton.png */,
+				1870931018E3D7C000EE8075 /* GoButton@2x.png */,
+				1870931118E3D7C000EE8075 /* instr3@2x.png */,
+				1870931218E3D7C000EE8075 /* instr3.png */,
+				1870931318E3D7C000EE8075 /* instr2.png */,
+				1870931418E3D7C000EE8075 /* instr2@2x.png */,
+				1870931518E3D7C000EE8075 /* Instr1.png */,
+				1870931618E3D7C000EE8075 /* Instr1@2x.png */,
 				189863B218DFF59800B2C5F5 /* Oval.png */,
 				189863B318DFF59800B2C5F5 /* Oval@2x.png */,
 				189863AE18DFF40300B2C5F5 /* Button1.png */,
@@ -538,7 +580,7 @@
 				ORGANIZATIONNAME = "Broc Pacholik ";
 				TargetAttributes = {
 					18A3C87B187D1C0700C5E07B = {
-						DevelopmentTeam = 3E495EVFBH;
+						DevelopmentTeam = 7W7FDGU8BV;
 					};
 					18A3C89F187D1C0900C5E07B = {
 						TestTargetID = 18A3C87B187D1C0700C5E07B;
@@ -569,15 +611,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1870931E18E3D7C000EE8075 /* GoButton@2x.png in Resources */,
+				1870931D18E3D7C000EE8075 /* GoButton.png in Resources */,
+				1861157318E3DE22007E5453 /* instr2_5s@2x.png in Resources */,
+				1870932318E3D7C000EE8075 /* Instr1.png in Resources */,
+				1861157018E3DE22007E5453 /* instr3_5s@2x.png in Resources */,
 				189863B518DFF59800B2C5F5 /* Oval@2x.png in Resources */,
 				189863B418DFF59800B2C5F5 /* Oval.png in Resources */,
 				189863B118DFF40300B2C5F5 /* Button1@2x.png in Resources */,
 				C6D2BCA518ACBF7F00998759 /* Main.storyboard in Resources */,
+				1861157118E3DE22007E5453 /* instr3_5s.png in Resources */,
+				1861157218E3DE22007E5453 /* instr2_5s.png in Resources */,
 				18A3C89B187D1C0900C5E07B /* Images.xcassets in Resources */,
+				1870931F18E3D7C000EE8075 /* instr3@2x.png in Resources */,
 				18A3C88A187D1C0800C5E07B /* InfoPlist.strings in Resources */,
+				1861157418E3DE22007E5453 /* instr1_5s.png in Resources */,
+				1870932218E3D7C000EE8075 /* instr2@2x.png in Resources */,
+				1870932018E3D7C000EE8075 /* instr3.png in Resources */,
+				1870932418E3D7C000EE8075 /* Instr1@2x.png in Resources */,
 				C688C35118DC2A65003D8B0F /* filtered city list.csv in Resources */,
+				1861157518E3DE22007E5453 /* instr1_5s@2x.png in Resources */,
 				189863B018DFF40300B2C5F5 /* Button1.png in Resources */,
 				C640A93418BF658A003FA7DB /* input.csv in Resources */,
+				1870932118E3D7C000EE8075 /* instr2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,8 +876,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/brocpacholik/Downloads,
@@ -833,7 +889,7 @@
 				GCC_PREFIX_HEADER = "WheelsUp/WheelsUp-Prefix.pch";
 				INFOPLIST_FILE = "WheelsUp/WheelsUp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C4E47CEE-C157-44BD-A5E8-00F91410EA74";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

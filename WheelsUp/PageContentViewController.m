@@ -20,13 +20,13 @@
     
     switch (_pageIndex) {
         case 1:
-            (_imageView.image = [UIImage imageNamed:@"homebg(320x568).png"]);
+            (_imageView.image = [UIImage imageNamed:@"instr1_5s.png"]);
             break;
         case 2:
-            //set image here
+            (_imageView.image = [UIImage imageNamed:@"instr2_5s.png"]);
             break;
         case 3:
-            //set image here
+            (_imageView.image = [UIImage imageNamed:@"instr3_5s.png"]);
             break;
             
         default:
