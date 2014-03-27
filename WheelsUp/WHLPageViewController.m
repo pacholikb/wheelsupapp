@@ -69,4 +69,14 @@
     return pageContentViewController;
 }
 
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+{
+    return 3;
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    return ((PageContentViewController*) self.presentedViewController).pageIndex;
+}
+
 @end

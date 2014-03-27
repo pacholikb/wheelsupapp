@@ -8,6 +8,8 @@
 
 #import "PageContentViewController.h"
 
+#define IS_WIDESCREEN ( [ [ UIScreen mainScreen ] bounds ].size.height == 568  )
+
 @interface PageContentViewController ()
 
 @end
@@ -17,6 +19,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if(IS_WIDESCREEN)
+        NSLog(@"iPhone5 screen size");
+    else
+        NSLog(@"normal iPhone screen dimensions");
     
     switch (_pageIndex) {
         case 1:

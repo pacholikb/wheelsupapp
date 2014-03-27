@@ -16,6 +16,8 @@
 #import "Trip.h"
 #import "City.h"
 #import "DropDownListView.h"
+#import "MDCFocusView.h"
+#import "MDCSpotlightView.h"
 
 @interface WHLSearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, kDropDownListViewDelegate>
 
@@ -42,6 +44,8 @@ typedef enum {
 @property (assign) NSInteger adultsCount;
 @property (assign) NSInteger childrenCount;
 @property (strong) NSString *numberOfStops;
+
+@property (strong) MDCFocusView *focusView;
 
 @property (strong, nonatomic) IBOutlet UIButton *showHideFiltersButton;
 @property (assign) BOOL isFiltersViewVisible;

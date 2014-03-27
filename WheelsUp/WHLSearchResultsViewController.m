@@ -23,6 +23,8 @@ CLLocationCoordinate2D coordinateArray[2];
 {
     [super viewDidLoad];
     
+    [_scrollView setContentSize:CGSizeMake(960, 140)];
+    
     _departureCityName = [[_trip.trips firstObject] objectForKey:@"departure_name"];
     _arrivalCityName = [[_trip.trips firstObject] objectForKey:@"arrival_name"];
     
@@ -33,7 +35,12 @@ CLLocationCoordinate2D coordinateArray[2];
     SearchModel *search = [SearchModel new];
     search.location = _arrivalCityName;
     
-    _directionLabel.text = [NSString stringWithFormat:@"%@ - %@", [[_trip.trips firstObject] objectForKey:@"departure_code"], [[_trip.trips firstObject] objectForKey:@"arrival_code"]];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ - %@", [[_trip.trips firstObject] objectForKey:@"departure_code"], [[_trip.trips firstObject] objectForKey:@"arrival_code"]];
+    
+    UIBarButtonItem *priceItem = [[UIBarButtonItem alloc] initWithTitle:@"Price" style:UIBarButtonItemStylePlain target:self action:@selector(sortByPrice:)];
+    UIBarButtonItem *dateItem = [[UIBarButtonItem alloc] initWithTitle:@"Date" style:UIBarButtonItemStylePlain target:self action:@selector(sortByDate:)];
+    
+    self.navigationItem.rightBarButtonItems = @[priceItem, dateItem];
     
     __weak typeof (self) wself = self;
     [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : _arrivalCityName, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -41,8 +48,6 @@ CLLocationCoordinate2D coordinateArray[2];
         wself.weatherArray = mappingResult.array;
         if(wself.weatherArray.count >= 3) {
           
-            [wself.scrollView setContentSize:CGSizeMake(640, 140)];
-            
             wself.weatherLabelHeader.text = [NSString stringWithFormat:@"Weather in %@:",wself.arrivalCityName];
             
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -97,6 +102,20 @@ CLLocationCoordinate2D coordinateArray[2];
         [alertView show];
 
     }];
+    
+    NSString *localFormat = [NSDateFormatter dateFormatFromTemplate:@"MMM dd hh:mm a" options:0 locale:[NSLocale currentLocale]];
+    _dateFormatterOutput = [[NSDateFormatter alloc] init];
+    _dateFormatterOutput.dateFormat = localFormat;
+
+    NSString *location = [NSString stringWithFormat:@"%@, %@",[[_trip.trips firstObject] objectForKey:@"arrival_name"],[[_trip.trips firstObject] objectForKey:@"arrival_country_name"]];
+    [[WHLNetworkManager sharedInstance].eventsObjectManager getObjectsAtPathForRouteNamed:@"eventRoute" object:nil parameters:@{@"app_key" : @"TS2pw8MnQv7kNhKP", @"location" : location, @"date" : @"This Week", @"page_size" : @"3", @"image_sizes" : @"medium" } success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        wself.eventsArray = mappingResult.array;
+        
+        [wself.eventsTableView reloadData];
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        ;
+    }];
 
     _mapView.userInteractionEnabled = NO;
 
@@ -121,8 +140,7 @@ CLLocationCoordinate2D coordinateArray[2];
 
 - (void)viewDidLayoutSubviews
 {
-    if(_weatherArray.count >= 3)
-        [_scrollView setContentSize:CGSizeMake(640, 140)];
+    [_scrollView setContentSize:CGSizeMake(960, 140)];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -152,27 +170,46 @@ CLLocationCoordinate2D coordinateArray[2];
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    Flight *flight = [_flights objectAtIndex:indexPath.row];
+    if(tableView == _tableView) {
+        Flight *flight = [_flights objectAtIndex:indexPath.row];
     
-    cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         
-    UILabel *cityLabel = (UILabel *)[cell viewWithTag:1];
-    UILabel *countryLabel = (UILabel *)[cell viewWithTag:2];
-    UILabel *priceLabel = (UILabel *)[cell viewWithTag:3];
-    UILabel *timeLabel = (UILabel *)[cell viewWithTag:4];
-    UILabel *stopsLabel = (UILabel *)[cell viewWithTag:5];
+        UILabel *cityLabel = (UILabel *)[cell viewWithTag:1];
+        UILabel *countryLabel = (UILabel *)[cell viewWithTag:2];
+        UILabel *priceLabel = (UILabel *)[cell viewWithTag:3];
+        UILabel *timeLabel = (UILabel *)[cell viewWithTag:4];
+        UILabel *stopsLabel = (UILabel *)[cell viewWithTag:5];
         
-    NSDate *departureDate = [_dateFormatter dateFromString:[[flight.outbounds firstObject] valueForKey:@"departure_time"]];
-    NSDate *arrivalDate = [_dateFormatter dateFromString:[[flight.outbounds lastObject] valueForKey:@"arrival_time"]];
-    NSDateComponents *componentsDeparture = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:departureDate];
-    NSDateComponents *componentsArrival = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:arrivalDate];
+        NSDate *departureDate = [_dateFormatter dateFromString:[[flight.outbounds firstObject] valueForKey:@"departure_time"]];
+        NSDate *arrivalDate = [_dateFormatter dateFromString:[[flight.outbounds lastObject] valueForKey:@"arrival_time"]];
+        NSDateComponents *componentsDeparture = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:departureDate];
+        NSDateComponents *componentsArrival = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:arrivalDate];
     
-    cityLabel.text = _arrivalCityName;
-    countryLabel.text = [[flight.outbounds firstObject] valueForKey:@"airline_name"];
-    priceLabel.text = [NSString stringWithFormat:@"$%.2f",[flight.price floatValue]];
-    timeLabel.text = [NSString stringWithFormat:@"%02d:%02d - %02d:%02d",componentsDeparture.hour,componentsDeparture.minute,componentsArrival.hour,componentsArrival.minute];
-    stopsLabel.text = ((NSArray *)flight.outbounds).count > 1 ? [NSString stringWithFormat:@"stops: %d",((NSArray *)flight.outbounds).count - 1] : @"direct";
-    
+        cityLabel.text = _arrivalCityName;
+        countryLabel.text = [[flight.outbounds firstObject] valueForKey:@"airline_name"];
+        priceLabel.text = [NSString stringWithFormat:@"$%.2f",[flight.price floatValue]];
+        timeLabel.text = [NSString stringWithFormat:@"%02d:%02d - %02d:%02d",componentsDeparture.hour,componentsDeparture.minute,componentsArrival.hour,componentsArrival.minute];
+        stopsLabel.text = ((NSArray *)flight.outbounds).count > 1 ? [NSString stringWithFormat:@"stops: %d",((NSArray *)flight.outbounds).count - 1] : @"direct";
+    }
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
+        
+        Event *event = [_eventsArray objectAtIndex:indexPath.row];
+        
+        UILabel *nameLabel = (UILabel *)[cell viewWithTag:1];
+        UILabel *dateLabel = (UILabel *)[cell viewWithTag:2];
+        UILabel *placeLabel = (UILabel *)[cell viewWithTag:3];
+        UIButton *btn = (UIButton *)[cell viewWithTag:4];
+        UIImageView *img = (UIImageView *)[cell viewWithTag:5];
+        
+        [img setImageWithURL:[NSURL URLWithString:event.imageUrl] placeholder:nil];
+        nameLabel.text = event.title;
+        dateLabel.text = [_dateFormatterOutput stringFromDate:event.startTime];
+        placeLabel.text = event.venueName;
+        
+        [btn addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     return cell;
 }
@@ -184,15 +221,26 @@ CLLocationCoordinate2D coordinateArray[2];
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(tableView == _tableView) {
     if(_flights)
         return _flights.count;
     else
         return 0;
+    }
+    else {
+        if(_eventsArray)
+            return _eventsArray.count;
+        else
+            return 0;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65.0;
+    if(tableView == _tableView)
+        return 65.0;
+    else
+        return 100;
 }
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
@@ -248,10 +296,29 @@ CLLocationCoordinate2D coordinateArray[2];
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _selectedFlight = [_flights objectAtIndex:indexPath.row];
+    if(tableView == _tableView) {
+        _selectedFlight = [_flights objectAtIndex:indexPath.row];
+        
+        [self performSegueWithIdentifier:@"detailSegue" sender:nil];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(tableView == _eventsTableView)
+        return @"Events";
+    else
+        return nil;
+}
+
+- (void)moreAction:(UIButton *)sender
+{
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero
+                                           toView:self.eventsTableView];
+    NSIndexPath *clickedButtonPath = [self.eventsTableView indexPathForRowAtPoint:buttonPosition];
     
-    [self performSegueWithIdentifier:@"detailSegue" sender:nil];
-    
+    Event *event = [_eventsArray objectAtIndex:clickedButtonPath.row];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:event.url]];
 }
 
 @end

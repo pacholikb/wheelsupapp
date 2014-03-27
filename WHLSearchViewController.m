@@ -199,6 +199,33 @@
 
 }
 
+- (void)highlightSearch
+{
+    // Initialize MDCFocusView and customize its background color
+    _focusView = [MDCFocusView new];
+    _focusView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.7f];
+    
+    // Register a MDCFocalPointView subclass to "wrap" focal points
+    //_focusView.focalPointViewClass = [MDCFocalPointView class];
+    _focusView.focalPointViewClass = [MDCSpotlightView class];
+    
+    // Add any number of custom views to MDCFocusView
+    //[f_ocusView addSubview:buildLabel];
+    
+    // Present the focus view
+    [_focusView focus:_fromTF, _searchButton, nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if(![defaults boolForKey:@"firstUse"]) {
+        [self highlightSearch];
+        [defaults setBool:YES forKey:@"firstUse"];
+        [defaults synchronize];
+    }
+}
+
 - (IBAction)whereAction:(id)sender {
     WhereViewController *where = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WhereViewController"];
     where.parent = self;
@@ -397,6 +424,9 @@
 }
 
 - (IBAction)searchAction:(id)sender {
+    
+    if(_focusView)
+        [_focusView dismiss:nil];
     
     UIImage *searchButtonImage = [UIImage imageNamed:@"Button1.png"];
     

@@ -21,8 +21,6 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong) NSArray *flights;
 
-@property (strong, nonatomic) IBOutlet UILabel *directionLabel;
-
 @property (strong, nonatomic) IBOutlet UILabel *weatherLabelHeader;
 @property (strong, nonatomic) IBOutlet UILabel *dayLabelFirst;
 @property (strong, nonatomic) IBOutlet UILabel *dayLabelSecond;
@@ -36,6 +34,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *conditionsLabelFirst;
 @property (strong, nonatomic) IBOutlet UILabel *conditionsLabelSecond;
 @property (strong, nonatomic) IBOutlet UILabel *conditionsLabelThird;
+@property (strong, nonatomic) IBOutlet UITableView *eventsTableView;
+@property (strong) NSArray *eventsArray;
+@property (nonatomic, strong) NSDateFormatter* dateFormatterOutput;
 
 @property (strong) NSArray *weatherArray;
 @property (strong) Flight *selectedFlight;
