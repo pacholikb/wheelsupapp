@@ -12,6 +12,7 @@
 #import "WHLNetworkManager.h"
 #import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "Flurry.h"
 
 @implementation WHLAppDelegate
 
@@ -46,6 +47,13 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [PFFacebookUtils initializeFacebook];
+    
+    //Flurry
+    
+    //note: iOS only allows one crash reporting tool per app; if using another, set to: NO
+    [Flurry setCrashReportingEnabled:YES];
+    [Flurry startSession:@"57D3B6HG74GPT4SQWM7W"];
+    
     
     //Status Bar
 

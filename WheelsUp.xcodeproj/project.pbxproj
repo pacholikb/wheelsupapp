@@ -26,6 +26,8 @@
 		1861157318E3DE22007E5453 /* instr2_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156D18E3DE22007E5453 /* instr2_5s@2x.png */; };
 		1861157418E3DE22007E5453 /* instr1_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156E18E3DE22007E5453 /* instr1_5s.png */; };
 		1861157518E3DE22007E5453 /* instr1_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156F18E3DE22007E5453 /* instr1_5s@2x.png */; };
+		186116A618E3E34E007E5453 /* ProjectApiKey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 186116A518E3E34E007E5453 /* ProjectApiKey.txt */; };
+		186116A818E3E4B0007E5453 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 186116A718E3E4B0007E5453 /* libFlurry_4.3.2.a */; };
 		1870931D18E3D7C000EE8075 /* GoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870930F18E3D7C000EE8075 /* GoButton.png */; };
 		1870931E18E3D7C000EE8075 /* GoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931018E3D7C000EE8075 /* GoButton@2x.png */; };
 		1870931F18E3D7C000EE8075 /* instr3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931118E3D7C000EE8075 /* instr3@2x.png */; };
@@ -125,6 +127,9 @@
 		1861156D18E3DE22007E5453 /* instr2_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr2_5s@2x.png"; sourceTree = "<group>"; };
 		1861156E18E3DE22007E5453 /* instr1_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr1_5s.png; sourceTree = "<group>"; };
 		1861156F18E3DE22007E5453 /* instr1_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr1_5s@2x.png"; sourceTree = "<group>"; };
+		186116A418E3E34E007E5453 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		186116A518E3E34E007E5453 /* ProjectApiKey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ProjectApiKey.txt; sourceTree = "<group>"; };
+		186116A718E3E4B0007E5453 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.2.a; sourceTree = "<group>"; };
 		1870930F18E3D7C000EE8075 /* GoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoButton.png; sourceTree = "<group>"; };
 		1870931018E3D7C000EE8075 /* GoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoButton@2x.png"; sourceTree = "<group>"; };
 		1870931118E3D7C000EE8075 /* instr3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr3@2x.png"; sourceTree = "<group>"; };
@@ -240,6 +245,7 @@
 				1858B25E1881FD7300A18F32 /* AudioToolbox.framework in Frameworks */,
 				1858B25A1881FC2400A18F32 /* CFNetwork.framework in Frameworks */,
 				18A3C882187D1C0800C5E07B /* CoreGraphics.framework in Frameworks */,
+				186116A818E3E4B0007E5453 /* libFlurry_4.3.2.a in Frameworks */,
 				1858B2581881FC1600A18F32 /* CoreLocation.framework in Frameworks */,
 				C6D2BCA218ACBDDA00998759 /* Parse.framework in Frameworks */,
 				1858B2561881FC1000A18F32 /* libz.1.1.3.dylib in Frameworks */,
@@ -347,6 +353,9 @@
 		18A3C87E187D1C0700C5E07B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				186116A718E3E4B0007E5453 /* libFlurry_4.3.2.a */,
+				186116A418E3E34E007E5453 /* Flurry.h */,
+				186116A518E3E34E007E5453 /* ProjectApiKey.txt */,
 				C672AAB218D1A3350039C737 /* MapKit.framework */,
 				C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */,
 				1858B32B188214A000A18F32 /* CoreText.framework */,
@@ -620,6 +629,7 @@
 				189863B418DFF59800B2C5F5 /* Oval.png in Resources */,
 				189863B118DFF40300B2C5F5 /* Button1@2x.png in Resources */,
 				C6D2BCA518ACBF7F00998759 /* Main.storyboard in Resources */,
+				186116A618E3E34E007E5453 /* ProjectApiKey.txt in Resources */,
 				1861157118E3DE22007E5453 /* instr3_5s.png in Resources */,
 				1861157218E3DE22007E5453 /* instr2_5s.png in Resources */,
 				18A3C89B187D1C0900C5E07B /* Images.xcassets in Resources */,
@@ -864,6 +874,20 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WheelsUp/WheelsUp-Prefix.pch";
 				INFOPLIST_FILE = "WheelsUp/WheelsUp-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"4.3.2/Flurry-iOS-4.3.2/Flurry",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"4.3.2/Flurry-iOS-4.3.2/FlurryAds",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -888,6 +912,20 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WheelsUp/WheelsUp-Prefix.pch";
 				INFOPLIST_FILE = "WheelsUp/WheelsUp-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"4.3.2/Flurry-iOS-4.3.2/Flurry",
+					"$(PROJECT_DIR)/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"4.3.2/Flurry-iOS-4.3.2/FlurryAds",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
