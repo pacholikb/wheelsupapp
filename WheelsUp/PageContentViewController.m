@@ -20,25 +20,44 @@
 {
     [super viewDidLoad];
     
-    if(IS_WIDESCREEN)
+    if(IS_WIDESCREEN){
         NSLog(@"iPhone5 screen size");
-    else
-        NSLog(@"normal iPhone screen dimensions");
-    
-    switch (_pageIndex) {
-        case 1:
-            (_imageView.image = [UIImage imageNamed:@"instr1_5s.png"]);
-            break;
-        case 2:
-            (_imageView.image = [UIImage imageNamed:@"instr2_5s.png"]);
-            break;
-        case 3:
-            (_imageView.image = [UIImage imageNamed:@"instr3_5s.png"]);
-            break;
-            
-        default:
-            break;
+        switch (_pageIndex) {
+            case 1:
+                (_imageView.image = [UIImage imageNamed:@"instr1_5s.png"]);
+                break;
+            case 2:
+                (_imageView.image = [UIImage imageNamed:@"instr2_5s.png"]);
+                break;
+            case 3:
+                (_imageView.image = [UIImage imageNamed:@"instr3_5s.png"]);
+                break;
+                
+            default:
+                break;
+        }
+       
+        
     }
+        else {
+            
+            NSLog(@"normal iPhone screen dimensions");
+            switch (_pageIndex) {
+                case 1:
+                    (_imageView.image = [UIImage imageNamed:@"Instr1.png"]);
+                    break;
+                case 2:
+                    (_imageView.image = [UIImage imageNamed:@"instr2.png"]);
+                    break;
+                case 3:
+                    (_imageView.image = [UIImage imageNamed:@"instr3.png"]);
+                    break;
+                    
+                default:
+                    break;
+            }
+      
+        }
 }
 
 - (void)didReceiveMemoryWarning
