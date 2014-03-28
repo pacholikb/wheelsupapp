@@ -23,6 +23,9 @@
     self.navigationItem.hidesBackButton = YES;
     [self setTitle : @"Login"];
     
+    (_facebookLoginImage.image = [UIImage imageNamed:@"homebg(320x568).png"]);
+
+    
     self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
     
     // Check if user is cached and linked to Facebook, if so, bypass login

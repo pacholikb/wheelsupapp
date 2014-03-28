@@ -16,5 +16,6 @@
 
 - (IBAction)login:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIImageView *facebookLoginImage;
 - (IBAction)loginButtonTouchHandler:(id)sender;
 @end
