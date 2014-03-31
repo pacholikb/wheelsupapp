@@ -69,7 +69,7 @@
             }
         }
         else
-            [self showDialogWithTitle:@"Oops!" andMessage:@"Looks like there isn't a major airport in this town. /n Please pick another city. "];
+            [self showDialogWithTitle:@"Oops!" andMessage:@"Looks like there isn't a major airport in this town. \n Please pick another city. "];
         
     }
 }

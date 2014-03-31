@@ -20,20 +20,14 @@
 		1858B335188235CE00A18F32 /* WHLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B334188235CE00A18F32 /* WHLLoginViewController.m */; };
 		1858B3491882740D00A18F32 /* WHLNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3481882740C00A18F32 /* WHLNewUserViewController.m */; };
 		1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */; };
-		1861157018E3DE22007E5453 /* instr3_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156A18E3DE22007E5453 /* instr3_5s@2x.png */; };
 		1861157118E3DE22007E5453 /* instr3_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156B18E3DE22007E5453 /* instr3_5s.png */; };
 		1861157218E3DE22007E5453 /* instr2_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156C18E3DE22007E5453 /* instr2_5s.png */; };
-		1861157318E3DE22007E5453 /* instr2_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156D18E3DE22007E5453 /* instr2_5s@2x.png */; };
 		1861157418E3DE22007E5453 /* instr1_5s.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156E18E3DE22007E5453 /* instr1_5s.png */; };
-		1861157518E3DE22007E5453 /* instr1_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1861156F18E3DE22007E5453 /* instr1_5s@2x.png */; };
 		186116A618E3E34E007E5453 /* ProjectApiKey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 186116A518E3E34E007E5453 /* ProjectApiKey.txt */; };
 		186116A818E3E4B0007E5453 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 186116A718E3E4B0007E5453 /* libFlurry_4.3.2.a */; };
 		186116B318E3EBF1007E5453 /* instr3.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116AD18E3EBF1007E5453 /* instr3.png */; };
-		186116B418E3EBF1007E5453 /* instr3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116AE18E3EBF1007E5453 /* instr3@2x.png */; };
 		186116B518E3EBF1007E5453 /* instr2.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116AF18E3EBF1007E5453 /* instr2.png */; };
-		186116B618E3EBF1007E5453 /* instr2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116B018E3EBF1007E5453 /* instr2@2x.png */; };
 		186116B718E3EBF1007E5453 /* Instr1.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116B118E3EBF1007E5453 /* Instr1.png */; };
-		186116B818E3EBF1007E5453 /* Instr1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116B218E3EBF1007E5453 /* Instr1@2x.png */; };
 		186116BC18E54DE8007E5453 /* facebook_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116B918E54DE7007E5453 /* facebook_button.png */; };
 		186116BD18E54DE9007E5453 /* facebook_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116BA18E54DE8007E5453 /* facebook_button@2x.png */; };
 		186116BE18E54DE9007E5453 /* wheelslogo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116BB18E54DE8007E5453 /* wheelslogo57.png */; };
@@ -72,8 +66,6 @@
 		C63E9A0E18CDD0ED00CB8C8C /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E9A0D18CDD0ED00CB8C8C /* Weather.m */; };
 		C640A91718BF39B3003FA7DB /* Flight.m in Sources */ = {isa = PBXBuildFile; fileRef = C640A91618BF39B3003FA7DB /* Flight.m */; };
 		C640A93418BF658A003FA7DB /* input.csv in Resources */ = {isa = PBXBuildFile; fileRef = C640A93318BF658A003FA7DB /* input.csv */; };
-		C650F18B18D8579D00BEB4F4 /* WHLPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C650F18A18D8579D00BEB4F4 /* WHLPageViewController.m */; };
-		C650F18F18D85BD000BEB4F4 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C650F18E18D85BD000BEB4F4 /* PageContentViewController.m */; };
 		C65C46C018D9992800BDB774 /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C46B318D9992800BDB774 /* MZFormSheetBackgroundWindow.m */; };
 		C65C46C118D9992800BDB774 /* MZFormSheetBackgroundWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C46B518D9992800BDB774 /* MZFormSheetBackgroundWindowViewController.m */; };
 		C65C46C218D9992800BDB774 /* MZFormSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C46B718D9992800BDB774 /* MZFormSheetController.m */; };
@@ -87,6 +79,7 @@
 		C65C46D218D9CB2D00BDB774 /* WhereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C46D118D9CB2D00BDB774 /* WhereViewController.m */; };
 		C672AAB318D1A3350039C737 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C672AAB218D1A3350039C737 /* MapKit.framework */; };
 		C67F6A7D18D7331300D93491 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C67F6A7C18D7331300D93491 /* Event.m */; };
+		C684A34318E567AE00762A3F /* WHLIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C684A34218E567AE00762A3F /* WHLIntroViewController.m */; };
 		C688C35118DC2A65003D8B0F /* filtered city list.csv in Resources */ = {isa = PBXBuildFile; fileRef = C688C35018DC2A65003D8B0F /* filtered city list.csv */; };
 		C688C35418DC2EB0003D8B0F /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = C688C35318DC2EB0003D8B0F /* City.m */; };
 		C6D2BCA218ACBDDA00998759 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA118ACBDDA00998759 /* Parse.framework */; };
@@ -124,21 +117,15 @@
 		1858B3481882740C00A18F32 /* WHLNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHLNewUserViewController.m; path = WheelsUp/WHLNewUserViewController.m; sourceTree = "<group>"; };
 		1858B3521883C5B100A18F32 /* WHLFBProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLFBProfileViewController.h; sourceTree = "<group>"; };
 		1858B3531883C5B100A18F32 /* WHLFBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFBProfileViewController.m; sourceTree = "<group>"; };
-		1861156A18E3DE22007E5453 /* instr3_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr3_5s@2x.png"; sourceTree = "<group>"; };
 		1861156B18E3DE22007E5453 /* instr3_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr3_5s.png; sourceTree = "<group>"; };
 		1861156C18E3DE22007E5453 /* instr2_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr2_5s.png; sourceTree = "<group>"; };
-		1861156D18E3DE22007E5453 /* instr2_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr2_5s@2x.png"; sourceTree = "<group>"; };
 		1861156E18E3DE22007E5453 /* instr1_5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr1_5s.png; sourceTree = "<group>"; };
-		1861156F18E3DE22007E5453 /* instr1_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr1_5s@2x.png"; sourceTree = "<group>"; };
 		186116A418E3E34E007E5453 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		186116A518E3E34E007E5453 /* ProjectApiKey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ProjectApiKey.txt; sourceTree = "<group>"; };
 		186116A718E3E4B0007E5453 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.2.a; sourceTree = "<group>"; };
 		186116AD18E3EBF1007E5453 /* instr3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr3.png; sourceTree = "<group>"; };
-		186116AE18E3EBF1007E5453 /* instr3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr3@2x.png"; sourceTree = "<group>"; };
 		186116AF18E3EBF1007E5453 /* instr2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instr2.png; sourceTree = "<group>"; };
-		186116B018E3EBF1007E5453 /* instr2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr2@2x.png"; sourceTree = "<group>"; };
 		186116B118E3EBF1007E5453 /* Instr1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instr1.png; sourceTree = "<group>"; };
-		186116B218E3EBF1007E5453 /* Instr1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Instr1@2x.png"; sourceTree = "<group>"; };
 		186116B918E54DE7007E5453 /* facebook_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_button.png; sourceTree = "<group>"; };
 		186116BA18E54DE8007E5453 /* facebook_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_button@2x.png"; sourceTree = "<group>"; };
 		186116BB18E54DE8007E5453 /* wheelslogo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheelslogo57.png; sourceTree = "<group>"; };
@@ -199,10 +186,6 @@
 		C640A91518BF39B3003FA7DB /* Flight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flight.h; path = model/Flight.h; sourceTree = SOURCE_ROOT; };
 		C640A91618BF39B3003FA7DB /* Flight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Flight.m; path = model/Flight.m; sourceTree = SOURCE_ROOT; };
 		C640A93318BF658A003FA7DB /* input.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.csv; sourceTree = SOURCE_ROOT; };
-		C650F18918D8579D00BEB4F4 /* WHLPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLPageViewController.h; sourceTree = "<group>"; };
-		C650F18A18D8579D00BEB4F4 /* WHLPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLPageViewController.m; sourceTree = "<group>"; };
-		C650F18D18D85BD000BEB4F4 /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
-		C650F18E18D85BD000BEB4F4 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		C65C46B218D9992800BDB774 /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
 		C65C46B318D9992800BDB774 /* MZFormSheetBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetBackgroundWindow.m; sourceTree = "<group>"; };
 		C65C46B418D9992800BDB774 /* MZFormSheetBackgroundWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindowViewController.h; sourceTree = "<group>"; };
@@ -228,6 +211,8 @@
 		C672AAB218D1A3350039C737 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C67F6A7B18D7331300D93491 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = model/Event.h; sourceTree = SOURCE_ROOT; };
 		C67F6A7C18D7331300D93491 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = model/Event.m; sourceTree = SOURCE_ROOT; };
+		C684A34118E567AE00762A3F /* WHLIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLIntroViewController.h; sourceTree = "<group>"; };
+		C684A34218E567AE00762A3F /* WHLIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLIntroViewController.m; sourceTree = "<group>"; };
 		C688C35018DC2A65003D8B0F /* filtered city list.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "filtered city list.csv"; sourceTree = SOURCE_ROOT; };
 		C688C35218DC2EB0003D8B0F /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = model/City.h; sourceTree = SOURCE_ROOT; };
 		C688C35318DC2EB0003D8B0F /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = model/City.m; sourceTree = SOURCE_ROOT; };
@@ -305,17 +290,11 @@
 				186116BA18E54DE8007E5453 /* facebook_button@2x.png */,
 				186116BB18E54DE8007E5453 /* wheelslogo57.png */,
 				186116AD18E3EBF1007E5453 /* instr3.png */,
-				186116AE18E3EBF1007E5453 /* instr3@2x.png */,
 				186116AF18E3EBF1007E5453 /* instr2.png */,
-				186116B018E3EBF1007E5453 /* instr2@2x.png */,
 				186116B118E3EBF1007E5453 /* Instr1.png */,
-				186116B218E3EBF1007E5453 /* Instr1@2x.png */,
-				1861156A18E3DE22007E5453 /* instr3_5s@2x.png */,
 				1861156B18E3DE22007E5453 /* instr3_5s.png */,
 				1861156C18E3DE22007E5453 /* instr2_5s.png */,
-				1861156D18E3DE22007E5453 /* instr2_5s@2x.png */,
 				1861156E18E3DE22007E5453 /* instr1_5s.png */,
-				1861156F18E3DE22007E5453 /* instr1_5s@2x.png */,
 				1870930F18E3D7C000EE8075 /* GoButton.png */,
 				1870931018E3D7C000EE8075 /* GoButton@2x.png */,
 				189863B218DFF59800B2C5F5 /* Oval.png */,
@@ -396,10 +375,8 @@
 				18A3C891187D1C0900C5E07B /* Main.storyboard */,
 				C6D2BCA918ACDBA600998759 /* WHLNetworkManager.h */,
 				C6D2BCAA18ACDBA600998759 /* WHLNetworkManager.m */,
-				C650F18918D8579D00BEB4F4 /* WHLPageViewController.h */,
-				C650F18D18D85BD000BEB4F4 /* PageContentViewController.h */,
-				C650F18E18D85BD000BEB4F4 /* PageContentViewController.m */,
-				C650F18A18D8579D00BEB4F4 /* WHLPageViewController.m */,
+				C684A34118E567AE00762A3F /* WHLIntroViewController.h */,
+				C684A34218E567AE00762A3F /* WHLIntroViewController.m */,
 			);
 			path = WheelsUp;
 			sourceTree = "<group>";
@@ -598,7 +575,7 @@
 				ORGANIZATIONNAME = "Broc Pacholik ";
 				TargetAttributes = {
 					18A3C87B187D1C0700C5E07B = {
-						DevelopmentTeam = 7W7FDGU8BV;
+						DevelopmentTeam = 3E495EVFBH;
 					};
 					18A3C89F187D1C0900C5E07B = {
 						TestTargetID = 18A3C87B187D1C0700C5E07B;
@@ -631,16 +608,12 @@
 			files = (
 				1870931E18E3D7C000EE8075 /* GoButton@2x.png in Resources */,
 				1870931D18E3D7C000EE8075 /* GoButton.png in Resources */,
-				1861157318E3DE22007E5453 /* instr2_5s@2x.png in Resources */,
 				186116B718E3EBF1007E5453 /* Instr1.png in Resources */,
-				1861157018E3DE22007E5453 /* instr3_5s@2x.png in Resources */,
 				189863B518DFF59800B2C5F5 /* Oval@2x.png in Resources */,
 				189863B418DFF59800B2C5F5 /* Oval.png in Resources */,
 				189863B118DFF40300B2C5F5 /* Button1@2x.png in Resources */,
 				C6D2BCA518ACBF7F00998759 /* Main.storyboard in Resources */,
 				186116A618E3E34E007E5453 /* ProjectApiKey.txt in Resources */,
-				186116B418E3EBF1007E5453 /* instr3@2x.png in Resources */,
-				186116B818E3EBF1007E5453 /* Instr1@2x.png in Resources */,
 				1861157118E3DE22007E5453 /* instr3_5s.png in Resources */,
 				1861157218E3DE22007E5453 /* instr2_5s.png in Resources */,
 				18A3C89B187D1C0900C5E07B /* Images.xcassets in Resources */,
@@ -651,9 +624,7 @@
 				C688C35118DC2A65003D8B0F /* filtered city list.csv in Resources */,
 				186116BD18E54DE9007E5453 /* facebook_button@2x.png in Resources */,
 				186116B318E3EBF1007E5453 /* instr3.png in Resources */,
-				1861157518E3DE22007E5453 /* instr1_5s@2x.png in Resources */,
 				189863B018DFF40300B2C5F5 /* Button1.png in Resources */,
-				186116B618E3EBF1007E5453 /* instr2@2x.png in Resources */,
 				C640A93418BF658A003FA7DB /* input.csv in Resources */,
 				186116BE18E54DE9007E5453 /* wheelslogo57.png in Resources */,
 			);
@@ -718,7 +689,6 @@
 				C65C46C418D9992800BDB774 /* MZTransition.m in Sources */,
 				C63B984118C077D000D9C03F /* Trip.m in Sources */,
 				18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */,
-				C650F18F18D85BD000BEB4F4 /* PageContentViewController.m in Sources */,
 				C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */,
 				18DEF242187E869800090861 /* REMenuItem.m in Sources */,
 				1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */,
@@ -727,12 +697,12 @@
 				18DEF240187E869800090861 /* REMenu.m in Sources */,
 				18DEF23F187E869800090861 /* RECommonFunctions.m in Sources */,
 				C6D2BCAB18ACDBA600998759 /* WHLNetworkManager.m in Sources */,
-				C650F18B18D8579D00BEB4F4 /* WHLPageViewController.m in Sources */,
 				C67F6A7D18D7331300D93491 /* Event.m in Sources */,
 				C65C46C018D9992800BDB774 /* MZFormSheetBackgroundWindow.m in Sources */,
 				18DEF243187E869800090861 /* REMenuItemView.m in Sources */,
 				18DEF24E187E8CF100090861 /* WHLSearchViewController.m in Sources */,
 				C688C35418DC2EB0003D8B0F /* City.m in Sources */,
+				C684A34318E567AE00762A3F /* WHLIntroViewController.m in Sources */,
 				C65C46CF18D9B4EE00BDB774 /* PassangersViewController.m in Sources */,
 				1858B335188235CE00A18F32 /* WHLLoginViewController.m in Sources */,
 				18A3C890187D1C0800C5E07B /* WHLAppDelegate.m in Sources */,
@@ -874,8 +844,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Konrad Przyludzki (V5QCD9H4VK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Konrad Przyludzki (V5QCD9H4VK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/brocpacholik/Downloads,
@@ -901,7 +871,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1D441415-7329-445F-B1CC-67E7FF515985";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -912,8 +882,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/brocpacholik/Downloads,
@@ -939,7 +909,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C4E47CEE-C157-44BD-A5E8-00F91410EA74";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

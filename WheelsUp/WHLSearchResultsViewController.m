@@ -36,18 +36,15 @@ CLLocationCoordinate2D coordinateArray[2];
     search.location = _arrivalCityName;
     
     self.navigationItem.title = [NSString stringWithFormat:@"%@ - %@", [[_trip.trips firstObject] objectForKey:@"departure_code"], [[_trip.trips firstObject] objectForKey:@"arrival_code"]];
-    
-    UIBarButtonItem *priceItem = [[UIBarButtonItem alloc] initWithTitle:@"Price" style:UIBarButtonItemStylePlain target:self action:@selector(sortByPrice:)];
-    UIBarButtonItem *dateItem = [[UIBarButtonItem alloc] initWithTitle:@"Date" style:UIBarButtonItemStylePlain target:self action:@selector(sortByDate:)];
-    
-    self.navigationItem.rightBarButtonItems = @[priceItem, dateItem];
-    
+        
     __weak typeof (self) wself = self;
     [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : _arrivalCityName, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         wself.weatherArray = mappingResult.array;
         if(wself.weatherArray.count >= 3) {
           
+            wself.noWeatherLabel.hidden = YES;
+            
             wself.weatherLabelHeader.text = [NSString stringWithFormat:@"Weather in %@:",wself.arrivalCityName];
             
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -93,14 +90,6 @@ CLLocationCoordinate2D coordinateArray[2];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"weather failure %@",error);
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                            message:@"Couldn't get weather info"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        
-        [alertView show];
-
     }];
     
     NSString *localFormat = [NSDateFormatter dateFormatFromTemplate:@"MMM dd hh:mm a" options:0 locale:[NSLocale currentLocale]];
@@ -110,6 +99,9 @@ CLLocationCoordinate2D coordinateArray[2];
     NSString *location = [NSString stringWithFormat:@"%@, %@",[[_trip.trips firstObject] objectForKey:@"arrival_name"],[[_trip.trips firstObject] objectForKey:@"arrival_country_name"]];
     [[WHLNetworkManager sharedInstance].eventsObjectManager getObjectsAtPathForRouteNamed:@"eventRoute" object:nil parameters:@{@"app_key" : @"TS2pw8MnQv7kNhKP", @"location" : location, @"date" : @"This Week", @"page_size" : @"3", @"image_sizes" : @"medium" } success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         wself.eventsArray = mappingResult.array;
+        
+        wself.noEventsLabel.hidden = YES;
+        wself.eventsTableView.hidden = NO;
         
         [wself.eventsTableView reloadData];
         
@@ -144,9 +136,13 @@ CLLocationCoordinate2D coordinateArray[2];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if(scrollView == _scrollView)
-        NSLog(@"1 %f",_scrollView.contentSize.width);
+{    
+    // Update the page when more than 50% of the previous/next page is visible
+    if(!_pageControlBeingUsed) {
+        CGFloat pageWidth = self.scrollView.frame.size.width;
+        int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        self.pageControl.currentPage = page;
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -276,6 +272,8 @@ CLLocationCoordinate2D coordinateArray[2];
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
+    
+    [self sortAction:nil];
 }
 
 - (IBAction)sortByDate:(id)sender
@@ -292,6 +290,8 @@ CLLocationCoordinate2D coordinateArray[2];
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
+    
+    [self sortAction:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -319,6 +319,35 @@ CLLocationCoordinate2D coordinateArray[2];
     
     Event *event = [_eventsArray objectAtIndex:clickedButtonPath.row];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:event.url]];
+}
+
+- (IBAction)sortAction:(id)sender {
+    if(_dropDownView.alpha == 0.0)
+        [UIView animateWithDuration:0.2 animations:^{
+            _dropDownView.alpha = 0.8;
+        }];
+    else
+        [UIView animateWithDuration:0.2 animations:^{
+            _dropDownView.alpha = 0.0;
+        }];
+}
+
+- (IBAction)changePage {
+    CGRect frame;
+    frame.origin.x = self.scrollView.frame.size.width * self.pageControl.currentPage;
+    frame.origin.y = 0;
+    frame.size = self.scrollView.frame.size;
+    [self.scrollView scrollRectToVisible:frame animated:YES];
+    
+    _pageControlBeingUsed = YES;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    _pageControlBeingUsed = NO;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    _pageControlBeingUsed = NO;
 }
 
 @end

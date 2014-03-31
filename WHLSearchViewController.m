@@ -47,6 +47,7 @@
 - (void)touchProgressEvent:(id)sender
 {
     [SVProgressHUD showErrorWithStatus:@"Canceled"];
+    
 }
 
 - (IBAction)somewhereHotAction:(id)sender {
@@ -106,7 +107,7 @@
                         
                     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                         [wself somewhereHotAction:nil];
-                    } numberOfTimes:4];
+                    } numberOfTimes:3];
                     
                 }
                 else
@@ -177,7 +178,7 @@
                 
             } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                 [wself anywhereAction:nil];
-            } numberOfTimes:4];
+            } numberOfTimes:3];
             
         }
         else
@@ -190,6 +191,8 @@
 }
 
 - (IBAction)gpsAction:(id)sender {
+    _isLocationButtonClicked = YES;
+    
     [WHLNetworkManager sharedInstance].locationManager.delegate = self;
     [[WHLNetworkManager sharedInstance].locationManager startUpdatingLocation];
 }
@@ -210,19 +213,23 @@
     _focusView.focalPointViewClass = [MDCSpotlightView class];
     
     // Add any number of custom views to MDCFocusView
-    //[f_ocusView addSubview:buildLabel];
+    UILabel *buildLabel = [UILabel new];
+    buildLabel.frame = CGRectMake(110, 420, 150, 30);
+    buildLabel.textColor = [UIColor whiteColor];
+    buildLabel.font = [UIFont boldSystemFontOfSize:20];
+    buildLabel.text = @"Give it a try!";
+    [_focusView addSubview:buildLabel];
     
     // Present the focus view
-    [_focusView focus:_fromTF, _searchButton, nil];
+    [_focusView focus: _searchButton, nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if(![defaults boolForKey:@"firstUse"]) {
+        _isFirstUse = YES;
         [self highlightSearch];
-        [defaults setBool:YES forKey:@"firstUse"];
-        [defaults synchronize];
     }
 }
 
@@ -308,39 +315,7 @@
     {
         _fromCode = nil;
         
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        NSString *city;
-        if([_fromTF.text rangeOfString:@","].location != NSNotFound)
-            city = [_fromTF.text substringToIndex:[_fromTF.text rangeOfString:@","].location];
-        else
-            city = _fromTF.text;
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",[city stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        
-        [fetchRequest setPredicate:predicate];
-        
-        NSError *error;
-        NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
-
-        
-        if(results && results.count > 0) {
-            if(results.count > 1) {
-                _dropdownOptions = results;
-                [self showPopUpWithTitle:@"Choose City" withOption:_dropdownOptions xy:CGPointMake(35, 125) isMultiple:NO];
-            }
-            else {
-                City *city = (City *)[results firstObject];
-                _fromCode = city.iata;
-                _fromTF.text = [NSString stringWithFormat:@"%@, %@",city.name,city.country];
-            }
-        }
-        else {
-            [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
-            _fromTF.text = @"";
-        }
+        [self findAirport:_fromTF.text showDialog:YES];
         
     }
     if(textField == _maxPriceTF)
@@ -453,6 +428,16 @@
         default:
             break;
     }
+    
+    NSLog(@"1");
+    if(_isFirstUse) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"firstUse"];
+        [defaults synchronize];
+        _isFirstUse = NO;
+        NSLog(@"2");
+    }
+    
 }
 
 #pragma locationFramework delegate
@@ -465,6 +450,12 @@
     
     [[WHLNetworkManager sharedInstance].locationManager stopUpdatingLocation];
     [WHLNetworkManager sharedInstance].locationManager.delegate = nil;
+    
+    if(_isFirstUse)
+    {
+        _fromCode = @"NYC";
+        _fromTF.text = @"New York, United States";
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -483,9 +474,56 @@
             CLPlacemark *placemark = placemarks[0];
             NSLog(@"Found %@", placemark.locality);
             
-            _fromTF.text = placemark.locality;
-            [self textFieldDidEndEditing:_fromTF];
+            [self findAirport:placemark.locality showDialog:_isLocationButtonClicked];
+
         }];
+        
+    }
+}
+
+- (void)findAirport:(NSString *)phrase showDialog:(BOOL)showDialog
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSString *city;
+    if([phrase rangeOfString:@","].location != NSNotFound)
+        city = [phrase substringToIndex:[_fromTF.text rangeOfString:@","].location];
+    else
+        city = phrase;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name ==[c] %@",[city stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    
+    if(results && results.count > 0) {
+        if(results.count > 1) {
+            _dropdownOptions = results;
+            [self showPopUpWithTitle:@"Choose City" withOption:_dropdownOptions xy:CGPointMake(35, 125) isMultiple:NO];
+        }
+        else {
+            City *city = (City *)[results firstObject];
+            _fromCode = city.iata;
+            _fromTF.text = [NSString stringWithFormat:@"%@, %@",city.name,city.country];
+        }
+    }
+    else {
+        if(_isFirstUse)
+        {
+            _fromCode = @"NYC";
+            _fromTF.text = @"New York, United States";
+        }
+        else
+        {
+            if(showDialog)
+                [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
+            _fromTF.text = @"";
+        }
         
     }
 }

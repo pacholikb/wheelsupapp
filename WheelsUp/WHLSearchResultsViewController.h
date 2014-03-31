@@ -49,5 +49,12 @@
 
 @property (nonatomic, strong) MKPolyline *routeLine;
 @property (nonatomic, strong) MKPolylineView *routeLineView;
+@property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (strong, nonatomic) IBOutlet UIView *dropDownView;
+
+@property (strong, nonatomic) IBOutlet UILabel *noEventsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *noWeatherLabel;
+
+@property (assign) BOOL pageControlBeingUsed;
  
 @end

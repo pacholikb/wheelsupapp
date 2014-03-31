@@ -17,15 +17,6 @@
 
 @implementation WHLFlightDetailsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,15 +32,6 @@
     _dateFormatterOutput = [[NSDateFormatter alloc] init];
     _dateFormatterOutput.dateFormat = localFormat;
     
-    __weak typeof(self) wself = self;
-    [[WHLNetworkManager sharedInstance].eventsObjectManager getObjectsAtPathForRouteNamed:@"eventRoute" object:nil parameters:@{@"app_key" : @"TS2pw8MnQv7kNhKP", @"location" : _location, @"date" : @"This Week", @"page_size" : @"3", @"image_sizes" : @"medium" } success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        wself.eventsArray = mappingResult.array;
-        
-        [wself.tableView reloadData];
-
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        ;
-    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,18 +44,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if(_eventsArray.count > 0)
-        return 3;
-    else
-        return 2;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 1)
         return 1;
-    else if(section == 2)
-        return _eventsArray.count;
     else
         return _outbounds.count;
 }
@@ -103,26 +80,6 @@
         
         priceLabel.text = [NSString stringWithFormat:@"$%.2f",[_flight.price floatValue]];
         [bookNowButton addTarget:self action:@selector(bookNow:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else if(indexPath.section == 2)
-    {
-        CellIdentifier = @"eventCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-        Event *event = [_eventsArray objectAtIndex:indexPath.row];
-        
-        UILabel *nameLabel = (UILabel *)[cell viewWithTag:1];
-        UILabel *dateLabel = (UILabel *)[cell viewWithTag:2];
-        UILabel *placeLabel = (UILabel *)[cell viewWithTag:3];
-        UIButton *btn = (UIButton *)[cell viewWithTag:4];
-        UIImageView *img = (UIImageView *)[cell viewWithTag:5];
-        
-        [img setImageWithURL:[NSURL URLWithString:event.imageUrl] placeholder:nil];
-        nameLabel.text = event.title;
-        dateLabel.text = [_dateFormatterOutput stringFromDate:event.startTime];
-        placeLabel.text = event.venueName;
-        
-        [btn addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     else
     {
@@ -176,16 +133,6 @@
 {
     NSLog(@"BOOKING URL %@",[NSString stringWithFormat:@"%@&ts_code=7756f",_flight.deeplink]);
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@&ts_code=7756f",_flight.deeplink]]];
-}
-
-- (void)moreAction:(UIButton *)sender
-{
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero
-                                           toView:self.tableView];
-    NSIndexPath *clickedButtonPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    
-    Event *event = [_eventsArray objectAtIndex:clickedButtonPath.row];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:event.url]];
 }
 
 @end

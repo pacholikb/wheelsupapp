@@ -52,7 +52,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 
-    CGFloat locations[3] = { 0.0f, 0.5f, 1.0f };
+    CGFloat locations[3] = { 0.0f, 0.2f, 1.0f };
     CFArrayRef colors = (__bridge CFArrayRef)@[
         (__bridge id)[UIColor clearColor].CGColor,
         (__bridge id)[UIColor clearColor].CGColor,
@@ -60,11 +60,20 @@
     ];
 
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, colors, locations);
+    
+    // Scaling transformation and keeping track of the inverse
+    CGAffineTransform scaleT = CGAffineTransformMakeScale(2, 1.0);
+    CGAffineTransform invScaleT = CGAffineTransformInvert(scaleT);
+    
+    CGPoint invS = CGPointMake(invScaleT.a, invScaleT.d);
 
-    CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-    CGFloat radius = MIN(rect.size.width/2, rect.size.height/2);
+    CGPoint center = CGPointMake(CGRectGetMidX(rect) * invS.x, CGRectGetMidY(rect) * invS.y);
+    CGFloat radius = MIN(rect.size.width/2, rect.size.height/2) * invS.x +10;
+    
+    CGContextScaleCTM(context, scaleT.a, scaleT.d);
     CGContextDrawRadialGradient(context, gradient, center, 0, center, radius, kCGGradientDrawsAfterEndLocation);
 
+    CGContextScaleCTM(context, invS.x, invS.y);
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
 }

@@ -16,6 +16,5 @@
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
 @property (nonatomic, strong) NSDateFormatter* dateFormatterOutput;
 @property (nonatomic, strong) NSString* location;
-@property (strong) NSArray *eventsArray;
 
 @end

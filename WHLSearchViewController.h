@@ -45,6 +45,9 @@ typedef enum {
 @property (assign) NSInteger childrenCount;
 @property (strong) NSString *numberOfStops;
 
+@property (assign) BOOL isFirstUse;
+@property (assign) BOOL isLocationButtonClicked;
+
 @property (strong) MDCFocusView *focusView;
 
 @property (strong, nonatomic) IBOutlet UIButton *showHideFiltersButton;
