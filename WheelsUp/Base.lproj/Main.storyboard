@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Search View Controller - Search -->
@@ -816,7 +816,6 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="conditionsLabelFirst" destination="8n9-1n-vIK" id="U3u-TM-gAN"/>
                         <outlet property="conditionsLabelSecond" destination="TFZ-Lp-wWa" id="ltA-vK-Hv8"/>
@@ -949,7 +948,7 @@
                                     <action selector="changePage" destination="fTu-OT-L34" eventType="valueChanged" id="GwK-Pk-tj5"/>
                                 </connections>
                             </pageControl>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew5-R3-SBc">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew5-R3-SBc">
                                 <rect key="frame" x="137" y="269" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Skip">
@@ -978,6 +977,7 @@
                         <outlet property="image3" destination="yIs-Mi-9Gp" id="GHX-pR-Ymf"/>
                         <outlet property="pageControl" destination="dFj-PW-y7t" id="aqi-Ya-MMl"/>
                         <outlet property="scrollView" destination="eFP-24-HPb" id="BXF-ez-5ah"/>
+                        <outlet property="skipButton" destination="Ew5-R3-SBc" id="yDS-Qu-lxZ"/>
                         <segue destination="Z6H-6z-gIA" kind="modal" identifier="menuSegue" id="spd-38-Zfk"/>
                     </connections>
                 </viewController>
@@ -1068,16 +1068,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyp-Fb-F48">
-                                <rect key="frame" x="20" y="79" width="61" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Log out">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logoutAction:" destination="kTs-Ca-Ihb" eventType="touchUpInside" id="XJh-m5-dtg"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E28-VA-mZx">
                                 <rect key="frame" x="110" y="235" width="100" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1091,7 +1081,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="sb3-IW-1nk"/>
+                    <navigationItem key="navigationItem" id="sb3-IW-1nk">
+                        <barButtonItem key="rightBarButtonItem" title="Log out" id="r1g-Hj-cmv">
+                            <connections>
+                                <action selector="logoutAction:" destination="kTs-Ca-Ihb" id="GfI-vc-8TI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="headerImageView" destination="YdO-4n-rhj" id="hzK-Fb-pwt"/>
                         <outlet property="headerNameLabel" destination="rTg-A0-0Pv" id="A61-ER-Er4"/>

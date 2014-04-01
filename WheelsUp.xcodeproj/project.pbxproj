@@ -575,7 +575,7 @@
 				ORGANIZATIONNAME = "Broc Pacholik ";
 				TargetAttributes = {
 					18A3C87B187D1C0700C5E07B = {
-						DevelopmentTeam = 7W7FDGU8BV;
+						DevelopmentTeam = 3E495EVFBH;
 					};
 					18A3C89F187D1C0900C5E07B = {
 						TestTargetID = 18A3C87B187D1C0700C5E07B;
@@ -844,7 +844,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: broc  pacholik (VL5XRP4747)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Konrad Przyludzki (V5QCD9H4VK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -871,7 +871,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1D441415-7329-445F-B1CC-67E7FF515985";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -882,7 +882,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: broc  pacholik (VL5XRP4747)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -909,7 +909,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C4E47CEE-C157-44BD-A5E8-00F91410EA74";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

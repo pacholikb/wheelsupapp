@@ -47,6 +47,9 @@ typedef enum {
 
 @property (assign) BOOL isFirstUse;
 @property (assign) BOOL isLocationButtonClicked;
+@property (assign) BOOL canCancelSearch;
+@property (assign) BOOL isSearchCancelled;
+@property (strong) NSTimer *cancelTimer;
 
 @property (strong) MDCFocusView *focusView;
 

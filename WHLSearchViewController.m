@@ -42,13 +42,35 @@
     _adultsCount = 1;
     _childrenCount = 0;
  
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchProgressEvent:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchProgressEvent:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
+    
+    [self addObserver:self forKeyPath:@"canCancelSearch" options:NSKeyValueObservingOptionNew context:0];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)contex
+{
+    if([keyPath isEqualToString:@"canCancelSearch"])
+    {
+        NSLog(@"canCancelSearch %d",_canCancelSearch);
+        
+    }
 }
 
 - (void)touchProgressEvent:(id)sender
 {
-    [SVProgressHUD showErrorWithStatus:@"Canceled"];
+    if(_canCancelSearch) {
+        [SVProgressHUD showErrorWithStatus:@"Canceled"];
+        _isSearchCancelled = YES;
+        [[RKObjectManager sharedManager].operationQueue cancelAllOperations];
+        
+        self.canCancelSearch = NO;
+    }
     
+}
+
+- (void)timerAction:(id)sender
+{
+    self.canCancelSearch = YES;
 }
 
 - (IBAction)somewhereHotAction:(id)sender {
@@ -56,10 +78,19 @@
     [_fromTF resignFirstResponder];
     [_maxPriceTF resignFirstResponder];
     
+    if(_isSearchCancelled)
+    {
+        self.canCancelSearch = NO;
+        _isSearchCancelled = NO;
+        return;
+    }
+    
     if (_fromCode.length == 0) {
         [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
         return ;
     }
+    
+    _cancelTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
     
     [SVProgressHUD showWithStatus:@"Searching..." maskType:SVProgressHUDMaskTypeBlack];
     
@@ -100,6 +131,9 @@
                         {
                             [SVProgressHUD dismiss];
                             
+                            [wself.cancelTimer invalidate];
+                            wself.cancelTimer = nil;
+                            
                             wself.flights = mappingResult.array;
                             [wself performSegueWithIdentifier:@"resultsSegue" sender:nil];
                         }
@@ -134,10 +168,19 @@
     [_fromTF resignFirstResponder];
     [_maxPriceTF resignFirstResponder];
     
+    if(_isSearchCancelled)
+    {
+        self.canCancelSearch = NO;
+        _isSearchCancelled = NO;
+        return;
+    }
+    
     if (_fromCode.length == 0) {
         [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
         return ;
     }
+    
+    _cancelTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
 
     [SVProgressHUD showWithStatus:@"Searching..." maskType:SVProgressHUDMaskTypeBlack];
     
@@ -170,6 +213,9 @@
                 if(mappingResult.array.count > 0)
                 {
                     [SVProgressHUD dismiss];
+                    
+                    [wself.cancelTimer invalidate];
+                    wself.cancelTimer = nil;
                     
                     wself.flights = mappingResult.array;
                     [wself performSegueWithIdentifier:@"resultsSegue" sender:nil];
@@ -337,12 +383,17 @@
 {
     [_fromTF resignFirstResponder];
     [_maxPriceTF resignFirstResponder];
+    
+    self.canCancelSearch = NO;
+    _isSearchCancelled = NO;
 
     if (_fromCode.length == 0 || _toCode.length == 0)
         [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
     else
     {
         __weak typeof (self) wself = self;
+        
+        _cancelTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
         
         [SVProgressHUD showWithStatus:@"Searching..." maskType:SVProgressHUDMaskTypeBlack];
         
@@ -352,12 +403,21 @@
         
         [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             
+            if(wself.isSearchCancelled)
+                return;
+            
             if(mappingResult.array.count > 0) {
                 wself.trip = [mappingResult.array firstObject];
                 
                 [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:wself.trip.searchId andTripId:[[wself.trip.trips firstObject] valueForKey:@"id"] stops:_numberOfStops maxrrice:maxPrice success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                     
+                    if(wself.isSearchCancelled)
+                        return;
+                    
                     [SVProgressHUD dismiss];
+                    
+                    [wself.cancelTimer invalidate];
+                    wself.cancelTimer = nil;
                     
                     if(mappingResult.array.count > 0)
                     {
@@ -368,17 +428,34 @@
                         [wself showDialogWithTitle:@"Oops!" andMessage:@"No flights found!"];
         
                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                    
+                    if(wself.isSearchCancelled)
+                        return;
+                    
                     [wself showDialogWithTitle:@"Oops!" andMessage:@"Please try again"];
                     [SVProgressHUD dismiss];
+                    
+                    [wself.cancelTimer invalidate];
+                    wself.cancelTimer = nil;
                 } numberOfTimes:8];
                 
             }
-            else
+            else {
                 [wself showDialogWithTitle:@"Oops!" andMessage:@"No route found!"];
+                [wself.cancelTimer invalidate];
+                wself.cancelTimer = nil;
+            }
             
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            
+            if(wself.isSearchCancelled)
+                return;
+            
             [wself showDialogWithTitle:@"Oops!" andMessage:@"Please try again"];
             [SVProgressHUD dismiss];
+            
+            [wself.cancelTimer invalidate];
+            wself.cancelTimer = nil;
         }];
         
     }

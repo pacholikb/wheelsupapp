@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *image3;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (assign) BOOL pageControlBeingUsed;
+@property (strong, nonatomic) IBOutlet UIButton *skipButton;
 
 @end

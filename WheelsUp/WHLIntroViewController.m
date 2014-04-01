@@ -53,6 +53,17 @@
         CGFloat pageWidth = self.scrollView.frame.size.width;
         int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         self.pageControl.currentPage = page;
+        
+        CGFloat alpha;
+        if(page == 2)
+            alpha = 1.0;
+        else
+            alpha = 0.0;
+        
+        [UIView animateWithDuration:0.4 animations:^{
+            _skipButton.alpha = alpha;
+        }];
+        
     }
 }
 
@@ -82,6 +93,16 @@
     frame.origin.y = 0;
     frame.size = self.scrollView.frame.size;
     [self.scrollView scrollRectToVisible:frame animated:YES];
+    
+    CGFloat alpha;
+    if(self.pageControl.currentPage == 2)
+        alpha = 1.0;
+    else
+        alpha = 0.0;
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        _skipButton.alpha = alpha;
+    }];
     
     _pageControlBeingUsed = YES;
 }
