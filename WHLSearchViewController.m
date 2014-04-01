@@ -25,7 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [ self setTitle : @"Search" ] ;
+    [self setTitle : @"Search"] ;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:194/255.0f green:209/255.0f blue:202/255.0f alpha:1.0f]};
     
     self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle :@"Menu"
                                                                                 style :UIBarButtonItemStyleBordered
@@ -515,13 +516,13 @@
     else {
         if(_isFirstUse)
         {
-            _fromCode = @"NYC";
-            _fromTF.text = @"New York, United States";
+            _fromCode = @"YEG";
+            _fromTF.text = @"Edmonton, Canada";
         }
         else
         {
             if(showDialog)
-                [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airport nearby"];
+                [self showDialogWithTitle:@"Oops!" andMessage:@"Couldn't find any airports nearby"];
             _fromTF.text = @"";
         }
         

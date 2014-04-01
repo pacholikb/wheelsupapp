@@ -36,6 +36,8 @@ CLLocationCoordinate2D coordinateArray[2];
     search.location = _arrivalCityName;
     
     self.navigationItem.title = [NSString stringWithFormat:@"%@ - %@", [[_trip.trips firstObject] objectForKey:@"departure_code"], [[_trip.trips firstObject] objectForKey:@"arrival_code"]];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:194/255.0f green:209/255.0f blue:202/255.0f alpha:1.0f]};
+
         
     __weak typeof (self) wself = self;
     [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : _arrivalCityName, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -123,7 +125,7 @@ CLLocationCoordinate2D coordinateArray[2];
             MKMapRect rect = [wself.routeLine boundingMapRect];
             [wself.mapView setVisibleMapRect:rect edgePadding:UIEdgeInsetsMake(10, 10, 10, 10) animated:NO];
             [wself.mapView addOverlay:wself.routeLine];
-//            wself.mapView.userInteractionEnabled = YES;
+            wself.mapView.userInteractionEnabled = YES;
             
         }];
     }];
@@ -246,8 +248,8 @@ CLLocationCoordinate2D coordinateArray[2];
         if(nil == self.routeLineView)
         {
             self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
-            self.routeLineView.fillColor = [UIColor orangeColor];
-            self.routeLineView.strokeColor = [UIColor orangeColor];
+            self.routeLineView.fillColor = [UIColor blueColor];
+            self.routeLineView.strokeColor = [UIColor blueColor];
             self.routeLineView.lineWidth = 5;
             
         }
