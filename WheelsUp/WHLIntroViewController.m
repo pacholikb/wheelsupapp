@@ -7,6 +7,7 @@
 //
 
 #import "WHLIntroViewController.h"
+#import "SVProgressHUD.h"
 
 #define IS_WIDESCREEN ( [ [ UIScreen mainScreen ] bounds ].size.height == 568  )
 
@@ -31,14 +32,22 @@
     }
     else {
         
-        (_image1.image = [UIImage imageNamed:@"instr1.png"]);
+        (_image1.image = [UIImage imageNamed:@"Instr1.png"]);
         
         (_image2.image = [UIImage imageNamed:@"instr2.png"]);
         
         (_image3.image = [UIImage imageNamed:@"instr3.png"]);
         
     }
+    
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [SVProgressHUD showWithStatus:@"Configuring..." maskType:SVProgressHUDMaskTypeBlack];
+    [self performSelector:@selector(populateDB:) withObject:[RKObjectManager sharedManager].managedObjectStore.persistentStoreCoordinator afterDelay:0.2];
+    //[self populateDB:[RKObjectManager sharedManager].managedObjectStore.persistentStoreCoordinator];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -84,7 +93,9 @@
     [defaults setBool:YES forKey:@"intro"];
     [defaults synchronize];
     
-    [self performSegueWithIdentifier:@"menuSegue" sender:nil];
+    UIViewController *firstController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WHLMenuViewController"];
+    self.view.window.rootViewController = firstController;
+
 }
 
 - (IBAction)changePage {
@@ -114,5 +125,181 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     _pageControlBeingUsed = NO;
 }
+
+-(void)populateDB :(NSPersistentStoreCoordinator *) coordinator
+{
+    
+    NSManagedObjectContext *context;
+    if (coordinator != nil) {
+        context = [[NSManagedObjectContext alloc] init];
+        [context setPersistentStoreCoordinator:coordinator];
+    }
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"input" ofType:@"csv"];
+    if (filePath) {
+        NSString * myText = [[NSString alloc]
+                             initWithContentsOfFile:filePath
+                             encoding:NSUTF8StringEncoding
+                             error:nil];
+        if (myText) {
+            __block int count = 0;
+            
+            
+            [myText enumerateLinesUsingBlock:^(NSString * line, BOOL * stop) {
+                
+                NSArray *lineComponents=[line componentsSeparatedByString:@","];
+                if(lineComponents){
+                    
+                    NSString *string0=[lineComponents objectAtIndex:0];
+                    
+                    if([string0 isEqualToString:@"\"City\""]) {
+                        
+                        NSString *string1=[lineComponents objectAtIndex:1];
+                        NSString *string2=[lineComponents objectAtIndex:2];
+                        NSString *string3=[lineComponents objectAtIndex:5];
+                        NSManagedObject *object=[NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:context];
+                        [object setValue:[string1 stringByReplacingOccurrencesOfString:@"\"" withString:@""] forKey:@"name"];
+                        [object setValue:[string2 stringByReplacingOccurrencesOfString:@"\"" withString:@""] forKey:@"iata"];
+                        [object setValue:[string3 stringByReplacingOccurrencesOfString:@"\"" withString:@""] forKey:@"country"];
+                        NSError *error;
+                        count++;
+                        if(count>=1000){
+                            if (![context save:&error]) {
+                                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                            }
+                            count=0;
+                            
+                        }
+                    }
+                    
+                }
+                
+                
+                
+            }];
+            NSLog(@"done importing");
+            NSError *error;
+            if (![context save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+            
+        }
+    }
+  
+    //filter
+    filePath = [[NSBundle mainBundle] pathForResource:@"filtered city list" ofType:@"csv"];
+    if (filePath) {
+        NSString * myText = [[NSString alloc]
+                             initWithContentsOfFile:filePath
+                             encoding:NSUTF8StringEncoding
+                             error:nil];
+        if (myText) {
+            __block int count = 0;
+            
+            
+            [myText enumerateLinesUsingBlock:^(NSString * line, BOOL * stop) {
+                
+                NSArray *lineComponents=[line componentsSeparatedByString:@","];
+                if(lineComponents){
+                    
+                    NSString *string0=[lineComponents objectAtIndex:0];
+                    
+                    if([string0 isEqualToString:@"City"]) {
+                        
+                        NSString *string1=[lineComponents objectAtIndex:1];
+                        NSString *string2=[lineComponents objectAtIndex:2];
+                        
+                        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                        NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:context];
+                        [fetchRequest setEntity:entity];
+                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"iata ==[c] %@",string2];
+                        [fetchRequest setPredicate:predicate];
+                        NSError *error;
+                        NSManagedObject *object = [[context executeFetchRequest:fetchRequest error:&error] firstObject];
+                        
+                        if(object) {
+                            [object setValue:[NSNumber numberWithBool:YES] forKey:@"filtered"];
+                        }
+                        
+                        count++;
+                        if(count>=100){
+                            if (![context save:&error]) {
+                                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                            }
+                            count=0;
+                            
+                        }
+                    }
+                    
+                }
+                
+                
+                
+            }];
+            NSLog(@"done importing");
+            NSError *error;
+            if (![context save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+            
+        }
+    }
+   
+    //first search
+    filePath = [[NSBundle mainBundle] pathForResource:@"filtered list small" ofType:@"csv"];
+    if (filePath) {
+        NSString * myText = [[NSString alloc]
+                             initWithContentsOfFile:filePath
+                             encoding:NSUTF8StringEncoding
+                             error:nil];
+        if (myText) {
+            __block int count = 0;
+            
+            
+            [myText enumerateLinesUsingBlock:^(NSString * line, BOOL * stop) {
+                
+                NSArray *lineComponents=[line componentsSeparatedByString:@","];
+                if(lineComponents){
+                    
+                    NSString *string2=[lineComponents objectAtIndex:2];
+                    
+                    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                    NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:context];
+                    [fetchRequest setEntity:entity];
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"iata ==[c] %@",string2];
+                    [fetchRequest setPredicate:predicate];
+                    NSError *error;
+                    NSManagedObject *object = [[context executeFetchRequest:fetchRequest error:&error] firstObject];
+                    
+                    if(object) {
+                        [object setValue:[NSNumber numberWithBool:YES] forKey:@"firstSearch"];
+                    }
+                    
+                    count++;
+                    if(count>=100){
+                        if (![context save:&error]) {
+                            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                        }
+                        count=0;
+                        
+                    }
+                    
+                    
+                }
+                
+                
+                
+            }];
+            NSLog(@"done importing");
+            NSError *error;
+            if (![context save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+            
+        }
+    }
+    [SVProgressHUD dismiss];
+}
+
 
 @end

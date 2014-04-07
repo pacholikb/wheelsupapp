@@ -2,7 +2,7 @@
 //  City.m
 //  WheelsUp
 //
-//  Created by Konrad Przyludzki on 21.03.2014.
+//  Created by Konrad Przyludzki on 03.04.2014.
 //  Copyright (c) 2014 Broc Pacholik . All rights reserved.
 //
 
@@ -12,8 +12,9 @@
 @implementation City
 
 @dynamic country;
+@dynamic filtered;
 @dynamic iata;
 @dynamic name;
-@dynamic filtered;
+@dynamic firstSearch;
 
 @end

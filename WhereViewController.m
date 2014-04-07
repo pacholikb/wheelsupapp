@@ -21,6 +21,7 @@
     _toTF.delegate = self;
     if(_placeName)
         _toTF.text = _placeName;
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -58,7 +59,7 @@
         {
             if(results.count > 1) {
                 _dropdownOptions = results;
-                [self showPopUpWithTitle:@"Choose City" withOption:_dropdownOptions xy:CGPointMake(25, 139) isMultiple:NO];
+                [self showPopUpWithTitle:@"Choose City" withOption:_dropdownOptions xy:CGPointMake(44, 290) isMultiple:NO];
             }
             else {
                 City *city = (City *)[results firstObject];
@@ -126,7 +127,7 @@
     [_Dropobj fadeOut];
     _Dropobj = [[DropDownListView alloc] initWithTitle:popupTitle options:options xy:point size:size isMultiple:isMultiple];
     _Dropobj.delegate = self;
-    [_Dropobj showInView:self.view animated:YES];
+    [_Dropobj showInView:self.view.window animated:YES];
     
     /*----------------Set DropDown backGroundColor-----------------*/
     [_Dropobj SetBackGroundDropDwon_R:0.0 G:108.0 B:194.0 alpha:0.70];

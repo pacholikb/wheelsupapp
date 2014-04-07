@@ -11,11 +11,4 @@
 
 @implementation Weather
 
-@dynamic conditions;
-@dynamic date;
-@dynamic iconUrls;
-@dynamic location;
-@dynamic tempMax;
-@dynamic tempMin;
-
 @end

@@ -66,12 +66,9 @@
      
     [[UINavigationBar appearance] setTitleTextAttributes: titleBarAttributes];
     
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBg.png"] forBarMetrics:UIBarMetricsDefault];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if(![defaults boolForKey:@"initialized"]) {
-        [self populateDB:managedObjectStore.persistentStoreCoordinator];
-        [defaults setBool:YES forKey:@"initialized"];
-        [defaults synchronize];
-    }
     
     UIViewController *firstController;
 
@@ -85,129 +82,25 @@
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
    
-
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.startPoint = CGPointMake(0, 1);
+    gradient.endPoint = CGPointMake(0, 0);
+    gradient.frame = self.window.frame;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[self colorFromHexString:@"#FFFFFF"] CGColor], (id)[[self colorFromHexString:@"#E1DCE5"] CGColor], nil];
+    
+    [self.window.layer insertSublayer:gradient atIndex:0];
     
     return YES;
 }
 
--(void)populateDB :(NSPersistentStoreCoordinator *) coordinator
-{
-    NSManagedObjectContext *context;
-    if (coordinator != nil) {
-        context = [[NSManagedObjectContext alloc] init];
-        [context setPersistentStoreCoordinator:coordinator];
-    }
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"input" ofType:@"csv"];
-    if (filePath) {
-        NSString * myText = [[NSString alloc]
-                             initWithContentsOfFile:filePath
-                             encoding:NSUTF8StringEncoding
-                             error:nil];
-        if (myText) {
-            __block int count = 0;
-            
-            
-            [myText enumerateLinesUsingBlock:^(NSString * line, BOOL * stop) {
-      
-                NSArray *lineComponents=[line componentsSeparatedByString:@","];
-                if(lineComponents){
-                 
-                    NSString *string0=[lineComponents objectAtIndex:0];
-                    
-                    if([string0 isEqualToString:@"\"City\""]) {
-            
-                        NSString *string1=[lineComponents objectAtIndex:1];
-                        NSString *string2=[lineComponents objectAtIndex:2];
-                        NSString *string3=[lineComponents objectAtIndex:5];
-                        NSManagedObject *object=[NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:context];
-                        [object setValue:[string1 stringByReplacingOccurrencesOfString:@"\"" withString:@""] forKey:@"name"];
-                        [object setValue:[string2 stringByReplacingOccurrencesOfString:@"\"" withString:@""] forKey:@"iata"];
-                        [object setValue:[string3 stringByReplacingOccurrencesOfString:@"\"" withString:@""] forKey:@"country"];
-                        NSError *error;
-                        count++;
-                        if(count>=1000){
-                            if (![context save:&error]) {
-                                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-                            }
-                            count=0;
-                            
-                        }
-                    }
-                    
-                }
-                
-                
-                
-            }];
-            NSLog(@"done importing");
-            NSError *error;
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
-            
-        }  
-    }
-    
-    //filter
-    filePath = [[NSBundle mainBundle] pathForResource:@"filtered city list" ofType:@"csv"];
-    if (filePath) {
-        NSString * myText = [[NSString alloc]
-                             initWithContentsOfFile:filePath
-                             encoding:NSUTF8StringEncoding
-                             error:nil];
-        if (myText) {
-            __block int count = 0;
-            
-            
-            [myText enumerateLinesUsingBlock:^(NSString * line, BOOL * stop) {
-                
-                NSArray *lineComponents=[line componentsSeparatedByString:@","];
-                if(lineComponents){
-                    
-                    NSString *string0=[lineComponents objectAtIndex:0];
-                    
-                    if([string0 isEqualToString:@"City"]) {
-                        
-                        NSString *string1=[lineComponents objectAtIndex:1];
-                        NSString *string2=[lineComponents objectAtIndex:2];
-                        
-                        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-                        NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:context];
-                        [fetchRequest setEntity:entity];
-                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"iata ==[c] %@",string2];
-                        [fetchRequest setPredicate:predicate];
-                        NSError *error;
-                        NSManagedObject *object = [[context executeFetchRequest:fetchRequest error:&error] firstObject];
-                        
-                        if(object) {
-                            [object setValue:[NSNumber numberWithBool:YES] forKey:@"filtered"];
-                        }
-                        
-                        count++;
-                        if(count>=100){
-                            if (![context save:&error]) {
-                                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-                            }
-                            count=0;
-                            
-                        }
-                    }
-                    
-                }
-                
-                
-                
-            }];
-            NSLog(@"done importing");
-            NSError *error;
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
-            
-        }  
-    }
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
+
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [PFFacebookUtils handleOpenURL:url];

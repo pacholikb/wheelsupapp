@@ -43,8 +43,12 @@
     _childrenCount = 0;
  
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchProgressEvent:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
-    
-    [self addObserver:self forKeyPath:@"canCancelSearch" options:NSKeyValueObservingOptionNew context:0];
+
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self removeObserver:self forKeyPath:@"canCancelSearch"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)contex
@@ -188,11 +192,18 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"filtered = true"];
+    NSPredicate *predicate;
+    if(_isFirstUse)
+        predicate = [NSPredicate predicateWithFormat:@"firstSearch == true"];
+    else
+        predicate = [NSPredicate predicateWithFormat:@"filtered == true"];
+    
     [fetchRequest setPredicate:predicate];
   
     NSError *error;
     NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    NSLog(@"anywhere cities count %d",results.count);
     
     City *result = [results objectAtIndex: arc4random() % results.count];
     _toCode = result.iata;
@@ -214,6 +225,13 @@
                 {
                     [SVProgressHUD dismiss];
                     
+                    if(wself.isFirstUse) {
+                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                        [defaults setBool:YES forKey:@"firstUse"];
+                        [defaults synchronize];
+                        wself.isFirstUse = NO;
+                    }
+                    
                     [wself.cancelTimer invalidate];
                     wself.cancelTimer = nil;
                     
@@ -234,7 +252,7 @@
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         [wself anywhereAction:nil];
     }];
-
+    
 }
 
 - (IBAction)gpsAction:(id)sender {
@@ -242,11 +260,6 @@
     
     [WHLNetworkManager sharedInstance].locationManager.delegate = self;
     [[WHLNetworkManager sharedInstance].locationManager startUpdatingLocation];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-
 }
 
 - (void)highlightSearch
@@ -261,9 +274,9 @@
     
     // Add any number of custom views to MDCFocusView
     UILabel *buildLabel = [UILabel new];
-    buildLabel.frame = CGRectMake(110, 420, 150, 30);
+    buildLabel.frame = CGRectMake(100, 80, 150, 30);
     buildLabel.textColor = [UIColor whiteColor];
-    buildLabel.font = [UIFont boldSystemFontOfSize:20];
+    buildLabel.font = [UIFont boldSystemFontOfSize:22];
     buildLabel.text = @"Give it a try!";
     [_focusView addSubview:buildLabel];
     
@@ -278,9 +291,13 @@
         _isFirstUse = YES;
         [self highlightSearch];
     }
+    
+    [self addObserver:self forKeyPath:@"canCancelSearch" options:NSKeyValueObservingOptionNew context:0];
 }
 
 - (IBAction)whereAction:(id)sender {
+    [_fromTF resignFirstResponder];
+    
     WhereViewController *where = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WhereViewController"];
     where.parent = self;
     if(_searchMode == place)
@@ -308,6 +325,9 @@
         WHLSearchResultsViewController *controller = (WHLSearchResultsViewController *)segue.destinationViewController;
         controller.flights = _flights;
         controller.trip = _trip;
+        
+        _trip.successful = [NSNumber numberWithBool:YES];
+        [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext saveToPersistentStore:nil];
     }
 }
 
@@ -414,6 +434,7 @@
                     if(wself.isSearchCancelled)
                         return;
                     
+                    
                     [SVProgressHUD dismiss];
                     
                     [wself.cancelTimer invalidate];
@@ -470,6 +491,7 @@
     MZFormSheetController *sheet = [[MZFormSheetController alloc] initWithSize:CGSizeMake(280, 200) viewController:controller];
     sheet.shouldDismissOnBackgroundViewTap = YES;
     sheet.transitionStyle = MZFormSheetTransitionStyleFade;
+    sheet.cornerRadius = 1;
     [[MZFormSheetController sharedBackgroundWindow] setBackgroundBlurEffect:YES];
     [[MZFormSheetController sharedBackgroundWindow] setBlurRadius:5.0];
      
@@ -478,13 +500,8 @@
 
 - (IBAction)searchAction:(id)sender {
     
-    if(_focusView)
-        [_focusView dismiss:nil];
-    
-    UIImage *searchButtonImage = [UIImage imageNamed:@"Button1.png"];
-    
-    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [searchButton setImage:searchButtonImage forState:UIControlStateNormal];
+    if(_focusView && _focusView.isFocused)
+        [_focusView dismiss:nil];    
     
     switch (_searchMode) {
         case anywhere:
@@ -507,15 +524,6 @@
             break;
     }
     
-    NSLog(@"1");
-    if(_isFirstUse) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:YES forKey:@"firstUse"];
-        [defaults synchronize];
-        _isFirstUse = NO;
-        NSLog(@"2");
-    }
-    
 }
 
 #pragma locationFramework delegate
@@ -531,8 +539,8 @@
     
     if(_isFirstUse)
     {
-        _fromCode = @"NYC";
-        _fromTF.text = @"New York, United States";
+        _fromCode = @"YEA";
+        _fromTF.text = @"Edmonton, Canada";
     }
 }
 
@@ -593,7 +601,7 @@
     else {
         if(_isFirstUse)
         {
-            _fromCode = @"YEG";
+            _fromCode = @"YEA";
             _fromTF.text = @"Edmonton, Canada";
         }
         else

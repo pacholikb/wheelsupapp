@@ -140,10 +140,13 @@ CLLocationCoordinate2D coordinateArray[2];
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {    
     // Update the page when more than 50% of the previous/next page is visible
-    if(!_pageControlBeingUsed) {
+    if(!_pageControlBeingUsed && scrollView == _scrollView) {
         CGFloat pageWidth = self.scrollView.frame.size.width;
         int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         self.pageControl.currentPage = page;
+        
+        if(page == 2)
+            [_eventsTableView reloadData];
     }
 }
 
@@ -200,6 +203,13 @@ CLLocationCoordinate2D coordinateArray[2];
         UILabel *placeLabel = (UILabel *)[cell viewWithTag:3];
         UIButton *btn = (UIButton *)[cell viewWithTag:4];
         UIImageView *img = (UIImageView *)[cell viewWithTag:5];
+        
+        if(event.imageUrl.length == 0)
+            nameLabel.frame = CGRectMake(10, 5, 300, 36);
+        else
+            nameLabel.frame = CGRectMake(10, 5, 218, 36);
+        
+        NSLog(@"frame %f",nameLabel.frame.size.width);
         
         [img setImageWithURL:[NSURL URLWithString:event.imageUrl] placeholder:nil];
         nameLabel.text = event.title;

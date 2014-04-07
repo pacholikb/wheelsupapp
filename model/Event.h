@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
-
-@interface Event : NSManagedObject
+@interface Event : NSObject
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * url;

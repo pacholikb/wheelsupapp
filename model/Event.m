@@ -11,12 +11,5 @@
 
 @implementation Event
 
-@dynamic title;
-@dynamic url;
-@dynamic desc;
-@dynamic startTime;
-@dynamic venueName;
-@dynamic imageUrl;
-@dynamic eventId;
 
 @end

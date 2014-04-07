@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Broc Pacholik . All rights reserved.
 //
 
+#import "Weather.h"
+#import "Event.h"
 #import "WHLNetworkManager.h"
 
 @implementation WHLNetworkManager
@@ -94,11 +96,10 @@
     
     //Weather entity
     _weatherObjectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://api.worldweatheronline.com/free/v1/"]];
-    _weatherObjectManager.managedObjectStore = managedObjectStore;
     
     [_weatherObjectManager.router.routeSet addRoute:[RKRoute routeWithName:@"weatherRoute" pathPattern:@"weather.ashx" method:RKRequestMethodGET]];
     
-    RKEntityMapping *weatherMapping = [RKEntityMapping mappingForEntityForName:@"Weather" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *weatherMapping = [RKObjectMapping mappingForClass:[Weather class]];
     [weatherMapping addAttributeMappingsFromDictionary:@{
                                                          @"@metadata.routing.parameters.location":     @"location",
                                                          @"date":                                      @"date",
@@ -107,7 +108,6 @@
                                                          @"weatherDesc":                               @"conditions",
                                                          @"tempMinC":                                  @"tempMin"
                                                          }];
-    weatherMapping.identificationAttributes = @[ @"location", @"date" ];
     
     responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:weatherMapping method:RKRequestMethodGET pathPattern:nil keyPath:@"data.weather" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
@@ -116,11 +116,10 @@
     
     //Event entity
     _eventsObjectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://api.eventful.com/json/events/search"]];
-    _eventsObjectManager.managedObjectStore = managedObjectStore;
     
     [_eventsObjectManager.router.routeSet addRoute:[RKRoute routeWithName:@"eventRoute" pathPattern:@"" method:RKRequestMethodGET]];
     
-    RKEntityMapping *eventMapping = [RKEntityMapping mappingForEntityForName:@"Event" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *eventMapping = [RKObjectMapping mappingForClass:[Event class]];
     [eventMapping addAttributeMappingsFromDictionary:@{
                                                          @"id":                        @"eventId",
                                                          @"title":                     @"title",
@@ -130,7 +129,6 @@
                                                          @"venue_name":                 @"venueName",
                                                          @"image.medium.url":           @"imageUrl"
                                                          }];
-    eventMapping.identificationAttributes = @[ @"eventId" ];
     
     responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping method:RKRequestMethodGET pathPattern:nil keyPath:@"events.event" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
@@ -218,7 +216,7 @@
             [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:searchId andTripId:tripId stops:stops maxrrice:maxPrice success:success failure:failure numberOfTimes:nTimes-1];
         }];
     
-        [op performSelector:@selector(start) withObject:nil afterDelay:1];
+        [op performSelector:@selector(start) withObject:nil afterDelay:2];
         
     }
 }

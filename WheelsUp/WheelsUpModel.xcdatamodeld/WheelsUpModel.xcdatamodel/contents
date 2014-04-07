@@ -3,17 +3,9 @@
     <entity name="City" representedClassName="City" syncable="YES">
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="filtered" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="firstSearch" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="iata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="Event" representedClassName="Event" syncable="YES">
-        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Flight" representedClassName="Flight" syncable="YES">
         <attribute name="deeplink" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,21 +20,12 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="searchId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="successful" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="trips" optional="YES" attributeType="Transformable" syncable="YES"/>
-    </entity>
-    <entity name="Weather" representedClassName="Weather" syncable="YES">
-        <attribute name="conditions" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="iconUrls" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tempMax" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tempMin" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="City" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Event" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Flight" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Trip" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Weather" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

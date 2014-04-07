@@ -61,8 +61,9 @@
 		18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DEF255187E8D4B00090861 /* WHLProfileViewController.m */; };
 		19F6E2421F904C7E97087016 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A59C2C53E162414CA5B0802A /* libPods.a */; };
 		C613A05018B359AD00918DE8 /* WHLSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C613A04F18B359AD00918DE8 /* WHLSearchResultsViewController.m */; };
+		C61EF49118EEAEAB00A3249C /* unsplash2.png in Resources */ = {isa = PBXBuildFile; fileRef = C61EF48D18EEAEAB00A3249C /* unsplash2.png */; };
+		C61EF49218EEAEAB00A3249C /* unsplash2(small).png in Resources */ = {isa = PBXBuildFile; fileRef = C61EF48E18EEAEAB00A3249C /* unsplash2(small).png */; };
 		C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */; };
-		C63B984118C077D000D9C03F /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C63B984018C077D000D9C03F /* Trip.m */; };
 		C63E9A0E18CDD0ED00CB8C8C /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E9A0D18CDD0ED00CB8C8C /* Weather.m */; };
 		C640A91718BF39B3003FA7DB /* Flight.m in Sources */ = {isa = PBXBuildFile; fileRef = C640A91618BF39B3003FA7DB /* Flight.m */; };
 		C640A93418BF658A003FA7DB /* input.csv in Resources */ = {isa = PBXBuildFile; fileRef = C640A93318BF658A003FA7DB /* input.csv */; };
@@ -77,11 +78,14 @@
 		C65C46CC18D9997B00BDB774 /* NSInvocation+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C46CA18D9997B00BDB774 /* NSInvocation+Copy.m */; };
 		C65C46CF18D9B4EE00BDB774 /* PassangersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C46CE18D9B4EE00BDB774 /* PassangersViewController.m */; };
 		C65C46D218D9CB2D00BDB774 /* WhereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C46D118D9CB2D00BDB774 /* WhereViewController.m */; };
+		C65C5C8F18ED56AF00E32FCC /* filtered list small.csv in Resources */ = {isa = PBXBuildFile; fileRef = C65C5C8E18ED56AF00E32FCC /* filtered list small.csv */; };
+		C65C5C9218ED585100E32FCC /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C5C9118ED585100E32FCC /* City.m */; };
+		C65C5C9518ED907100E32FCC /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C5C9418ED907100E32FCC /* Trip.m */; };
+		C65C5C9918EDA25B00E32FCC /* navBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C65C5C9818EDA25B00E32FCC /* navBg.png */; };
 		C672AAB318D1A3350039C737 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C672AAB218D1A3350039C737 /* MapKit.framework */; };
 		C67F6A7D18D7331300D93491 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C67F6A7C18D7331300D93491 /* Event.m */; };
 		C684A34318E567AE00762A3F /* WHLIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C684A34218E567AE00762A3F /* WHLIntroViewController.m */; };
 		C688C35118DC2A65003D8B0F /* filtered city list.csv in Resources */ = {isa = PBXBuildFile; fileRef = C688C35018DC2A65003D8B0F /* filtered city list.csv */; };
-		C688C35418DC2EB0003D8B0F /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = C688C35318DC2EB0003D8B0F /* City.m */; };
 		C6D2BCA218ACBDDA00998759 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA118ACBDDA00998759 /* Parse.framework */; };
 		C6D2BCA418ACBEF700998759 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */; };
 		C6D2BCA518ACBF7F00998759 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A3C891187D1C0900C5E07B /* Main.storyboard */; };
@@ -177,10 +181,10 @@
 		A59C2C53E162414CA5B0802A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C613A04E18B359AD00918DE8 /* WHLSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHLSearchResultsViewController.h; path = WheelsUp/WHLSearchResultsViewController.h; sourceTree = "<group>"; };
 		C613A04F18B359AD00918DE8 /* WHLSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHLSearchResultsViewController.m; path = WheelsUp/WHLSearchResultsViewController.m; sourceTree = "<group>"; };
+		C61EF48D18EEAEAB00A3249C /* unsplash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unsplash2.png; path = WheelsUp/Images.xcassets/LaunchImage.launchimage/unsplash2.png; sourceTree = "<group>"; };
+		C61EF48E18EEAEAB00A3249C /* unsplash2(small).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unsplash2(small).png"; path = "WheelsUp/Images.xcassets/LaunchImage.launchimage/unsplash2(small).png"; sourceTree = "<group>"; };
 		C627662918C5C7DA00D80043 /* WHLFlightDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLFlightDetailsViewController.h; sourceTree = "<group>"; };
 		C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFlightDetailsViewController.m; sourceTree = "<group>"; };
-		C63B983F18C077D000D9C03F /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trip.h; path = model/Trip.h; sourceTree = SOURCE_ROOT; };
-		C63B984018C077D000D9C03F /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Trip.m; path = model/Trip.m; sourceTree = SOURCE_ROOT; };
 		C63E9A0C18CDD0ED00CB8C8C /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = model/Weather.h; sourceTree = SOURCE_ROOT; };
 		C63E9A0D18CDD0ED00CB8C8C /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weather.m; path = model/Weather.m; sourceTree = SOURCE_ROOT; };
 		C640A91518BF39B3003FA7DB /* Flight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flight.h; path = model/Flight.h; sourceTree = SOURCE_ROOT; };
@@ -208,14 +212,18 @@
 		C65C46CE18D9B4EE00BDB774 /* PassangersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassangersViewController.m; sourceTree = "<group>"; };
 		C65C46D018D9CB2D00BDB774 /* WhereViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhereViewController.h; sourceTree = "<group>"; };
 		C65C46D118D9CB2D00BDB774 /* WhereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhereViewController.m; sourceTree = "<group>"; };
+		C65C5C8E18ED56AF00E32FCC /* filtered list small.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "filtered list small.csv"; sourceTree = SOURCE_ROOT; };
+		C65C5C9018ED585100E32FCC /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = model/City.h; sourceTree = SOURCE_ROOT; };
+		C65C5C9118ED585100E32FCC /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = model/City.m; sourceTree = SOURCE_ROOT; };
+		C65C5C9318ED907100E32FCC /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trip.h; path = model/Trip.h; sourceTree = SOURCE_ROOT; };
+		C65C5C9418ED907100E32FCC /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Trip.m; path = model/Trip.m; sourceTree = SOURCE_ROOT; };
+		C65C5C9818EDA25B00E32FCC /* navBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBg.png; sourceTree = "<group>"; };
 		C672AAB218D1A3350039C737 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C67F6A7B18D7331300D93491 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = model/Event.h; sourceTree = SOURCE_ROOT; };
 		C67F6A7C18D7331300D93491 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = model/Event.m; sourceTree = SOURCE_ROOT; };
 		C684A34118E567AE00762A3F /* WHLIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLIntroViewController.h; sourceTree = "<group>"; };
 		C684A34218E567AE00762A3F /* WHLIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLIntroViewController.m; sourceTree = "<group>"; };
 		C688C35018DC2A65003D8B0F /* filtered city list.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "filtered city list.csv"; sourceTree = SOURCE_ROOT; };
-		C688C35218DC2EB0003D8B0F /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = model/City.h; sourceTree = SOURCE_ROOT; };
-		C688C35318DC2EB0003D8B0F /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = model/City.m; sourceTree = SOURCE_ROOT; };
 		C6D2BCA118ACBDDA00998759 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
 		C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK.framework; sourceTree = "<group>"; };
 		C6D2BCA718ACDB7D00998759 /* WheelsUpModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WheelsUpModel.xcdatamodel; sourceTree = "<group>"; };
@@ -286,6 +294,8 @@
 		1858B33618824D0C00A18F32 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				C61EF48D18EEAEAB00A3249C /* unsplash2.png */,
+				C61EF48E18EEAEAB00A3249C /* unsplash2(small).png */,
 				186116B918E54DE7007E5453 /* facebook_button.png */,
 				186116BA18E54DE8007E5453 /* facebook_button@2x.png */,
 				186116BB18E54DE8007E5453 /* wheelslogo57.png */,
@@ -297,6 +307,7 @@
 				1861156E18E3DE22007E5453 /* instr1_5s.png */,
 				1870930F18E3D7C000EE8075 /* GoButton.png */,
 				1870931018E3D7C000EE8075 /* GoButton@2x.png */,
+				C65C5C9818EDA25B00E32FCC /* navBg.png */,
 				189863B218DFF59800B2C5F5 /* Oval.png */,
 				189863B318DFF59800B2C5F5 /* Oval@2x.png */,
 				189863AE18DFF40300B2C5F5 /* Button1.png */,
@@ -506,18 +517,19 @@
 		C6D2BCAC18ACDF0000998759 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				C65C5C9018ED585100E32FCC /* City.h */,
+				C65C5C9118ED585100E32FCC /* City.m */,
 				C640A91518BF39B3003FA7DB /* Flight.h */,
 				C640A91618BF39B3003FA7DB /* Flight.m */,
-				C688C35218DC2EB0003D8B0F /* City.h */,
-				C688C35318DC2EB0003D8B0F /* City.m */,
 				C67F6A7B18D7331300D93491 /* Event.h */,
 				C67F6A7C18D7331300D93491 /* Event.m */,
+				C65C5C9318ED907100E32FCC /* Trip.h */,
+				C65C5C9418ED907100E32FCC /* Trip.m */,
 				C6D2BCB018ACE74500998759 /* SearchModel.h */,
 				C6D2BCB118ACE74500998759 /* SearchModel.m */,
-				C63B983F18C077D000D9C03F /* Trip.h */,
-				C63B984018C077D000D9C03F /* Trip.m */,
 				C63E9A0C18CDD0ED00CB8C8C /* Weather.h */,
 				C63E9A0D18CDD0ED00CB8C8C /* Weather.m */,
+				C65C5C8E18ED56AF00E32FCC /* filtered list small.csv */,
 				C688C35018DC2A65003D8B0F /* filtered city list.csv */,
 				C640A93318BF658A003FA7DB /* input.csv */,
 			);
@@ -610,21 +622,25 @@
 				1870931D18E3D7C000EE8075 /* GoButton.png in Resources */,
 				186116B718E3EBF1007E5453 /* Instr1.png in Resources */,
 				189863B518DFF59800B2C5F5 /* Oval@2x.png in Resources */,
+				C61EF49218EEAEAB00A3249C /* unsplash2(small).png in Resources */,
 				189863B418DFF59800B2C5F5 /* Oval.png in Resources */,
 				189863B118DFF40300B2C5F5 /* Button1@2x.png in Resources */,
 				C6D2BCA518ACBF7F00998759 /* Main.storyboard in Resources */,
 				186116A618E3E34E007E5453 /* ProjectApiKey.txt in Resources */,
+				C61EF49118EEAEAB00A3249C /* unsplash2.png in Resources */,
 				1861157118E3DE22007E5453 /* instr3_5s.png in Resources */,
 				1861157218E3DE22007E5453 /* instr2_5s.png in Resources */,
 				18A3C89B187D1C0900C5E07B /* Images.xcassets in Resources */,
 				186116BC18E54DE8007E5453 /* facebook_button.png in Resources */,
 				186116B518E3EBF1007E5453 /* instr2.png in Resources */,
+				C65C5C8F18ED56AF00E32FCC /* filtered list small.csv in Resources */,
 				18A3C88A187D1C0800C5E07B /* InfoPlist.strings in Resources */,
 				1861157418E3DE22007E5453 /* instr1_5s.png in Resources */,
 				C688C35118DC2A65003D8B0F /* filtered city list.csv in Resources */,
 				186116BD18E54DE9007E5453 /* facebook_button@2x.png in Resources */,
 				186116B318E3EBF1007E5453 /* instr3.png in Resources */,
 				189863B018DFF40300B2C5F5 /* Button1.png in Resources */,
+				C65C5C9918EDA25B00E32FCC /* navBg.png in Resources */,
 				C640A93418BF658A003FA7DB /* input.csv in Resources */,
 				186116BE18E54DE9007E5453 /* wheelslogo57.png in Resources */,
 			);
@@ -685,9 +701,9 @@
 				18DEF252187E8D3000090861 /* WHLRecentViewController.m in Sources */,
 				C640A91718BF39B3003FA7DB /* Flight.m in Sources */,
 				C65C46C518D9992800BDB774 /* UIImage+Additional.m in Sources */,
+				C65C5C9218ED585100E32FCC /* City.m in Sources */,
 				18DEF24A187E884C00090861 /* WHLMenuViewController.m in Sources */,
 				C65C46C418D9992800BDB774 /* MZTransition.m in Sources */,
-				C63B984118C077D000D9C03F /* Trip.m in Sources */,
 				18DEF256187E8D4B00090861 /* WHLProfileViewController.m in Sources */,
 				C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */,
 				18DEF242187E869800090861 /* REMenuItem.m in Sources */,
@@ -701,7 +717,6 @@
 				C65C46C018D9992800BDB774 /* MZFormSheetBackgroundWindow.m in Sources */,
 				18DEF243187E869800090861 /* REMenuItemView.m in Sources */,
 				18DEF24E187E8CF100090861 /* WHLSearchViewController.m in Sources */,
-				C688C35418DC2EB0003D8B0F /* City.m in Sources */,
 				C684A34318E567AE00762A3F /* WHLIntroViewController.m in Sources */,
 				C65C46CF18D9B4EE00BDB774 /* PassangersViewController.m in Sources */,
 				1858B335188235CE00A18F32 /* WHLLoginViewController.m in Sources */,
@@ -710,6 +725,7 @@
 				C65C46C318D9992800BDB774 /* MZFormSheetSegue.m in Sources */,
 				18A3C88C187D1C0800C5E07B /* main.m in Sources */,
 				C65C46C218D9992800BDB774 /* MZFormSheetController.m in Sources */,
+				C65C5C9518ED907100E32FCC /* Trip.m in Sources */,
 				C65C46D218D9CB2D00BDB774 /* WhereViewController.m in Sources */,
 				C65C46CC18D9997B00BDB774 /* NSInvocation+Copy.m in Sources */,
 				C65C46C118D9992800BDB774 /* MZFormSheetBackgroundWindowViewController.m in Sources */,
@@ -843,7 +859,6 @@
 			baseConfigurationReference = D9DAE4B87EDE4B688220D663 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Konrad Przyludzki (V5QCD9H4VK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -881,7 +896,6 @@
 			baseConfigurationReference = D9DAE4B87EDE4B688220D663 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -138,6 +138,9 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
     [fetchRequest setEntity:entity];
     
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"successful == true"];
+    [fetchRequest setPredicate:predicate];
+    
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:10];
     [fetchRequest setFetchLimit:10];

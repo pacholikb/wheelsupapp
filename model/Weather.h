@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
-
-@interface Weather : NSManagedObject
+@interface Weather : NSObject
 
 @property (nonatomic, retain) id conditions;
 @property (nonatomic, retain) NSDate * date;
