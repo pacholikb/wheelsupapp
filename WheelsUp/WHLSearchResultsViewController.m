@@ -23,6 +23,8 @@ CLLocationCoordinate2D coordinateArray[2];
 {
     [super viewDidLoad];
     
+    [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.view];
+    
     [_scrollView setContentSize:CGSizeMake(960, 140)];
     
     _departureCityName = [[_trip.trips firstObject] objectForKey:@"departure_name"];
@@ -36,7 +38,7 @@ CLLocationCoordinate2D coordinateArray[2];
     search.location = _arrivalCityName;
     
     self.navigationItem.title = [NSString stringWithFormat:@"%@ - %@", [[_trip.trips firstObject] objectForKey:@"departure_code"], [[_trip.trips firstObject] objectForKey:@"arrival_code"]];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:194/255.0f green:209/255.0f blue:202/255.0f alpha:1.0f]};
+//    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:194/255.0f green:209/255.0f blue:202/255.0f alpha:1.0f]};
 
         
     __weak typeof (self) wself = self;
@@ -130,6 +132,17 @@ CLLocationCoordinate2D coordinateArray[2];
         }];
     }];
     
+    _mapView.zoomEnabled = NO;
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMap:)];
+    tapGestureRecognizer.numberOfTapsRequired = 2;
+    [_mapView addGestureRecognizer:tapGestureRecognizer];
+    
+}
+
+- (void)openMap:(id) sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com?q=%@",_arrivalCityName]]];
 }
 
 - (void)viewDidLayoutSubviews

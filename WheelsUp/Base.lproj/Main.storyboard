@@ -214,6 +214,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bookCell" rowHeight="60" id="Jfz-dA-Bk5">
                                 <rect key="frame" x="0.0" y="226" width="320" height="60"/>
@@ -237,6 +238,7 @@
                                             </state>
                                         </button>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableViewCell>
@@ -246,7 +248,13 @@
                             <outlet property="delegate" destination="5i8-Y7-vpZ" id="B6w-e7-OCn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="jNV-ti-IGM"/>
+                    <navigationItem key="navigationItem" id="jNV-ti-IGM">
+                        <barButtonItem key="rightBarButtonItem" title="Info" id="dcb-HK-ZpY">
+                            <connections>
+                                <action selector="infoAction:" destination="5i8-Y7-vpZ" id="Mha-jm-zeP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uhs-lb-mje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

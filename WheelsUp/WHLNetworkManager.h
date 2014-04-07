@@ -31,4 +31,7 @@
 - (void)makeFlightRequestWithSearchId :(NSString *)searchId andTripId:(NSString *)tripId stops:(NSString *)stops maxrrice:(NSString *)maxPrice success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                                failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure numberOfTimes:(NSUInteger)nTimes;
 
+- (void)setBackgroundGradient :(UIView *)view;
+- (UIColor *)colorFromHexString:(NSString *)hexString;
+    
 @end

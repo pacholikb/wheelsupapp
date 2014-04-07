@@ -81,26 +81,11 @@
     self.window.rootViewController = firstController;
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
-   
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.startPoint = CGPointMake(0, 1);
-    gradient.endPoint = CGPointMake(0, 0);
-    gradient.frame = self.window.frame;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[self colorFromHexString:@"#FFFFFF"] CGColor], (id)[[self colorFromHexString:@"#E1DCE5"] CGColor], nil];
-    
-    [self.window.layer insertSublayer:gradient atIndex:0];
+
+    [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.window];
     
     return YES;
 }
-
-- (UIColor *)colorFromHexString:(NSString *)hexString {
-    unsigned rgbValue = 0;
-    NSScanner *scanner = [NSScanner scannerWithString:hexString];
-    [scanner setScanLocation:1]; // bypass '#' character
-    [scanner scanHexInt:&rgbValue];
-    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
-}
-
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [PFFacebookUtils handleOpenURL:url];

@@ -26,7 +26,7 @@
 {
     [super viewDidLoad];
     [self setTitle : @"Search"] ;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:194/255.0f green:209/255.0f blue:202/255.0f alpha:1.0f]};
+//    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:194/255.0f green:209/255.0f blue:202/255.0f alpha:1.0f]};
     
     self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle :@"Menu"
                                                                                 style :UIBarButtonItemStyleBordered
@@ -44,6 +44,14 @@
  
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchProgressEvent:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"viewWillAppear");
+    _isDataChanged = NO;
+    
+    [self addObserver:self forKeyPath:@"canCancelSearch" options:NSKeyValueObservingOptionNew context:0];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -292,11 +300,12 @@
         [self highlightSearch];
     }
     
-    [self addObserver:self forKeyPath:@"canCancelSearch" options:NSKeyValueObservingOptionNew context:0];
 }
 
 - (IBAction)whereAction:(id)sender {
     [_fromTF resignFirstResponder];
+    
+    _isDataChanged = YES;
     
     WhereViewController *where = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WhereViewController"];
     where.parent = self;
@@ -307,6 +316,10 @@
 }
 
 - (IBAction)passengersAction:(id)sender {
+    [_fromTF resignFirstResponder];
+    
+    _isDataChanged = YES;
+    
     PassangersViewController *passangers = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PassangersViewController"];
     passangers.parent = self;
     [self presentOnSheet:passangers];
@@ -384,11 +397,14 @@
         
         [self findAirport:_fromTF.text showDialog:YES];
         
+        _isDataChanged = YES;
     }
     if(textField == _maxPriceTF)
     {
         _maxPrice = [_maxPriceTF.text integerValue];
         [self animateTextField:_maxPriceTF up:NO];
+        
+        _isDataChanged = YES;
     }
     
 }
@@ -501,7 +517,8 @@
 - (IBAction)searchAction:(id)sender {
     
     if(_focusView && _focusView.isFocused)
-        [_focusView dismiss:nil];    
+        [_focusView dismiss:nil];
+    
     
     switch (_searchMode) {
         case anywhere:
@@ -516,6 +533,11 @@
         }
         case place:
         {
+            if(!_isDataChanged) {
+                [self performSegueWithIdentifier:@"resultsSegue" sender:nil];
+                return ;
+            }
+            
             [self findFlights];
             break;
         }
@@ -561,7 +583,7 @@
             NSLog(@"Found %@", placemark.locality);
             
             [self findAirport:placemark.locality showDialog:_isLocationButtonClicked];
-
+            _isDataChanged = YES;
         }];
         
     }

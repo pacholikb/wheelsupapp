@@ -20,6 +20,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.view];
 
     _outbounds = _flight.outbounds;
     
@@ -133,6 +135,11 @@
 {
     NSLog(@"BOOKING URL %@",[NSString stringWithFormat:@"%@&ts_code=7756f",_flight.deeplink]);
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@&ts_code=7756f",_flight.deeplink]]];
+}
+
+- (IBAction)infoAction:(id)sender {
+    NSString *urlString = [NSString stringWithFormat:@"http://en.wikipedia.org/wiki/%@",[[_outbounds lastObject] valueForKey:@"arrival_name"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }
 
 @end
