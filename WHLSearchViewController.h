@@ -29,6 +29,7 @@ typedef enum {
 
 @property (strong, nonatomic) IBOutlet UITextField *fromTF;
 @property (strong, nonatomic) IBOutlet UIButton *passangersBtn;
+@property (strong, nonatomic) IBOutlet UIButton *returnFlightBtn;
 @property (strong) NSString *fromCode;
 @property (strong) NSString *toCode;
 
@@ -44,6 +45,8 @@ typedef enum {
 @property (assign) NSInteger adultsCount;
 @property (assign) NSInteger childrenCount;
 @property (strong) NSString *numberOfStops;
+@property (assign) BOOL isOneWay;
+@property (strong) NSString *returnDateString;
 
 @property (assign) BOOL isFirstUse;
 @property (assign) BOOL isLocationButtonClicked;

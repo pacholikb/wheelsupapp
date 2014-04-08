@@ -9,6 +9,7 @@
 #import "WHLSearchViewController.h"
 #import "PassangersViewController.h"
 #import "WhereViewController.h"
+#import "ReturnFlightViewController.h"
 #import "WHLNetworkManager.h"
 #import "REMenu.h"
 #import "City.h"
@@ -131,8 +132,9 @@
             NSString *adults = [NSString stringWithFormat:@"%d",_adultsCount];
             NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
             NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
+            NSString *returnOn = _isOneWay ? nil : _returnDateString;
             
-            [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:returnOn adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                 
                 if(mappingResult.array.count > 0) {
                     wself.trip = [mappingResult.array firstObject];
@@ -161,16 +163,33 @@
                     [wself anywhereAction:nil];
                 
             } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                
+                if(operation.HTTPRequestOperation.response.statusCode == 500) {
+                    [wself showDialogWithTitle:@"Oops!" andMessage:@"Something bad happened to the server. Please try again later."];
+                    [SVProgressHUD dismiss];
+                    
+                    [wself.cancelTimer invalidate];
+                    wself.cancelTimer = nil;
+                }
+                else
                 [wself somewhereHotAction:nil];
+                
             }];
         }
         else
             [wself somewhereHotAction:nil];
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"weather failure %@",error);
-        
-        [wself somewhereHotAction:nil];
+ 
+        if(operation.HTTPRequestOperation.response.statusCode == 500) {
+            [wself showDialogWithTitle:@"Oops!" andMessage:@"Something bad happened to the server. Please try again later."];
+            [SVProgressHUD dismiss];
+            
+            [wself.cancelTimer invalidate];
+            wself.cancelTimer = nil;
+        }
+        else
+            [wself somewhereHotAction:nil];
         
     }];
 }
@@ -221,8 +240,9 @@
     NSString *adults = [NSString stringWithFormat:@"%d",_adultsCount];
     NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
     NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
+    NSString *returnOn = _isOneWay ? nil : _returnDateString;
     
-    [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:returnOn adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         if(mappingResult.array.count > 0) {
             wself.trip = [mappingResult.array firstObject];
@@ -250,7 +270,16 @@
                     [wself anywhereAction:nil];
                 
             } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                [wself anywhereAction:nil];
+                
+                if(operation.HTTPRequestOperation.response.statusCode == 500) {
+                    [wself showDialogWithTitle:@"Oops!" andMessage:@"Something bad happened to the server. Please try again later."];
+                    [SVProgressHUD dismiss];
+                    
+                    [wself.cancelTimer invalidate];
+                    wself.cancelTimer = nil;
+                }
+                else
+                    [wself anywhereAction:nil];
             } numberOfTimes:3];
             
         }
@@ -258,7 +287,17 @@
             [wself anywhereAction:nil];
         
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        [wself anywhereAction:nil];
+        
+        if(operation.HTTPRequestOperation.response.statusCode == 500) {
+            [wself showDialogWithTitle:@"Oops!" andMessage:@"Something bad happened to the server. Please try again later."];
+            [SVProgressHUD dismiss];
+        
+            [wself.cancelTimer invalidate];
+            wself.cancelTimer = nil;
+        }
+        else
+            [wself anywhereAction:nil];
+        
     }];
     
 }
@@ -312,7 +351,7 @@
     if(_searchMode == place)
         where.placeName = _whereButton.titleLabel.text;
     
-    [self presentOnSheet:where];
+    [self presentOnSheet:where withSize:CGSizeMake(280, 200)];
 }
 
 - (IBAction)passengersAction:(id)sender {
@@ -322,7 +361,17 @@
     
     PassangersViewController *passangers = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PassangersViewController"];
     passangers.parent = self;
-    [self presentOnSheet:passangers];
+    [self presentOnSheet:passangers withSize:CGSizeMake(280, 200)];
+}
+
+- (IBAction)returnFlightAction:(id)sender {
+    [_fromTF resignFirstResponder];
+    
+    _isDataChanged = YES;
+    
+    ReturnFlightViewController *controller = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ReturnFlightViewController"];
+    controller.parent = self;
+    [self presentOnSheet:controller withSize:CGSizeMake(280, 280)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -352,6 +401,8 @@
 }
 
 - (IBAction)showHideFilters:(id)sender {
+    _isDataChanged = YES;
+    
     float alpha;
     if(_isFiltersViewVisible)
         alpha = 0.0;
@@ -363,12 +414,16 @@
     } completion:^(BOOL finished) {
         if(finished) {
             _isFiltersViewVisible = !_isFiltersViewVisible;
-            if(_isFiltersViewVisible)
+            if(_isFiltersViewVisible) {
                [_showHideFiltersButton setTitle:@"-" forState:UIControlStateNormal];
+                if(_returnDateString.length > 0)
+                    _isOneWay = NO;
+            }
             else {
                 [_showHideFiltersButton setTitle:@"+" forState:UIControlStateNormal];
                 _maxPrice = 0;
                 _maxPriceTF.text = @"";
+                _isOneWay = YES;
             }
         }
     }];
@@ -436,8 +491,9 @@
         NSString *adults = [NSString stringWithFormat:@"%ld",_adultsCount];
         NSString *children = [NSString stringWithFormat:@"%ld",_childrenCount];
         NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
+        NSString *returnOn = _isOneWay ? nil : _returnDateString;
         
-        [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:returnOn adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             
             if(wself.isSearchCancelled)
                 return;
@@ -499,12 +555,12 @@
     
 }
 
-- (void)presentOnSheet:(UIViewController *)controller
+- (void)presentOnSheet:(UIViewController *)controller withSize:(CGSize)size
 {
     [_fromTF resignFirstResponder];
     [_maxPriceTF resignFirstResponder];
     
-    MZFormSheetController *sheet = [[MZFormSheetController alloc] initWithSize:CGSizeMake(280, 200) viewController:controller];
+    MZFormSheetController *sheet = [[MZFormSheetController alloc] initWithSize:size viewController:controller];
     sheet.shouldDismissOnBackgroundViewTap = YES;
     sheet.transitionStyle = MZFormSheetTransitionStyleFade;
     sheet.cornerRadius = 1;

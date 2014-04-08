@@ -137,7 +137,7 @@
     
 }
 
-- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to adults:(NSString *)adults children:(NSString *)children success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to returnOn:(NSString *)inbound adults:(NSString *)adults children:(NSString *)children success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
 {
     if(!_dateFormatter) {
@@ -147,7 +147,12 @@
     
     NSString *date = [_dateFormatter stringFromDate:[NSDate date]];
     
-    NSDictionary *tripDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[from uppercaseString], @"departure_code", [to uppercaseString], @"arrival_code", date, @"outbound_date", nil];
+    NSDictionary *tripDictionary;
+    if(inbound.length > 0)
+        tripDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[from uppercaseString], @"departure_code", [to uppercaseString], @"arrival_code", date, @"outbound_date", inbound, @"inbound_date", nil];
+    else
+        tripDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[from uppercaseString], @"departure_code", [to uppercaseString], @"arrival_code", date, @"outbound_date", nil];
+        
     NSMutableDictionary *body = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSArray arrayWithObject:tripDictionary], @"trips", nil ];
     
     if(adults)
@@ -157,7 +162,6 @@
     if(children)
         [body setValue:children forKey:@"children_count"];
     
-    NSLog(@"%@",body);
     
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:body

@@ -92,7 +92,7 @@
         __weak typeof (self) wself = self;
     
     [SVProgressHUD showWithStatus:@"Searching." maskType:SVProgressHUDMaskTypeBlack];
-    [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:[dictionary valueForKey:@"departure_code"] to:[dictionary valueForKey:@"arrival_code"] adults:nil children: nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:[dictionary valueForKey:@"departure_code"] to:[dictionary valueForKey:@"arrival_code"] returnOn:nil adults:nil children: nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             
             if(mappingResult.array.count > 0) {
                 Trip *tripFound = [mappingResult.array firstObject];

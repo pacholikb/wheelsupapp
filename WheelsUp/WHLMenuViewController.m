@@ -26,17 +26,8 @@
 {
     [ super viewDidLoad ] ;
 
-        
-    if( REUIKitIsFlatMode() )
-    {
-        [ self.navigationBar performSelector : @selector( setBarTintColor: ) withObject : [ UIColor colorWithRed : 84 / 255.0 green : 155 / 255.0 blue : 199 / 255.0 alpha : 1 ] ] ;
-        
-        self.navigationBar.tintColor = [ UIColor whiteColor ] ;
-    }
-    else
-    {
-        self.navigationBar.tintColor = [ UIColor colorWithRed : 0 green : 179 / 255.0 blue : 134 / 255.0 alpha : 1 ] ;
-    }
+    
+    self.navigationBar.tintColor = [ UIColor whiteColor ] ;
     
     __typeof ( self ) __weak weakSelf = self ;
     
@@ -84,7 +75,7 @@
         self.menu.shadowOffset = CGSizeMake( 0, 1 ) ;
         self.menu.shadowOpacity = 1 ;
     }
-    
+
     self.menu.imageOffset = CGSizeMake( 5, -1 ) ;
     self.menu.waitUntilAnimationIsComplete = NO ;
     self.menu.badgeLabelConfigurationBlock = ^( UILabel* badgeLabel, REMenuItem* item ) {

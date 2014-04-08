@@ -24,7 +24,8 @@
     [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.view];
 
     _outbounds = _flight.outbounds;
-    
+    _inbounds = _flight.inbounds;
+        
     _dateFormatter = [[NSDateFormatter alloc] init];
     [_dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     _dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZ";
@@ -46,20 +47,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    if(_inbounds)
+        return 3;
+    else
+        return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 1)
-        return 1;
-    else
+    if(section == 0)
         return _outbounds.count;
+    else if (section == 1 && _flight.inbounds)
+        return _inbounds.count;
+    else
+        return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0)
+    if(indexPath.section == 0 || (indexPath.section == 1 && _inbounds))
         return 140;
     else if (indexPath.section == 2)
         return 100;
@@ -72,18 +78,7 @@
     NSString *CellIdentifier = @"outboundCell";
     UITableViewCell *cell;
     
-    if(indexPath.section == 1)
-    {
-        CellIdentifier = @"bookCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-        UILabel *priceLabel = (UILabel *)[cell viewWithTag:1];
-        UIButton *bookNowButton = (UIButton *)[cell viewWithTag:2];
-        
-        priceLabel.text = [NSString stringWithFormat:@"$%.2f",[_flight.price floatValue]];
-        [bookNowButton addTarget:self action:@selector(bookNow:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else
+    if(indexPath.section == 0)
     {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
@@ -117,6 +112,51 @@
         
         [airlineLogoImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.mediawego.com/images/flights/airlines/120x40t/%@.gif",[outbound valueForKey:@"airline_code"]]] placeholder:nil];
     }
+    else if(indexPath.section == 1 && _inbounds)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+        UILabel *fromCodeLabel = (UILabel *)[cell viewWithTag:1];
+        UILabel *fromNameLabel = (UILabel *)[cell viewWithTag:2];
+        UILabel *fromTimeLabel = (UILabel *)[cell viewWithTag:3];
+        
+        UILabel *toCodeLabel = (UILabel *)[cell viewWithTag:11];
+        UILabel *toNameLabel = (UILabel *)[cell viewWithTag:12];
+        UILabel *toTimeLabel = (UILabel *)[cell viewWithTag:13];
+        
+        UIImageView *airlineLogoImageView = (UIImageView *)[cell viewWithTag:10];
+        
+        
+        NSDictionary *inbound = [_inbounds objectAtIndex:indexPath.row];
+        
+        NSDate *departureDate = [_dateFormatter dateFromString:[inbound valueForKey:@"departure_time"]];
+        NSDate *arrivalDate = [_dateFormatter dateFromString:[inbound valueForKey:@"arrival_time"]];
+        NSDateComponents *componentsDeparture = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:departureDate];
+        NSDateComponents *componentsArrival = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:arrivalDate];
+        
+        fromCodeLabel.text = [inbound valueForKey:@"departure_code"];
+        fromNameLabel.text = [inbound valueForKey:@"departure_name"];
+        //fromTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d",componentsDeparture.hour,componentsDeparture.minute];
+        fromTimeLabel.text = [_dateFormatterOutput stringFromDate:departureDate];
+        
+        toCodeLabel.text = [inbound valueForKey:@"arrival_code"];
+        toNameLabel.text = [inbound valueForKey:@"arrival_name"];
+        //toTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d",componentsArrival.hour,componentsArrival.minute];
+        toTimeLabel.text = [_dateFormatterOutput stringFromDate:arrivalDate];
+        
+        [airlineLogoImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.mediawego.com/images/flights/airlines/120x40t/%@.gif",[inbound valueForKey:@"airline_code"]]] placeholder:nil];
+    }
+    else
+    {
+        CellIdentifier = @"bookCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+        UILabel *priceLabel = (UILabel *)[cell viewWithTag:1];
+        UIButton *bookNowButton = (UIButton *)[cell viewWithTag:2];
+        
+        priceLabel.text = [NSString stringWithFormat:@"$%.2f",[_flight.price floatValue]];
+        [bookNowButton addTarget:self action:@selector(bookNow:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     return cell;
 }
@@ -124,9 +164,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if(section == 0)
-        return @"Connecting Flights";
-    else if(section == 2)
-        return @"Upcoming events";
+        return @"Connecting Outbound Flights";
+    else if(section == 1 && _inbounds)
+        return @"Connecting Inbound Flights";
     else
         return @"Book Flight";
 }
