@@ -81,8 +81,6 @@
     self.window.rootViewController = firstController;
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
-
-    [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.window];
     
     return YES;
 }

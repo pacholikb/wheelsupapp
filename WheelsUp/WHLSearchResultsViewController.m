@@ -26,7 +26,7 @@ CLLocationCoordinate2D coordinateArray[2];
     [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.view];
     
     [_scrollView setContentSize:CGSizeMake(960, 140)];
-    
+ 
     _departureCityName = [[_trip.trips firstObject] objectForKey:@"departure_name"];
     _arrivalCityName = [[_trip.trips firstObject] objectForKey:@"arrival_name"];
     
@@ -197,13 +197,11 @@ CLLocationCoordinate2D coordinateArray[2];
         
         NSDate *departureDate = [_dateFormatter dateFromString:[[flight.outbounds firstObject] valueForKey:@"departure_time"]];
         NSDate *arrivalDate = [_dateFormatter dateFromString:[[flight.outbounds lastObject] valueForKey:@"arrival_time"]];
-        NSDateComponents *componentsDeparture = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:departureDate];
-        NSDateComponents *componentsArrival = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:arrivalDate];
     
         cityLabel.text = _arrivalCityName;
         countryLabel.text = [[flight.outbounds firstObject] valueForKey:@"airline_name"];
         priceLabel.text = [NSString stringWithFormat:@"$%.2f",[flight.price floatValue]];
-        timeLabel.text = [NSString stringWithFormat:@"%02d:%02d - %02d:%02d",componentsDeparture.hour,componentsDeparture.minute,componentsArrival.hour,componentsArrival.minute];
+        timeLabel.text = [NSString stringWithFormat:@"%@ - %@",[_dateFormatterOutput stringFromDate:departureDate],[_dateFormatterOutput stringFromDate:arrivalDate]];
         stopsLabel.text = ((NSArray *)flight.outbounds).count > 1 ? [NSString stringWithFormat:@"stops: %d",((NSArray *)flight.outbounds).count - 1] : @"direct";
     }
     else {
@@ -261,7 +259,7 @@ CLLocationCoordinate2D coordinateArray[2];
     if(tableView == _tableView)
         return 65.0;
     else
-        return 100;
+        return 120;
 }
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay

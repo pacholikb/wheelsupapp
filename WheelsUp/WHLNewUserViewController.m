@@ -7,6 +7,7 @@
 //
 
 #import "WHLNewUserViewController.h"
+#import "WHLNetworkManager.h"
 #import <Parse/Parse.h>
 
 @interface WHLNewUserViewController ()
@@ -19,6 +20,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.view];
 }
 
 - (IBAction)signupButton:(id)sender {

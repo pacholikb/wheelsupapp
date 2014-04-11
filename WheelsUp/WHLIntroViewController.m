@@ -88,7 +88,6 @@
 }
 
 - (IBAction)quitSlideshow:(id)sender {
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"intro"];
     [defaults synchronize];

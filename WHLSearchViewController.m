@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     [self setTitle : @"Search"] ;
-//    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:194/255.0f green:209/255.0f blue:202/255.0f alpha:1.0f]};
+    [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.view];
     
     self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle :@"Menu"
                                                                                 style :UIBarButtonItemStyleBordered
@@ -44,7 +44,7 @@
     _childrenCount = 0;
  
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchProgressEvent:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -111,6 +111,11 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"City" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext];
     [fetchRequest setEntity:entity];
     
+    NSPredicate *predicate;
+    predicate = [NSPredicate predicateWithFormat:@"filtered == true"];
+    
+    [fetchRequest setPredicate:predicate];
+    
     NSError *error;
     NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:fetchRequest error:&error];
     
@@ -132,9 +137,8 @@
             NSString *adults = [NSString stringWithFormat:@"%d",_adultsCount];
             NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
             NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
-            NSString *returnOn = _isOneWay ? nil : _returnDateString;
             
-            [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:returnOn adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:nil adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                 
                 if(mappingResult.array.count > 0) {
                     wself.trip = [mappingResult.array firstObject];
@@ -240,9 +244,8 @@
     NSString *adults = [NSString stringWithFormat:@"%d",_adultsCount];
     NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
     NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
-    NSString *returnOn = _isOneWay ? nil : _returnDateString;
     
-    [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:returnOn adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:nil adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         if(mappingResult.array.count > 0) {
             wself.trip = [mappingResult.array firstObject];

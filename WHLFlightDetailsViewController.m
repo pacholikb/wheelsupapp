@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Broc Pacholik . All rights reserved.
 //
 
+#import <Social/Social.h>
 #import "WHLFlightDetailsViewController.h"
 #import "JMImageCache.h"
 #import "WHLNetworkManager.h"
@@ -70,7 +71,7 @@
     else if (indexPath.section == 2)
         return 100;
     else
-        return 60;
+        return 80;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,9 +154,11 @@
         
         UILabel *priceLabel = (UILabel *)[cell viewWithTag:1];
         UIButton *bookNowButton = (UIButton *)[cell viewWithTag:2];
+        UIButton *shareButton = (UIButton *)[cell viewWithTag:3];
         
         priceLabel.text = [NSString stringWithFormat:@"$%.2f",[_flight.price floatValue]];
         [bookNowButton addTarget:self action:@selector(bookNow:) forControlEvents:UIControlEventTouchUpInside];
+        [shareButton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return cell;
@@ -175,6 +178,11 @@
 {
     NSLog(@"BOOKING URL %@",[NSString stringWithFormat:@"%@&ts_code=7756f",_flight.deeplink]);
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@&ts_code=7756f",_flight.deeplink]]];
+}
+
+- (void)shareAction:(id)sender {
+    UIActivityViewController* avc = [[UIActivityViewController alloc] initWithActivityItems:@[@"Some share message, image possibly"]  applicationActivities:nil];
+    [self presentViewController:avc animated:YES completion:nil];
 }
 
 - (IBAction)infoAction:(id)sender {

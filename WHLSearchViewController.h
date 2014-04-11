@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Social/Social.h>
 #import <CoreLocation/CoreLocation.h>
 #import "WHLMenuItemViewController.h"
 #import "WHLMenuViewController.h"

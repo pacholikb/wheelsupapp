@@ -63,6 +63,7 @@
 		C613A05018B359AD00918DE8 /* WHLSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C613A04F18B359AD00918DE8 /* WHLSearchResultsViewController.m */; };
 		C61EF49118EEAEAB00A3249C /* unsplash2.png in Resources */ = {isa = PBXBuildFile; fileRef = C61EF48D18EEAEAB00A3249C /* unsplash2.png */; };
 		C61EF49218EEAEAB00A3249C /* unsplash2(small).png in Resources */ = {isa = PBXBuildFile; fileRef = C61EF48E18EEAEAB00A3249C /* unsplash2(small).png */; };
+		C626746918F805980081BE20 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C626746818F805980081BE20 /* Social.framework */; };
 		C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */; };
 		C63263A918F3F5D300E83A97 /* ReturnFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63263A818F3F5D300E83A97 /* ReturnFlightViewController.m */; };
 		C63E9A0E18CDD0ED00CB8C8C /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E9A0D18CDD0ED00CB8C8C /* Weather.m */; };
@@ -184,6 +185,7 @@
 		C613A04F18B359AD00918DE8 /* WHLSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHLSearchResultsViewController.m; path = WheelsUp/WHLSearchResultsViewController.m; sourceTree = "<group>"; };
 		C61EF48D18EEAEAB00A3249C /* unsplash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unsplash2.png; path = WheelsUp/Images.xcassets/LaunchImage.launchimage/unsplash2.png; sourceTree = "<group>"; };
 		C61EF48E18EEAEAB00A3249C /* unsplash2(small).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unsplash2(small).png"; path = "WheelsUp/Images.xcassets/LaunchImage.launchimage/unsplash2(small).png"; sourceTree = "<group>"; };
+		C626746818F805980081BE20 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C627662918C5C7DA00D80043 /* WHLFlightDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLFlightDetailsViewController.h; sourceTree = "<group>"; };
 		C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFlightDetailsViewController.m; sourceTree = "<group>"; };
 		C63263A718F3F5D300E83A97 /* ReturnFlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReturnFlightViewController.h; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C626746918F805980081BE20 /* Social.framework in Frameworks */,
 				C672AAB318D1A3350039C737 /* MapKit.framework in Frameworks */,
 				1858B32C188214A000A18F32 /* CoreText.framework in Frameworks */,
 				1858B25E1881FD7300A18F32 /* AudioToolbox.framework in Frameworks */,
@@ -355,6 +358,7 @@
 		18A3C87E187D1C0700C5E07B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C626746818F805980081BE20 /* Social.framework */,
 				186116A718E3E4B0007E5453 /* libFlurry_4.3.2.a */,
 				186116A418E3E34E007E5453 /* Flurry.h */,
 				186116A518E3E34E007E5453 /* ProjectApiKey.txt */,

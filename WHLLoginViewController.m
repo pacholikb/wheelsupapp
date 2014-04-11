@@ -8,6 +8,7 @@
 
 #import "WHLProfileViewController.h"
 #import "WHLLoginViewController.h"
+#import "WHLNetworkManager.h"
 #import <Parse/Parse.h>
 #import "REMenu.h"
 
@@ -22,6 +23,8 @@
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
     [self setTitle : @"Login"];
+    
+    [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.view];
     
     (_facebookLoginImage.image = [UIImage imageNamed:@"homebg(320x568).png"]);
 
@@ -44,8 +47,7 @@
 
 - (void)hideKeyboard:(id)sender
 {
-    [_usernameField resignFirstResponder];
-    [_passwordField resignFirstResponder];
+    [self.view endEditing:YES];
 }
     
 - (IBAction)login:(id)sender {
@@ -94,7 +96,7 @@
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
                 
             } else {
-               
+               NSLog(@"%@",error);
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
