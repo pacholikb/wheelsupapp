@@ -64,6 +64,7 @@
 		C61EF49118EEAEAB00A3249C /* unsplash2.png in Resources */ = {isa = PBXBuildFile; fileRef = C61EF48D18EEAEAB00A3249C /* unsplash2.png */; };
 		C61EF49218EEAEAB00A3249C /* unsplash2(small).png in Resources */ = {isa = PBXBuildFile; fileRef = C61EF48E18EEAEAB00A3249C /* unsplash2(small).png */; };
 		C626746918F805980081BE20 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C626746818F805980081BE20 /* Social.framework */; };
+		C62674B718FBE6700081BE20 /* WhenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62674B618FBE6700081BE20 /* WhenViewController.m */; };
 		C627662B18C5C7DA00D80043 /* WHLFlightDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */; };
 		C63263A918F3F5D300E83A97 /* ReturnFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C63263A818F3F5D300E83A97 /* ReturnFlightViewController.m */; };
 		C63E9A0E18CDD0ED00CB8C8C /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = C63E9A0D18CDD0ED00CB8C8C /* Weather.m */; };
@@ -88,6 +89,8 @@
 		C67F6A7D18D7331300D93491 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C67F6A7C18D7331300D93491 /* Event.m */; };
 		C684A34318E567AE00762A3F /* WHLIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C684A34218E567AE00762A3F /* WHLIntroViewController.m */; };
 		C688C35118DC2A65003D8B0F /* filtered city list.csv in Resources */ = {isa = PBXBuildFile; fileRef = C688C35018DC2A65003D8B0F /* filtered city list.csv */; };
+		C697A0F518FD64E700657DD9 /* DiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C697A0F418FD64E700657DD9 /* DiscoveryViewController.m */; };
+		C697A0F818FD688D00657DD9 /* BlogPost.m in Sources */ = {isa = PBXBuildFile; fileRef = C697A0F718FD688D00657DD9 /* BlogPost.m */; };
 		C6D2BCA218ACBDDA00998759 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA118ACBDDA00998759 /* Parse.framework */; };
 		C6D2BCA418ACBEF700998759 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */; };
 		C6D2BCA518ACBF7F00998759 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A3C891187D1C0900C5E07B /* Main.storyboard */; };
@@ -186,6 +189,8 @@
 		C61EF48D18EEAEAB00A3249C /* unsplash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unsplash2.png; path = WheelsUp/Images.xcassets/LaunchImage.launchimage/unsplash2.png; sourceTree = "<group>"; };
 		C61EF48E18EEAEAB00A3249C /* unsplash2(small).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unsplash2(small).png"; path = "WheelsUp/Images.xcassets/LaunchImage.launchimage/unsplash2(small).png"; sourceTree = "<group>"; };
 		C626746818F805980081BE20 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C62674B518FBE6700081BE20 /* WhenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenViewController.h; sourceTree = "<group>"; };
+		C62674B618FBE6700081BE20 /* WhenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenViewController.m; sourceTree = "<group>"; };
 		C627662918C5C7DA00D80043 /* WHLFlightDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLFlightDetailsViewController.h; sourceTree = "<group>"; };
 		C627662A18C5C7DA00D80043 /* WHLFlightDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLFlightDetailsViewController.m; sourceTree = "<group>"; };
 		C63263A718F3F5D300E83A97 /* ReturnFlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReturnFlightViewController.h; sourceTree = "<group>"; };
@@ -229,6 +234,10 @@
 		C684A34118E567AE00762A3F /* WHLIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLIntroViewController.h; sourceTree = "<group>"; };
 		C684A34218E567AE00762A3F /* WHLIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLIntroViewController.m; sourceTree = "<group>"; };
 		C688C35018DC2A65003D8B0F /* filtered city list.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "filtered city list.csv"; sourceTree = SOURCE_ROOT; };
+		C697A0F318FD64E700657DD9 /* DiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryViewController.h; sourceTree = "<group>"; };
+		C697A0F418FD64E700657DD9 /* DiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryViewController.m; sourceTree = "<group>"; };
+		C697A0F618FD688D00657DD9 /* BlogPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlogPost.h; path = model/BlogPost.h; sourceTree = SOURCE_ROOT; };
+		C697A0F718FD688D00657DD9 /* BlogPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlogPost.m; path = model/BlogPost.m; sourceTree = SOURCE_ROOT; };
 		C6D2BCA118ACBDDA00998759 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
 		C6D2BCA318ACBEF700998759 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK.framework; sourceTree = "<group>"; };
 		C6D2BCA718ACDB7D00998759 /* WheelsUpModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WheelsUpModel.xcdatamodel; sourceTree = "<group>"; };
@@ -331,6 +340,7 @@
 				C6D2BCAC18ACDF0000998759 /* model */,
 				18A3C885187D1C0800C5E07B /* WheelsUp */,
 				1858B3321882350200A18F32 /* SignUp */,
+				C697A0F218FD64C100657DD9 /* Discovery */,
 				1858B2481881F94000A18F32 /* Login */,
 				18DEF244187E87B800090861 /* Menu */,
 				18DEF24B187E8C7400090861 /* Search */,
@@ -474,6 +484,8 @@
 				C65C46D118D9CB2D00BDB774 /* WhereViewController.m */,
 				C63263A718F3F5D300E83A97 /* ReturnFlightViewController.h */,
 				C63263A818F3F5D300E83A97 /* ReturnFlightViewController.m */,
+				C62674B518FBE6700081BE20 /* WhenViewController.h */,
+				C62674B618FBE6700081BE20 /* WhenViewController.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -523,9 +535,20 @@
 			path = MZFormSheetController;
 			sourceTree = "<group>";
 		};
+		C697A0F218FD64C100657DD9 /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				C697A0F318FD64E700657DD9 /* DiscoveryViewController.h */,
+				C697A0F418FD64E700657DD9 /* DiscoveryViewController.m */,
+			);
+			name = Discovery;
+			sourceTree = "<group>";
+		};
 		C6D2BCAC18ACDF0000998759 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				C697A0F618FD688D00657DD9 /* BlogPost.h */,
+				C697A0F718FD688D00657DD9 /* BlogPost.m */,
 				C65C5C9018ED585100E32FCC /* City.h */,
 				C65C5C9118ED585100E32FCC /* City.m */,
 				C640A91518BF39B3003FA7DB /* Flight.h */,
@@ -596,7 +619,7 @@
 				ORGANIZATIONNAME = "Broc Pacholik ";
 				TargetAttributes = {
 					18A3C87B187D1C0700C5E07B = {
-						DevelopmentTeam = 3E495EVFBH;
+						DevelopmentTeam = 7W7FDGU8BV;
 					};
 					18A3C89F187D1C0900C5E07B = {
 						TestTargetID = 18A3C87B187D1C0700C5E07B;
@@ -720,8 +743,10 @@
 				1858B3541883C5B100A18F32 /* WHLFBProfileViewController.m in Sources */,
 				C63E9A0E18CDD0ED00CB8C8C /* Weather.m in Sources */,
 				C65C46C618D9992800BDB774 /* UIViewController+TargetViewController.m in Sources */,
+				C697A0F818FD688D00657DD9 /* BlogPost.m in Sources */,
 				18DEF240187E869800090861 /* REMenu.m in Sources */,
 				18DEF23F187E869800090861 /* RECommonFunctions.m in Sources */,
+				C697A0F518FD64E700657DD9 /* DiscoveryViewController.m in Sources */,
 				C6D2BCAB18ACDBA600998759 /* WHLNetworkManager.m in Sources */,
 				C67F6A7D18D7331300D93491 /* Event.m in Sources */,
 				C65C46C018D9992800BDB774 /* MZFormSheetBackgroundWindow.m in Sources */,
@@ -736,6 +761,7 @@
 				18A3C88C187D1C0800C5E07B /* main.m in Sources */,
 				C65C46C218D9992800BDB774 /* MZFormSheetController.m in Sources */,
 				C65C5C9518ED907100E32FCC /* Trip.m in Sources */,
+				C62674B718FBE6700081BE20 /* WhenViewController.m in Sources */,
 				C65C46D218D9CB2D00BDB774 /* WhereViewController.m in Sources */,
 				C65C46CC18D9997B00BDB774 /* NSInvocation+Copy.m in Sources */,
 				C65C46C118D9992800BDB774 /* MZFormSheetBackgroundWindowViewController.m in Sources */,
@@ -907,7 +933,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/brocpacholik/Downloads,
@@ -933,7 +959,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C4E47CEE-C157-44BD-A5E8-00F91410EA74";
+				PROVISIONING_PROFILE = "2D4E66B6-62CF-4868-9CB4-766A1378C329";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

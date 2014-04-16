@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "WHLSearchViewController.h"
 #import "Flight.h"
 #import "Weather.h"
 #import "Trip.h"
 #import "Event.h"
 #import "SearchModel.h"
+
+@class WHLSearchViewController;
 
 @interface WHLSearchResultsViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate ,UIScrollViewDelegate, MKMapViewDelegate>
 
@@ -40,6 +43,8 @@
 
 @property (strong) NSArray *weatherArray;
 @property (strong) Flight *selectedFlight;
+
+@property (strong) WHLSearchViewController* delegate;
 
 @property (strong) Trip *trip;
 @property (strong) NSString *departureCityName;

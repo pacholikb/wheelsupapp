@@ -156,6 +156,12 @@
         UIButton *bookNowButton = (UIButton *)[cell viewWithTag:2];
         UIButton *shareButton = (UIButton *)[cell viewWithTag:3];
         
+        UIButton *returnButton = (UIButton *)[cell viewWithTag:10];
+        if(_delegate.searchMode != place)
+            returnButton.hidden = NO;
+        else
+            returnButton.hidden = YES;
+        
         priceLabel.text = [NSString stringWithFormat:@"$%.2f",[_flight.price floatValue]];
         [bookNowButton addTarget:self action:@selector(bookNow:) forControlEvents:UIControlEventTouchUpInside];
         [shareButton addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -188,6 +194,23 @@
 - (IBAction)infoAction:(id)sender {
     NSString *urlString = [NSString stringWithFormat:@"http://en.wikipedia.org/wiki/%@",[[_outbounds lastObject] valueForKey:@"arrival_name"]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+}
+
+- (IBAction)returnFlightAction:(id)sender {
+    _delegate.searchMode = place;
+
+    _delegate.isFiltersViewVisible = YES;
+    _delegate.filtersView.alpha = 1.0;
+    
+    _delegate.toCode = _delegate.fromCode;
+    [_delegate.whereButton setTitle:_delegate.fromTF.text forState:UIControlStateNormal];
+    
+    _delegate.fromTF.text = [_outbounds.lastObject valueForKey:@"arrival_name"];
+    _delegate.fromCode = [_outbounds.lastObject valueForKey:@"arrival_code"];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    [_delegate showWhenDialog];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WHLSearchViewController.h"
 #import "Flight.h"
 
 @interface WHLFlightDetailsViewController : UITableViewController
@@ -17,5 +18,7 @@
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
 @property (nonatomic, strong) NSDateFormatter* dateFormatterOutput;
 @property (nonatomic, strong) NSString* location;
+
+@property (strong) WHLSearchViewController *delegate;
 
 @end

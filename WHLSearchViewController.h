@@ -48,6 +48,7 @@ typedef enum {
 @property (strong) NSString *numberOfStops;
 @property (assign) BOOL isOneWay;
 @property (strong) NSString *returnDateString;
+@property (strong) NSString *departureDateString;
 
 @property (assign) BOOL isFirstUse;
 @property (assign) BOOL isLocationButtonClicked;
@@ -66,5 +67,7 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UIButton *whereButton;
 
 @property (nonatomic, assign) SearchMode searchMode;
+
+- (void)showWhenDialog;
 
 @end

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="BlogPost" representedClassName="BlogPost" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="postId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="City" representedClassName="City" syncable="YES">
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="filtered" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -27,5 +33,6 @@
         <element name="City" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Flight" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Trip" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="BlogPost" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

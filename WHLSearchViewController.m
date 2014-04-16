@@ -9,6 +9,7 @@
 #import "WHLSearchViewController.h"
 #import "PassangersViewController.h"
 #import "WhereViewController.h"
+#import "WhenViewController.h"
 #import "ReturnFlightViewController.h"
 #import "WHLNetworkManager.h"
 #import "REMenu.h"
@@ -51,8 +52,10 @@
 {
     NSLog(@"viewWillAppear");
     _isDataChanged = NO;
+    _departureDateString = nil;
     
     [self addObserver:self forKeyPath:@"canCancelSearch" options:NSKeyValueObservingOptionNew context:0];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -138,7 +141,7 @@
             NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
             NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
             
-            [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:nil adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode when:nil returnOn:nil adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                 
                 if(mappingResult.array.count > 0) {
                     wself.trip = [mappingResult.array firstObject];
@@ -245,7 +248,7 @@
     NSString *children = [NSString stringWithFormat:@"%d",_childrenCount];
     NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
     
-    [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:nil adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode when:nil returnOn:nil adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         
         if(mappingResult.array.count > 0) {
             wself.trip = [mappingResult.array firstObject];
@@ -344,11 +347,19 @@
     
 }
 
-- (IBAction)whereAction:(id)sender {
-    [_fromTF resignFirstResponder];
-    
+- (void)showWhenDialog
+{
     _isDataChanged = YES;
     
+    WhenViewController *when = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WhenViewController"];
+    when.parent = self;
+    
+    [self presentOnSheet:when withSize:CGSizeMake(280, 280)];
+}
+
+- (IBAction)whereAction:(id)sender {
+    [_fromTF resignFirstResponder];
+        
     WhereViewController *where = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WhereViewController"];
     where.parent = self;
     if(_searchMode == place)
@@ -390,6 +401,7 @@
         WHLSearchResultsViewController *controller = (WHLSearchResultsViewController *)segue.destinationViewController;
         controller.flights = _flights;
         controller.trip = _trip;
+        controller.delegate = self;
         
         _trip.successful = [NSNumber numberWithBool:YES];
         [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext saveToPersistentStore:nil];
@@ -496,7 +508,7 @@
         NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
         NSString *returnOn = _isOneWay ? nil : _returnDateString;
         
-        [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode returnOn:returnOn adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode when:_departureDateString returnOn:returnOn adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             
             if(wself.isSearchCancelled)
                 return;
@@ -564,7 +576,7 @@
     [_maxPriceTF resignFirstResponder];
     
     MZFormSheetController *sheet = [[MZFormSheetController alloc] initWithSize:size viewController:controller];
-    sheet.shouldDismissOnBackgroundViewTap = YES;
+    sheet.shouldDismissOnBackgroundViewTap = NO;
     sheet.transitionStyle = MZFormSheetTransitionStyleFade;
     sheet.cornerRadius = 1;
     [[MZFormSheetController sharedBackgroundWindow] setBackgroundBlurEffect:YES];

@@ -169,6 +169,7 @@ CLLocationCoordinate2D coordinateArray[2];
     {
         WHLFlightDetailsViewController *controller = segue.destinationViewController;
         controller.flight = _selectedFlight;
+        controller.delegate = _delegate;
         controller.location = [NSString stringWithFormat:@"%@, %@",[[_trip.trips firstObject] objectForKey:@"arrival_name"],[[_trip.trips firstObject] objectForKey:@"arrival_country_name"]];
     }
 }

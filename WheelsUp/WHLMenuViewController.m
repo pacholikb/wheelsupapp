@@ -10,6 +10,7 @@
 #import "WHLProfileViewController.h"
 #import "WHLSearchViewController.h"
 #import "WHLRecentViewController.h"
+#import "DiscoveryViewController.h"
 #import "WHLLoginViewController.h"
 #import <Parse/Parse.h>
 #import "REMenu.h"
@@ -61,11 +62,22 @@
                                                               
                                                             } ] ;
     
+    REMenuItem* discoveryItem = [ [ REMenuItem alloc ] initWithTitle : @"Discovery"
+                                                             image : [UIImage imageNamed:@"Icon_Home"]
+                                                  highlightedImage : nil
+                                                            action : ^( REMenuItem* item ) {
+                                                                
+                                                                DiscoveryViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"DiscoveryViewController" ];
+                                                                [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
+                                                                
+                                                            } ] ;
+    
     searchItem.tag = 0 ;
     recentItem.tag = 1 ;
     profileItem.tag = 2 ;
+    discoveryItem.tag = 3;
     
-    self.menu = [ [ REMenu alloc ] initWithItems : @[ searchItem, recentItem, profileItem ] ] ;
+    self.menu = [ [ REMenu alloc ] initWithItems : @[ searchItem, recentItem, profileItem, discoveryItem ] ] ;
     
     if( !REUIKitIsFlatMode() )
     {

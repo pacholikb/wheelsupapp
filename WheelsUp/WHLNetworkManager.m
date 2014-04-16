@@ -8,6 +8,7 @@
 
 #import "Weather.h"
 #import "Event.h"
+#import "BlogPost.h"
 #import "WHLNetworkManager.h"
 
 @implementation WHLNetworkManager
@@ -121,8 +122,8 @@
     
     RKObjectMapping *eventMapping = [RKObjectMapping mappingForClass:[Event class]];
     [eventMapping addAttributeMappingsFromDictionary:@{
-                                                         @"id":                        @"eventId",
-                                                         @"title":                     @"title",
+                                                         @"id":                         @"eventId",
+                                                         @"title":                      @"title",
                                                          @"url":                        @"url",
                                                          @"start_time":                 @"startTime",
                                                          @"description":                @"desc",
@@ -135,9 +136,27 @@
     [_eventsObjectManager addResponseDescriptor:responseDescriptor];
     //
     
+    //BlogPost entity
+    _blogObjectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://wheels-up.co"]];
+    
+    [_blogObjectManager.router.routeSet addRoute:[RKRoute routeWithName:@"blogRoute" pathPattern:@"" method:RKRequestMethodGET]];
+    
+    RKEntityMapping *blogMapping = [RKEntityMapping mappingForEntityForName:@"BlogPost" inManagedObjectStore:managedObjectStore];
+    [blogMapping addAttributeMappingsFromDictionary:@{
+                                                       @"id":                        @"postId",
+                                                       @"title":                     @"title",
+                                                       @"content":                   @"content",
+                                                       @"date":                      @"date"
+                                                       }];
+    
+    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:blogMapping method:RKRequestMethodGET pathPattern:nil keyPath:@"posts" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    [_blogObjectManager addResponseDescriptor:responseDescriptor];
+    //
+    
 }
 
-- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to returnOn:(NSString *)inbound adults:(NSString *)adults children:(NSString *)children success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to when:(NSString *)when returnOn:(NSString *)inbound adults:(NSString *)adults children:(NSString *)children success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
 {
     if(!_dateFormatter) {
@@ -145,7 +164,7 @@
         _dateFormatter.dateFormat = @"YYYY-MM-d";
     }
     
-    NSString *date = [_dateFormatter stringFromDate:[NSDate date]];
+    NSString *date = when.length > 0 ? when : [_dateFormatter stringFromDate:[NSDate date]];
     
     NSDictionary *tripDictionary;
     if(inbound.length > 0)

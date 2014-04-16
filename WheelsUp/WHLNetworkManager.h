@@ -18,6 +18,7 @@
 @property (nonatomic, strong)CLLocationManager *locationManager;
 @property (nonatomic, strong)RKObjectManager *weatherObjectManager;
 @property (nonatomic, strong)RKObjectManager *eventsObjectManager;
+@property (nonatomic, strong)RKObjectManager *blogObjectManager;
 @property (nonatomic, strong)NSDictionary *apiKeys;
 
 @property (strong) NSDateFormatter *dateFormatter;
@@ -26,7 +27,7 @@
 - (void)configureObjectManager :(RKManagedObjectStore *)managedObjectStore;
 - (NSDictionary *)getApiKeysParams;
 
-- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to returnOn:(NSString *)inbound adults:(NSString *)adults children:(NSString *)children success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
+- (void)makeSearchRequestFrom :(NSString *)from to:(NSString *)to when:(NSString *)when returnOn:(NSString *)inbound adults:(NSString *)adults children:(NSString *)children success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                        failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure;
 - (void)makeFlightRequestWithSearchId :(NSString *)searchId andTripId:(NSString *)tripId stops:(NSString *)stops maxrrice:(NSString *)maxPrice success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
                                failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure numberOfTimes:(NSUInteger)nTimes;
