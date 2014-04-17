@@ -29,6 +29,9 @@
     
     [ self setTitle : @"Recent" ] ;
     
+    WHLMenuViewController *nav = (WHLMenuViewController *)self.navigationController;
+    [nav.menu setItems:@[ nav.searchItem, nav.profileItem, nav.discoveryItem]];
+    
     self.navigationItem.leftBarButtonItem = [[ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
     
 }

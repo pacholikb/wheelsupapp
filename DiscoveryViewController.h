@@ -10,9 +10,13 @@
 #import "REMenu.h"
 #import "BlogPost.h"
 #import "WHLNetworkManager.h"
+#import "JMImageCache.h"
+#import "WHLMenuViewController.h"
 
 @interface DiscoveryViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+@property (nonatomic, strong) NSMutableArray *expandedRows;
 
 @end

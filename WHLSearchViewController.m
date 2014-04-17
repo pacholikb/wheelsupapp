@@ -30,6 +30,9 @@
     [self setTitle : @"Search"] ;
     [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.view];
     
+    WHLMenuViewController *nav = (WHLMenuViewController *)self.navigationController;
+    [nav.menu setItems:@[ nav.recentItem, nav.profileItem, nav.discoveryItem ]];
+    
     self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle :@"Menu"
                                                                                 style :UIBarButtonItemStyleBordered
                                                                                target :self.navigationController
@@ -45,7 +48,7 @@
     _childrenCount = 0;
  
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchProgressEvent:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
-    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -56,6 +59,21 @@
     
     [self addObserver:self forKeyPath:@"canCancelSearch" options:NSKeyValueObservingOptionNew context:0];
     
+    if(_toCode.length > 0) {
+        NSString *name = _toCode;
+        
+        NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"City"];
+        [req setPredicate:[NSPredicate predicateWithFormat:@"iata ==[c] %@",_toCode]];
+        
+        NSError *error;
+        NSArray *results = [[RKObjectManager sharedManager].managedObjectStore.mainQueueManagedObjectContext executeFetchRequest:req error:&error];
+        
+        if(results && !error)
+            name = [NSString stringWithFormat:@"%@, %@",((City *)[results firstObject]).name,((City *)[results firstObject]).country];
+        
+        NSLog(@"city name %@",name);
+        [_whereButton setTitle:name forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated

@@ -7,13 +7,6 @@
 //
 
 #import "WHLMenuViewController.h"
-#import "WHLProfileViewController.h"
-#import "WHLSearchViewController.h"
-#import "WHLRecentViewController.h"
-#import "DiscoveryViewController.h"
-#import "WHLLoginViewController.h"
-#import <Parse/Parse.h>
-#import "REMenu.h"
 
 @interface WHLMenuViewController ()
 
@@ -32,7 +25,7 @@
     
     __typeof ( self ) __weak weakSelf = self ;
     
-    REMenuItem* searchItem = [ [ REMenuItem alloc ] initWithTitle : @"Search"
+    _searchItem = [ [ REMenuItem alloc ] initWithTitle : @"Search"
                                                             image : [UIImage imageNamed:@"Icon_Home"]
                                                  highlightedImage : nil
                                                            action : ^( REMenuItem* item ) {
@@ -42,7 +35,7 @@
                                                                
                                                            } ] ;
     
-    REMenuItem* recentItem = [ [ REMenuItem alloc ] initWithTitle : @"Recent"
+    _recentItem = [ [ REMenuItem alloc ] initWithTitle : @"Recent"
                                                             image : [UIImage imageNamed:@"Icon_Home"]
                                                  highlightedImage : nil
                                                            action : ^( REMenuItem* item ) {
@@ -52,7 +45,7 @@
                                                                
                                                            } ] ;
     
-    REMenuItem* profileItem = [ [ REMenuItem alloc ] initWithTitle : @"Profile"
+    _profileItem = [ [ REMenuItem alloc ] initWithTitle : @"Profile"
                                                              image : [UIImage imageNamed:@"Icon_Home"]
                                                   highlightedImage : nil
                                                             action : ^( REMenuItem* item ) {
@@ -62,7 +55,7 @@
                                                               
                                                             } ] ;
     
-    REMenuItem* discoveryItem = [ [ REMenuItem alloc ] initWithTitle : @"Discovery"
+    _discoveryItem = [ [ REMenuItem alloc ] initWithTitle : @"Discovery"
                                                              image : [UIImage imageNamed:@"Icon_Home"]
                                                   highlightedImage : nil
                                                             action : ^( REMenuItem* item ) {
@@ -72,12 +65,12 @@
                                                                 
                                                             } ] ;
     
-    searchItem.tag = 0 ;
-    recentItem.tag = 1 ;
-    profileItem.tag = 2 ;
-    discoveryItem.tag = 3;
+    _searchItem.tag = 0 ;
+    _recentItem.tag = 1 ;
+    _profileItem.tag = 2 ;
+    _discoveryItem.tag = 3;
     
-    self.menu = [ [ REMenu alloc ] initWithItems : @[ searchItem, recentItem, profileItem, discoveryItem ] ] ;
+    self.menu = [ [ REMenu alloc ] initWithItems : @[ _searchItem, _recentItem, _profileItem, _discoveryItem ] ] ;
     
     if( !REUIKitIsFlatMode() )
     {
@@ -94,6 +87,8 @@
         badgeLabel.backgroundColor = [ UIColor colorWithRed : 0 green : 179 / 255.0 blue : 134 / 255.0 alpha : 1 ] ;
         badgeLabel.layer.borderColor = [ UIColor colorWithRed : 0.000 green : 0.648 blue : 0.507 alpha : 1.000 ].CGColor ;
     } ;
+    
+
 }
 
 - ( void ) toggleMenu

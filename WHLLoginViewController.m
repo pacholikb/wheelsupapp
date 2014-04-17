@@ -28,6 +28,8 @@
     
     (_facebookLoginImage.image = [UIImage imageNamed:@"homebg(320x568).png"]);
 
+    WHLMenuViewController *nav = (WHLMenuViewController *)self.navigationController;
+    [nav.menu setItems:@[ nav.searchItem, nav.recentItem, nav.discoveryItem ]];
     
     self.navigationItem.leftBarButtonItem = [ [ UIBarButtonItem alloc ] initWithTitle : @"Menu" style : UIBarButtonItemStyleBordered target : self.navigationController action : @selector( toggleMenu ) ] ;
     

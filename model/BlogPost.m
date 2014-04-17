@@ -2,7 +2,7 @@
 //  BlogPost.m
 //  WheelsUp
 //
-//  Created by Konrad Przyludzki on 15.04.2014.
+//  Created by Konrad Przyludzki on 17.04.2014.
 //  Copyright (c) 2014 Broc Pacholik . All rights reserved.
 //
 
@@ -11,9 +11,12 @@
 
 @implementation BlogPost
 
+@dynamic content;
+@dynamic date;
 @dynamic postId;
 @dynamic title;
-@dynamic date;
-@dynamic content;
+@dynamic image;
+@dynamic tags;
+@dynamic categories;
 
 @end

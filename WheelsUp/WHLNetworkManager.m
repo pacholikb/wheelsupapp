@@ -138,6 +138,7 @@
     
     //BlogPost entity
     _blogObjectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://wheels-up.co"]];
+    _blogObjectManager.managedObjectStore = managedObjectStore;
     
     [_blogObjectManager.router.routeSet addRoute:[RKRoute routeWithName:@"blogRoute" pathPattern:@"" method:RKRequestMethodGET]];
     
@@ -146,8 +147,12 @@
                                                        @"id":                        @"postId",
                                                        @"title":                     @"title",
                                                        @"content":                   @"content",
+                                                       @"tags":                      @"tags",
+                                                       @"categories":                @"categories",
+                                                       @"thumbnail":                 @"image",
                                                        @"date":                      @"date"
                                                        }];
+    blogMapping.identificationAttributes = @[ @"postId" ];
     
     responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:blogMapping method:RKRequestMethodGET pathPattern:nil keyPath:@"posts" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
