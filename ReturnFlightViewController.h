@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "WHLSearchViewController.h"
 #import "MZFormSheetController.h"
+#import "RDVCalendarView.h"
 
-@interface ReturnFlightViewController : UIViewController
+@interface ReturnFlightViewController : UIViewController <RDVCalendarViewDelegate>
 
 @property (strong, nonatomic) WHLSearchViewController *parent;
-@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) RDVCalendarView *calendarView;
 
 @end

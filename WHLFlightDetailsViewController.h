@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WHLSearchViewController.h"
 #import "Flight.h"
+#import "Flurry.h"
 
 @interface WHLFlightDetailsViewController : UITableViewController
 

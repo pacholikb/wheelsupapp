@@ -98,6 +98,8 @@
         [[RKObjectManager sharedManager].operationQueue cancelAllOperations];
         
         self.canCancelSearch = NO;
+        
+        [Flurry logEvent:@"Search Cancelled"];
     }
     
 }
@@ -175,6 +177,8 @@
                             
                             wself.flights = mappingResult.array;
                             [wself performSegueWithIdentifier:@"resultsSegue" sender:nil];
+                            
+                            [Flurry logEvent:@"Somewhere Hot Search Success"];
                         }
                         else
                             [wself somewhereHotAction:nil];
@@ -289,6 +293,7 @@
                     
                     wself.flights = mappingResult.array;
                     [wself performSegueWithIdentifier:@"resultsSegue" sender:nil];
+                    [Flurry logEvent:@"Anywhere Search Success"];
                 }
                 else
                     [wself anywhereAction:nil];
@@ -372,7 +377,7 @@
     WhenViewController *when = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"WhenViewController"];
     when.parent = self;
     
-    [self presentOnSheet:when withSize:CGSizeMake(280, 280)];
+    [self presentOnSheet:when withSize:CGSizeMake(280, 380)];
 }
 
 - (IBAction)whereAction:(id)sender {
@@ -403,7 +408,7 @@
     
     ReturnFlightViewController *controller = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ReturnFlightViewController"];
     controller.parent = self;
-    [self presentOnSheet:controller withSize:CGSizeMake(280, 280)];
+    [self presentOnSheet:controller withSize:CGSizeMake(280, 380)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -549,6 +554,8 @@
                     {
                         wself.flights = mappingResult.array;
                         [wself performSegueWithIdentifier:@"resultsSegue" sender:nil];
+                        
+                        [Flurry logEvent:@"Search Success" withParameters:[NSDictionary dictionaryWithObjects:@[_fromCode, _toCode] forKeys:@[@"from", @"to"]]];
                     }
                     else
                         [wself showDialogWithTitle:@"Oops!" andMessage:@"No flights found!"];
@@ -612,11 +619,13 @@
     switch (_searchMode) {
         case anywhere:
         {
+            [Flurry logEvent:@"Anywhere Search Started"];
             [self anywhereAction:nil];
             break;
         }
         case somewhereHot:
         {
+            [Flurry logEvent:@"Somewhere Hot Search Started"];
             [self somewhereHotAction:nil];
             break;
         }
@@ -627,6 +636,7 @@
                 return ;
             }
             
+            [Flurry logEvent:@"Normal Search Started"];
             [self findFlights];
             break;
         }

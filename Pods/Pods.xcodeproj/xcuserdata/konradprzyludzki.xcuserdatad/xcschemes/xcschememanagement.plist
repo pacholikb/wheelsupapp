@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-RDVCalendarView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-RestKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>286FF042FACB4FCA84078B67</key>
+		<key>1E52F098C5294B80BD5B840C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3A104F86229A4542A5A3681E</key>
+		<key>2F631067C8784ABB94C1310A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B159D859B234962BB6DAA10</key>
+		<key>454064791DED48C69531B175</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B8FA78AF73C4FF69EB83232</key>
+		<key>6A1AA470AF894D238B9D44AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80A217F45AA14F58A006DF2A</key>
+		<key>8CC47E0A73E54C5485534402</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9CB096CCDFB34AE89A0D786F</key>
+		<key>A0A182003DE24C84AED65C0A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9CCDE6E069004D53A51A47FB</key>
+		<key>A53BAA3E5BFD4F878D55CAF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A15F12B1414E4BBDA32F0A6A</key>
+		<key>CBFE0475462A4D7EB6106B1D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F620E50E28A446F2889DA591</key>
+		<key>D54374DD66C4477F97F51CF8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC6C95FA2C0E4A4CB26A4BA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

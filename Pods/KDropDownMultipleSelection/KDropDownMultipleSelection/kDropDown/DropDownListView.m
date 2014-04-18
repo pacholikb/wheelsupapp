@@ -131,13 +131,12 @@
         imgarrow.image=nil;
     
     [cell addSubview:imgarrow];
-    cell.textLabel.text = [_kDropDownOption objectAtIndex:row];
+    cell.textLabel.text = [_kDropDownOption objectAtIndex:row] ;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (isMultipleSelection) {
         if([self.arryData containsObject:indexPath]){

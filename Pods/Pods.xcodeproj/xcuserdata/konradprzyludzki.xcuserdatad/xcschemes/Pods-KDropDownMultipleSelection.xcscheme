@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0500"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6B8FA78AF73C4FF69EB83232"
+               BlueprintIdentifier = "CBFE0475462A4D7EB6106B1D"
                BuildableName = "libPods-KDropDownMultipleSelection.a"
                BlueprintName = "Pods-KDropDownMultipleSelection"
                ReferencedContainer = "container:Pods.xcodeproj">

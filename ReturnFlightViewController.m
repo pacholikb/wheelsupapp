@@ -27,6 +27,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    _calendarView = [[RDVCalendarView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 300)];
+    [_calendarView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [_calendarView setSeparatorStyle:RDVCalendarViewDayCellSeparatorTypeHorizontal];
+    [_calendarView setBackgroundColor:[UIColor whiteColor]];
+    [_calendarView setDelegate:self];
+    
+    [self.view addSubview:_calendarView];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,8 +50,8 @@
     NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
     dateFormatter2.dateFormat = @"YYYY-MM-d";
     
-    NSString *date = [dateFormatter stringFromDate:_datePicker.date];
-    _parent.returnDateString = [dateFormatter2 stringFromDate:_datePicker.date];
+    NSString *date = [dateFormatter stringFromDate:_calendarView.selectedDate];
+    _parent.returnDateString = [dateFormatter2 stringFromDate:_calendarView.selectedDate];
     _parent.isOneWay = NO;
     [_parent.returnFlightBtn setTitle:[NSString stringWithFormat:@"Return On %@",date] forState:UIControlStateNormal];
     [self mz_dismissFormSheetControllerAnimated:YES completionHandler:nil];

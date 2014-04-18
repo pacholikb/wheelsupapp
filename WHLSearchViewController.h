@@ -19,6 +19,7 @@
 #import "DropDownListView.h"
 #import "MDCFocusView.h"
 #import "MDCSpotlightView.h"
+#import "Flurry.h"
 
 @interface WHLSearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, kDropDownListViewDelegate>
 

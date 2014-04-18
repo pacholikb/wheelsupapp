@@ -26,7 +26,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    _calendarView = [[RDVCalendarView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 300)];
+    [_calendarView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [_calendarView setSeparatorStyle:RDVCalendarViewDayCellSeparatorTypeHorizontal];
+    [_calendarView setBackgroundColor:[UIColor whiteColor]];
+    [_calendarView setDelegate:self];
+    
+    [self.view addSubview:_calendarView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,9 +46,11 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"YYYY-MM-d";
     
-    _parent.departureDateString = [dateFormatter stringFromDate:_datePicker.date];
+    _parent.departureDateString = [dateFormatter stringFromDate:_calendarView.selectedDate];
     _parent.isDataChanged = YES;
     [self mz_dismissFormSheetControllerAnimated:YES completionHandler:nil];
 }
+
+
 
 @end

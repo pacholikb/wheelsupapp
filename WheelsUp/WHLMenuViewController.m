@@ -31,7 +31,7 @@
                                                            action : ^( REMenuItem* item ) {
                                                                
                                                                WHLSearchViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLSearchViewController" ] ;
-                                                               [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
+                                                               [ weakSelf setViewControllers : @[ viewController ] animated : YES ] ;
                                                                
                                                            } ] ;
     
@@ -41,7 +41,7 @@
                                                            action : ^( REMenuItem* item ) {
                                                                
                                                                WHLRecentViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLRecentViewController" ] ;
-                                                               [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
+                                                               [ weakSelf setViewControllers : @[ viewController ] animated : YES ] ;
                                                                
                                                            } ] ;
     
@@ -51,7 +51,7 @@
                                                             action : ^( REMenuItem* item ) {
                                                             
                                                                     WHLLoginViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLLoginViewController" ];
-                                                                    [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
+                                                                    [ weakSelf setViewControllers : @[ viewController ] animated : YES ] ;
                                                               
                                                             } ] ;
     
@@ -61,7 +61,7 @@
                                                             action : ^( REMenuItem* item ) {
                                                                 
                                                                 DiscoveryViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"DiscoveryViewController" ];
-                                                                [ weakSelf setViewControllers : @[ viewController ] animated : NO ] ;
+                                                                [ weakSelf setViewControllers : @[ viewController ] animated : YES ] ;
                                                                 
                                                             } ] ;
     
