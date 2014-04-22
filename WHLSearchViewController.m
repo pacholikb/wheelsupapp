@@ -58,6 +58,7 @@
     _departureDateString = nil;
     
     [self addObserver:self forKeyPath:@"canCancelSearch" options:NSKeyValueObservingOptionNew context:0];
+    [self addObserver:self forKeyPath:@"searchMode" options:NSKeyValueObservingOptionNew context:0];
     
     if(_toCode.length > 0) {
         NSString *name = _toCode;
@@ -72,21 +73,25 @@
             name = [NSString stringWithFormat:@"%@, %@",((City *)[results firstObject]).name,((City *)[results firstObject]).country];
         
         NSLog(@"city name %@",name);
-        [_whereButton setTitle:name forState:UIControlStateNormal];
+        if(_searchMode == place)
+            [_whereButton setTitle:name forState:UIControlStateNormal];
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self removeObserver:self forKeyPath:@"canCancelSearch"];
+    [self removeObserver:self forKeyPath:@"searchMode"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)contex
 {
-    if([keyPath isEqualToString:@"canCancelSearch"])
+    if ([keyPath isEqualToString:@"searchMode"])
     {
-        NSLog(@"canCancelSearch %d",_canCancelSearch);
-        
+        if(_searchMode != place)
+            _returnFlightBtn.hidden = YES;
+        else
+            _returnFlightBtn.hidden = NO;
     }
 }
 
@@ -441,6 +446,11 @@
 - (IBAction)showHideFilters:(id)sender {
     _isDataChanged = YES;
     
+    if(_searchMode != place)
+        _returnFlightBtn.hidden = YES;
+    else
+        _returnFlightBtn.hidden = NO;
+    
     float alpha;
     if(_isFiltersViewVisible)
         alpha = 0.0;
@@ -454,6 +464,7 @@
             _isFiltersViewVisible = !_isFiltersViewVisible;
             if(_isFiltersViewVisible) {
                [_showHideFiltersButton setTitle:@"-" forState:UIControlStateNormal];
+                
                 if(_returnDateString.length > 0)
                     _isOneWay = NO;
             }

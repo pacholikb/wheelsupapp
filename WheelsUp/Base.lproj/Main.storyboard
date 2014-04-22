@@ -956,12 +956,12 @@
                                     <outlet property="delegate" destination="qYr-ea-qhg" id="9My-RA-vCb"/>
                                 </connections>
                             </tableView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXh-f7-ZV6">
-                                <rect key="frame" x="0.0" y="64" width="320" height="140"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXh-f7-ZV6">
+                                <rect key="frame" x="0.0" y="64" width="320" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4it-lu-oCp">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="qYr-ea-qhg" id="bmc-f4-pUR"/>
@@ -1123,16 +1123,20 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="1GA-MZ-3YI"/>
-                                    <constraint firstAttribute="height" constant="140" id="7ky-kM-owM"/>
+                                    <constraint firstAttribute="height" constant="177" id="7ky-kM-owM"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="qYr-ea-qhg" id="NYL-ua-u4R"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="rLT-u4-cGD">
+                            <pageControl opaque="NO" alpha="0.5499999999999996" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="rLT-u4-cGD">
                                 <rect key="frame" x="0.0" y="203" width="320" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="bC8-Dx-Ait"/>
+                                    <constraint firstAttribute="height" constant="37" id="jBI-UQ-vyK"/>
+                                </constraints>
                                 <connections>
                                     <action selector="changePage" destination="qYr-ea-qhg" eventType="valueChanged" id="TSj-5f-Pyh"/>
                                 </connections>
@@ -1167,9 +1171,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rLT-u4-cGD" firstAttribute="top" secondItem="FXh-f7-ZV6" secondAttribute="bottom" constant="-1" id="SU3-ka-dMN"/>
+                            <constraint firstAttribute="centerX" secondItem="rLT-u4-cGD" secondAttribute="centerX" id="GSD-1U-L6V"/>
                             <constraint firstItem="FXh-f7-ZV6" firstAttribute="top" secondItem="Gi0-Sr-69d" secondAttribute="bottom" id="az9-TY-kUp"/>
                             <constraint firstItem="f58-6Y-JMd" firstAttribute="top" secondItem="lMi-tC-hc8" secondAttribute="bottom" id="h3s-Yn-aBd"/>
+                            <constraint firstItem="FXh-f7-ZV6" firstAttribute="bottom" secondItem="rLT-u4-cGD" secondAttribute="bottom" id="oZL-TY-4nK"/>
                             <constraint firstItem="lMi-tC-hc8" firstAttribute="top" secondItem="rLT-u4-cGD" secondAttribute="bottom" constant="-1" id="vl6-9q-kxD"/>
                         </constraints>
                     </view>
@@ -1211,46 +1216,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BRa-Bv-pRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1029" y="61"/>
-        </scene>
-        <!--Profile View Controller-->
-        <scene sceneID="GdL-We-yUA">
-            <objects>
-                <viewController storyboardIdentifier="WHLProfileViewController" id="VG5-i8-YzL" customClass="WHLProfileViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="No4-1O-bib"/>
-                        <viewControllerLayoutGuide type="bottom" id="K2Z-xH-eUR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8VD-x6-CWa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG0-Xz-5Kj">
-                                <rect key="frame" x="109" y="246" width="103" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Logout ">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logout:" destination="VG5-i8-YzL" eventType="touchUpInside" id="Ke6-Gs-mNl"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBj-rr-ulr">
-                                <rect key="frame" x="77" y="217" width="167" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="6QW-zy-r33"/>
-                    <connections>
-                        <outlet property="usernameLabel" destination="dBj-rr-ulr" id="yoC-lf-gN3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aZf-LZ-iKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1512" y="1494"/>
         </scene>
         <!--Intro View Controller-->
         <scene sceneID="Okq-aA-ljV">
@@ -1365,49 +1330,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4wa-1X-9DI">
-                                <rect key="frame" x="150" y="210" width="20" height="20"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="unsplash2.png" translatesAutoresizingMaskIntoConstraints="NO" id="G4O-SJ-ubl">
+                                <rect key="frame" x="0.0" y="60" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="893-Ad-gP0"/>
+                                    <constraint firstAttribute="height" constant="568" id="vM5-jI-OWU"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4wa-1X-9DI">
+                                <rect key="frame" x="150" y="360" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkU-Vu-pKw">
-                                <rect key="frame" x="61" y="325" width="199" height="42"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkU-Vu-pKw">
+                                <rect key="frame" x="40" y="437" width="240" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="facebook_button.png">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="9LA-eK-0Hl"/>
+                                    <constraint firstAttribute="height" constant="42" id="sk6-IX-KFy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Sign In" backgroundImage="GoButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButtonTouchHandler:" destination="dzC-kh-RNO" eventType="touchUpInside" id="zGk-zH-Px8"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Invite them by logging in with Facebook!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Tro-ix-rgg">
-                                <rect key="frame" x="35" y="249" width="240" height="50"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Invite them by logging in with Facebook!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Tro-ix-rgg">
+                                <rect key="frame" x="40" y="487" width="240" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="oS1-mB-DXU"/>
+                                    <constraint firstAttribute="height" constant="50" id="rXw-4b-aO3"/>
+                                </constraints>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Know a friend who could use an adventure? " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Xj3-we-KfQ">
-                                <rect key="frame" x="40" y="109" width="240" height="80"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Know a friend who could use an adventure? " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Xj3-we-KfQ">
+                                <rect key="frame" x="20" y="244" width="280" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4wa-1X-9DI" firstAttribute="top" secondItem="Xj3-we-KfQ" secondAttribute="bottom" constant="36" id="B3V-v0-ydw"/>
+                            <constraint firstAttribute="centerX" secondItem="zkU-Vu-pKw" secondAttribute="centerX" id="JHF-N5-jNe"/>
+                            <constraint firstItem="Tro-ix-rgg" firstAttribute="top" secondItem="zkU-Vu-pKw" secondAttribute="bottom" constant="8" id="bdP-tH-5L4"/>
+                            <constraint firstAttribute="centerX" secondItem="Xj3-we-KfQ" secondAttribute="centerX" id="dlY-S0-ZUq"/>
+                            <constraint firstItem="zkU-Vu-pKw" firstAttribute="top" secondItem="4wa-1X-9DI" secondAttribute="bottom" constant="57" id="isP-mZ-QMr"/>
+                            <constraint firstItem="wBq-kK-fFV" firstAttribute="top" secondItem="Tro-ix-rgg" secondAttribute="bottom" constant="31" id="kb4-wJ-YG1"/>
+                            <constraint firstAttribute="centerX" secondItem="Tro-ix-rgg" secondAttribute="centerX" id="wvO-Bp-ADl"/>
+                            <constraint firstAttribute="centerX" secondItem="4wa-1X-9DI" secondAttribute="centerX" id="yqR-p7-B4E"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pI5-of-xxn"/>
                     <connections>
                         <outlet property="activityIndicator" destination="4wa-1X-9DI" id="5Lv-UG-wXv"/>
-                        <segue destination="kTs-Ca-Ihb" kind="push" identifier="showFBProfile" id="3oD-5b-G3v"/>
-                        <segue destination="VG5-i8-YzL" kind="push" identifier="showProfile" id="FMk-ua-Ca9"/>
+                        <segue destination="kTs-Ca-Ihb" kind="push" identifier="showFBProfile" id="dOH-tC-pge"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21V-Qb-DDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1029" y="783"/>
+            <point key="canvasLocation" x="445" y="1101"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="RY2-9J-BH4">
@@ -1450,7 +1441,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="sb3-IW-1nk">
                         <barButtonItem key="rightBarButtonItem" title="Log out" id="r1g-Hj-cmv">
@@ -1468,7 +1459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRh-Tu-qK8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053" y="1494"/>
+            <point key="canvasLocation" x="1100" y="1101"/>
         </scene>
         <!--New User View Controller-->
         <scene sceneID="Fk4-R9-937">
@@ -1564,7 +1555,7 @@
     <resources>
         <image name="GoButton.png" width="291" height="57"/>
         <image name="Oval.png" width="17" height="17"/>
-        <image name="facebook_button.png" width="199" height="42"/>
+        <image name="unsplash2.png" width="640" height="1136"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -12,6 +12,7 @@
 #import "WHLRecentViewController.h"
 #import "DiscoveryViewController.h"
 #import "WHLLoginViewController.h"
+#import "WHLFBProfileViewController.h"
 #import <Parse/Parse.h>
 #import "REMenu.h"
 

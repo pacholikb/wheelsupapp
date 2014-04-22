@@ -193,8 +193,10 @@
 }
 
 - (IBAction)infoAction:(id)sender {
+    
     NSString *urlString = [NSString stringWithFormat:@"http://en.wikipedia.org/wiki/%@",[[_outbounds lastObject] valueForKey:@"arrival_name"]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    NSLog(@"%@",urlString);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[urlString stringByReplacingOccurrencesOfString:@" " withString:@"_"]]];
 }
 
 - (IBAction)returnFlightAction:(id)sender {

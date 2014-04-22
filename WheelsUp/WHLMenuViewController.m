@@ -50,12 +50,18 @@
                                                   highlightedImage : nil
                                                             action : ^( REMenuItem* item ) {
                                                             
+                                                                if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+                                                                    WHLFBProfileViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WHLFBProfileViewController"];
+                                                                    [ weakSelf setViewControllers : @[ viewController ] animated : YES ] ;
+                                                                }
+                                                                else {
                                                                     WHLLoginViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLLoginViewController" ];
                                                                     [ weakSelf setViewControllers : @[ viewController ] animated : YES ] ;
+                                                                }
                                                               
                                                             } ] ;
     
-    _discoveryItem = [ [ REMenuItem alloc ] initWithTitle : @"Discovery"
+    _discoveryItem = [ [ REMenuItem alloc ] initWithTitle : @"Discover local"
                                                              image : [UIImage imageNamed:@"Icon_Home"]
                                                   highlightedImage : nil
                                                             action : ^( REMenuItem* item ) {

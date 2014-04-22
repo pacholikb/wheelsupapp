@@ -113,8 +113,7 @@ CLLocationCoordinate2D coordinateArray[2];
         ;
     }];
 
-    _mapView.userInteractionEnabled = YES;
-
+    
     [[CLGeocoder new] geocodeAddressString:_departureCityName completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark *p = [placemarks firstObject];
         coordinateArray[0] = p.location.coordinate;
@@ -127,7 +126,7 @@ CLLocationCoordinate2D coordinateArray[2];
             MKMapRect rect = [wself.routeLine boundingMapRect];
             [wself.mapView setVisibleMapRect:rect edgePadding:UIEdgeInsetsMake(10, 10, 10, 10) animated:NO];
             [wself.mapView addOverlay:wself.routeLine];
-            wself.mapView.userInteractionEnabled = YES;
+            wself.mapView.userInteractionEnabled = NO;
             
         }];
     }];

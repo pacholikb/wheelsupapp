@@ -150,7 +150,7 @@
                                                        @"tags":                      @"tags",
                                                        @"categories":                @"categories",
                                                        @"thumbnail":                 @"image",
-                                                       @"date":                      @"date"
+                                                       @"modified":                      @"date"
                                                        }];
     blogMapping.identificationAttributes = @[ @"postId" ];
     
