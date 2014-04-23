@@ -7,6 +7,8 @@
 //
 
 #import "WHLFBProfileViewController.h"
+#import "WHLMenuViewController.h"
+#import "WHLLoginViewController.h"
 #import <Parse/Parse.h>
 #import "REMenu.h"
 
@@ -22,6 +24,9 @@
     [super viewDidLoad];
     
     self.title = @"Profile";
+    
+    WHLMenuViewController *nav = (WHLMenuViewController *)self.navigationController;
+    [nav.menu setItems:@[ nav.searchItem, nav.recentItem, nav.discoveryItem ]];
     
     // If the user is already logged in, display any previously cached values before we get the latest from Facebook.
     if ([PFUser currentUser]) {
@@ -174,7 +179,8 @@
     [PFUser logOut];
     
     // Return to login view controller
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    WHLLoginViewController* viewController = [ self.storyboard instantiateViewControllerWithIdentifier : @"WHLLoginViewController" ];
+    [ self.navigationController setViewControllers : @[ viewController ] animated : YES ] ;
 }
 
 // Set received values if they are not nil and reload the table

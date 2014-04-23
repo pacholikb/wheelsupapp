@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A0A182003DE24C84AED65C0A"
+               BlueprintIdentifier = "FAE7362E1B154AA0A4326FB7"
                BuildableName = "libPods-MDCFocusView.a"
                BlueprintName = "Pods-MDCFocusView"
                ReferencedContainer = "container:Pods.xcodeproj">

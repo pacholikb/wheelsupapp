@@ -120,11 +120,7 @@
     [_maxPriceTF resignFirstResponder];
     
     if(_isSearchCancelled)
-    {
-        self.canCancelSearch = NO;
-        _isSearchCancelled = NO;
         return;
-    }
     
     if (_fromCode.length == 0) {
         [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
@@ -151,6 +147,8 @@
     
     __weak typeof (self) wself = self;
     [[WHLNetworkManager sharedInstance].weatherObjectManager getObjectsAtPathForRouteNamed:@"weatherRoute" object:nil parameters:@{@"q" : result.name, @"format" : @"json", @"num_of_days" : @"3", @"key" : @"28czykhh9e3qe9vxsd8qcp94"} success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        if(wself.isSearchCancelled)
+            return;
         
         int sum = 0;
         for(Weather *w in mappingResult.array)
@@ -167,6 +165,8 @@
             NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
             
             [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode when:nil returnOn:nil adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                if(wself.isSearchCancelled)
+                    return;
                 
                 if(mappingResult.array.count > 0) {
                     wself.trip = [mappingResult.array firstObject];
@@ -234,11 +234,7 @@
     [_maxPriceTF resignFirstResponder];
     
     if(_isSearchCancelled)
-    {
-        self.canCancelSearch = NO;
-        _isSearchCancelled = NO;
         return;
-    }
     
     if (_fromCode.length == 0) {
         [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
@@ -276,11 +272,15 @@
     NSString *maxPrice = _maxPrice ? [NSString stringWithFormat:@"%ld",(long)_maxPrice] : nil;
     
     [[WHLNetworkManager sharedInstance] makeSearchRequestFrom:_fromCode to:_toCode when:nil returnOn:nil adults:adults children:children success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        if(wself.isSearchCancelled)
+            return;
         
         if(mappingResult.array.count > 0) {
             wself.trip = [mappingResult.array firstObject];
             
             [[WHLNetworkManager sharedInstance] makeFlightRequestWithSearchId:wself.trip.searchId andTripId:[[wself.trip.trips firstObject] valueForKey:@"id"] stops:_numberOfStops maxrrice:maxPrice success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                if(wself.isSearchCancelled)
+                    return;
                 
                 if(mappingResult.array.count > 0)
                 {
@@ -523,9 +523,6 @@
 {
     [_fromTF resignFirstResponder];
     [_maxPriceTF resignFirstResponder];
-    
-    self.canCancelSearch = NO;
-    _isSearchCancelled = NO;
 
     if (_fromCode.length == 0 || _toCode.length == 0)
         [self showDialogWithTitle:@"Oops!" andMessage:@"Make sure you fill out from and to fields!"];
@@ -626,6 +623,8 @@
     if(_focusView && _focusView.isFocused)
         [_focusView dismiss:nil];
     
+    self.canCancelSearch = NO;
+    _isSearchCancelled = NO;
     
     switch (_searchMode) {
         case anywhere:

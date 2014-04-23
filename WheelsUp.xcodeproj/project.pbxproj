@@ -919,8 +919,8 @@
 			baseConfigurationReference = D9DAE4B87EDE4B688220D663 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: broc  pacholik (VL5XRP4747)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: broc  pacholik (VL5XRP4747)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Konrad Przyludzki (V5QCD9H4VK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Konrad Przyludzki (V5QCD9H4VK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/brocpacholik/Downloads,
@@ -948,7 +948,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4590E93D-2E63-4438-8349-D55BEEBDEDA6";
+				PROVISIONING_PROFILE = "80ADC110-0061-45EB-BD29-91446D28307A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -958,8 +958,8 @@
 			baseConfigurationReference = D9DAE4B87EDE4B688220D663 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: broc  pacholik (VL5XRP4747)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: broc  pacholik (VL5XRP4747)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/brocpacholik/Downloads,
@@ -987,7 +987,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4590E93D-2E63-4438-8349-D55BEEBDEDA6";
+				PROVISIONING_PROFILE = "5D2CF4E0-F3C0-462A-8460-32D3D269BEDD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

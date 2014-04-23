@@ -121,16 +121,21 @@ CLLocationCoordinate2D coordinateArray[2];
         [[CLGeocoder new] geocodeAddressString:_arrivalCityName completionHandler:^(NSArray *placemarks, NSError *error) {
             CLPlacemark *p = [placemarks firstObject];
             coordinateArray[1] = p.location.coordinate;
+            int edge = 20;
+            
+            if(p.location.coordinate.latitude == 0.0 && p.location.coordinate.longitude == 0.0)
+                coordinateArray[1] = coordinateArray[0];
             
             wself.routeLine = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
             MKMapRect rect = [wself.routeLine boundingMapRect];
-            [wself.mapView setVisibleMapRect:rect edgePadding:UIEdgeInsetsMake(10, 10, 10, 10) animated:NO];
+            [wself.mapView setVisibleMapRect:rect edgePadding:UIEdgeInsetsMake(edge, edge, edge, edge) animated:NO];
             [wself.mapView addOverlay:wself.routeLine];
-            wself.mapView.userInteractionEnabled = NO;
+            wself.mapView.userInteractionEnabled = YES;
             
         }];
     }];
     
+    _mapView.userInteractionEnabled = YES;
     _mapView.zoomEnabled = NO;
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMap:)];

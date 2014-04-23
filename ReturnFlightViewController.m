@@ -32,6 +32,7 @@
     [_calendarView setSeparatorStyle:RDVCalendarViewDayCellSeparatorTypeHorizontal];
     [_calendarView setBackgroundColor:[UIColor whiteColor]];
     [_calendarView setDelegate:self];
+    _calendarView.selectedDate = [NSDate date];
     
     [self.view addSubview:_calendarView];
 

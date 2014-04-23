@@ -11,7 +11,7 @@
 #import "Flight.h"
 #import "Flurry.h"
 
-@interface WHLFlightDetailsViewController : UITableViewController
+@interface WHLFlightDetailsViewController : UITableViewController <UIActivityItemSource>
 
 @property (nonatomic, strong) Flight *flight;
 @property (nonatomic, strong) NSArray *outbounds;

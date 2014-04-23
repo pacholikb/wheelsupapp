@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CBFE0475462A4D7EB6106B1D"
+               BlueprintIdentifier = "1D9929B6C15A41E5BA73A987"
                BuildableName = "libPods-KDropDownMultipleSelection.a"
                BlueprintName = "Pods-KDropDownMultipleSelection"
                ReferencedContainer = "container:Pods.xcodeproj">

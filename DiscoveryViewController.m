@@ -80,8 +80,10 @@
 {
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
     UILabel *dateLabel = (UILabel *)[cell viewWithTag:2];
-    UILabel *contentLabel = (UILabel *)[cell viewWithTag:3];
+    UITextView *contentLabel = (UITextView *)[cell viewWithTag:3];
     UIButton *btn = (UIButton *)[cell viewWithTag:4];
+    
+    contentLabel.contentInset = UIEdgeInsetsMake(-5,-5,-5,-5);
     
     [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -164,7 +166,7 @@
     CGFloat height;
     
     if([_expandedRows containsObject:indexPath])
-        height = 280 + [[[NSAttributedString alloc] initWithData:data options:options documentAttributes:nil error:nil] boundingRectWithSize:CGSizeMake(300, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size.height;
+        height = 320 + [[[NSAttributedString alloc] initWithData:data options:options documentAttributes:nil error:nil] boundingRectWithSize:CGSizeMake(300, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size.height;
     else
         height = 168;
     

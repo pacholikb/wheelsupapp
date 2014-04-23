@@ -71,7 +71,7 @@
     else if (indexPath.section == 2)
         return 100;
     else
-        return 80;
+        return 100;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -187,7 +187,7 @@
 }
 
 - (void)shareAction:(id)sender {
-    UIActivityViewController* avc = [[UIActivityViewController alloc] initWithActivityItems:@[@"Come with me to %@?"]  applicationActivities:nil];
+    UIActivityViewController* avc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSString stringWithFormat:@"Come with me to %@",[_outbounds.lastObject valueForKey:@"arrival_name"]]]  applicationActivities:nil];
     [self presentViewController:avc animated:YES completion:nil];
     [Flurry logEvent:@"Share Clicked"];
 }
@@ -214,6 +214,14 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     
     [_delegate showWhenDialog];
+}
+
+- (NSString *)activityViewController:(UIActivityViewController *)activityViewController subjectForActivityType:(NSString *)activityType
+{
+    if([activityType isEqualToString:UIActivityTypePostToTwitter])
+        return @"via @WheelsUpCo";
+    else
+        return @"WheelsUpCo";
 }
 
 @end
