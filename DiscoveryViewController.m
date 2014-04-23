@@ -18,7 +18,7 @@
 {
     [super viewDidLoad];
     
-    [self setTitle : @"Discovery"] ;
+    [self setTitle : @"Discover"] ;
     [[WHLNetworkManager sharedInstance] setBackgroundGradient:self.view];
 
     WHLMenuViewController *nav = (WHLMenuViewController *)self.navigationController;
@@ -34,6 +34,9 @@
     self.refreshControl = refreshControl;
     
     _expandedRows = [NSMutableArray new];
+    
+
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

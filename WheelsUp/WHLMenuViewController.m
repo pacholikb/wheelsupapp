@@ -61,7 +61,7 @@
                                                               
                                                             } ] ;
     
-    _discoveryItem = [ [ REMenuItem alloc ] initWithTitle : @"Discover local"
+    _discoveryItem = [ [ REMenuItem alloc ] initWithTitle : @"Discover"
                                                              image : [UIImage imageNamed:@"Icon_Home"]
                                                   highlightedImage : nil
                                                             action : ^( REMenuItem* item ) {

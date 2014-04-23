@@ -33,6 +33,12 @@
 		186116BE18E54DE9007E5453 /* wheelslogo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 186116BB18E54DE8007E5453 /* wheelslogo57.png */; };
 		1870931D18E3D7C000EE8075 /* GoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870930F18E3D7C000EE8075 /* GoButton.png */; };
 		1870931E18E3D7C000EE8075 /* GoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870931018E3D7C000EE8075 /* GoButton@2x.png */; };
+		1893F62119075B6200728645 /* Call2Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893F61F19075B6200728645 /* Call2Button.png */; };
+		1893F62219075B6200728645 /* Call2Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893F62019075B6200728645 /* Call2Button@2x.png */; };
+		1893F6251907641F00728645 /* alchemybackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893F6231907641B00728645 /* alchemybackground.png */; };
+		1893F6261907641F00728645 /* alchemybackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893F6241907641E00728645 /* alchemybackground@2x.png */; };
+		1893F62919076E5400728645 /* photography.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893F62719076E5400728645 /* photography.png */; };
+		1893F62A19076E5400728645 /* photography@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893F62819076E5400728645 /* photography@2X.png */; };
 		189863B018DFF40300B2C5F5 /* Button1.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863AE18DFF40300B2C5F5 /* Button1.png */; };
 		189863B118DFF40300B2C5F5 /* Button1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863AF18DFF40300B2C5F5 /* Button1@2x.png */; };
 		189863B418DFF59800B2C5F5 /* Oval.png in Resources */ = {isa = PBXBuildFile; fileRef = 189863B218DFF59800B2C5F5 /* Oval.png */; };
@@ -142,6 +148,12 @@
 		1870931018E3D7C000EE8075 /* GoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoButton@2x.png"; sourceTree = "<group>"; };
 		1881CB4A18D98A0A00D3F2B2 /* homebg(320x568).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homebg(320x568).png"; path = "../../../Desktop/random /homebg(320x568).png"; sourceTree = "<group>"; };
 		1881CB4B18D98A0A00D3F2B2 /* homebg(320x568)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homebg(320x568)@2x.png"; path = "../../../Desktop/random /homebg(320x568)@2x.png"; sourceTree = "<group>"; };
+		1893F61F19075B6200728645 /* Call2Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Call2Button.png; sourceTree = "<group>"; };
+		1893F62019075B6200728645 /* Call2Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call2Button@2x.png"; sourceTree = "<group>"; };
+		1893F6231907641B00728645 /* alchemybackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alchemybackground.png; sourceTree = "<group>"; };
+		1893F6241907641E00728645 /* alchemybackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alchemybackground@2x.png"; sourceTree = "<group>"; };
+		1893F62719076E5400728645 /* photography.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photography.png; sourceTree = "<group>"; };
+		1893F62819076E5400728645 /* photography@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photography@2X.png"; sourceTree = "<group>"; };
 		189863AE18DFF40300B2C5F5 /* Button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button1.png; sourceTree = "<group>"; };
 		189863AF18DFF40300B2C5F5 /* Button1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button1@2x.png"; sourceTree = "<group>"; };
 		189863B218DFF59800B2C5F5 /* Oval.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Oval.png; sourceTree = "<group>"; };
@@ -309,6 +321,12 @@
 		1858B33618824D0C00A18F32 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				1893F62719076E5400728645 /* photography.png */,
+				1893F62819076E5400728645 /* photography@2X.png */,
+				1893F6231907641B00728645 /* alchemybackground.png */,
+				1893F6241907641E00728645 /* alchemybackground@2x.png */,
+				1893F61F19075B6200728645 /* Call2Button.png */,
+				1893F62019075B6200728645 /* Call2Button@2x.png */,
 				C61EF48D18EEAEAB00A3249C /* unsplash2.png */,
 				C61EF48E18EEAEAB00A3249C /* unsplash2(small).png */,
 				186116B918E54DE7007E5453 /* facebook_button.png */,
@@ -651,18 +669,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				1870931E18E3D7C000EE8075 /* GoButton@2x.png in Resources */,
+				1893F62919076E5400728645 /* photography.png in Resources */,
 				1870931D18E3D7C000EE8075 /* GoButton.png in Resources */,
 				186116B718E3EBF1007E5453 /* Instr1.png in Resources */,
+				1893F62A19076E5400728645 /* photography@2X.png in Resources */,
 				189863B518DFF59800B2C5F5 /* Oval@2x.png in Resources */,
 				C61EF49218EEAEAB00A3249C /* unsplash2(small).png in Resources */,
 				189863B418DFF59800B2C5F5 /* Oval.png in Resources */,
 				189863B118DFF40300B2C5F5 /* Button1@2x.png in Resources */,
+				1893F62219075B6200728645 /* Call2Button@2x.png in Resources */,
 				C6D2BCA518ACBF7F00998759 /* Main.storyboard in Resources */,
 				186116A618E3E34E007E5453 /* ProjectApiKey.txt in Resources */,
 				C61EF49118EEAEAB00A3249C /* unsplash2.png in Resources */,
 				1861157118E3DE22007E5453 /* instr3_5s.png in Resources */,
 				1861157218E3DE22007E5453 /* instr2_5s.png in Resources */,
+				1893F62119075B6200728645 /* Call2Button.png in Resources */,
 				18A3C89B187D1C0900C5E07B /* Images.xcassets in Resources */,
+				1893F6251907641F00728645 /* alchemybackground.png in Resources */,
 				186116BC18E54DE8007E5453 /* facebook_button.png in Resources */,
 				186116B518E3EBF1007E5453 /* instr2.png in Resources */,
 				C65C5C8F18ED56AF00E32FCC /* filtered list small.csv in Resources */,
@@ -670,6 +693,7 @@
 				1861157418E3DE22007E5453 /* instr1_5s.png in Resources */,
 				C688C35118DC2A65003D8B0F /* filtered city list.csv in Resources */,
 				186116BD18E54DE9007E5453 /* facebook_button@2x.png in Resources */,
+				1893F6261907641F00728645 /* alchemybackground@2x.png in Resources */,
 				186116B318E3EBF1007E5453 /* instr3.png in Resources */,
 				189863B018DFF40300B2C5F5 /* Button1.png in Resources */,
 				C65C5C9918EDA25B00E32FCC /* navBg.png in Resources */,
@@ -895,8 +919,8 @@
 			baseConfigurationReference = D9DAE4B87EDE4B688220D663 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Konrad Przyludzki (V5QCD9H4VK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Konrad Przyludzki (V5QCD9H4VK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: broc  pacholik (VL5XRP4747)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: broc  pacholik (VL5XRP4747)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/brocpacholik/Downloads,
@@ -924,7 +948,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "80ADC110-0061-45EB-BD29-91446D28307A";
+				PROVISIONING_PROFILE = "4590E93D-2E63-4438-8349-D55BEEBDEDA6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -934,8 +958,8 @@
 			baseConfigurationReference = D9DAE4B87EDE4B688220D663 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Konrad Przyludzki (3E495EVFBH)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: broc  pacholik (VL5XRP4747)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: broc  pacholik (VL5XRP4747)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/brocpacholik/Downloads,
@@ -963,7 +987,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5D2CF4E0-F3C0-462A-8460-32D3D269BEDD";
+				PROVISIONING_PROFILE = "4590E93D-2E63-4438-8349-D55BEEBDEDA6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

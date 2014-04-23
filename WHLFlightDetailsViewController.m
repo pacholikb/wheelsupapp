@@ -187,7 +187,7 @@
 }
 
 - (void)shareAction:(id)sender {
-    UIActivityViewController* avc = [[UIActivityViewController alloc] initWithActivityItems:@[@"Some share message, image possibly"]  applicationActivities:nil];
+    UIActivityViewController* avc = [[UIActivityViewController alloc] initWithActivityItems:@[@"Come with me to %@?"]  applicationActivities:nil];
     [self presentViewController:avc animated:YES completion:nil];
     [Flurry logEvent:@"Share Clicked"];
 }
