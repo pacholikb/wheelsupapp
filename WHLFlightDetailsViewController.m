@@ -187,7 +187,7 @@
 }
 
 - (void)shareAction:(id)sender {
-    UIActivityViewController* avc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSString stringWithFormat:@"Come with me to %@",[_outbounds.lastObject valueForKey:@"arrival_name"]]]  applicationActivities:nil];
+    UIActivityViewController* avc = [[UIActivityViewController alloc] initWithActivityItems:@[self, @""]  applicationActivities:nil];
     [self presentViewController:avc animated:YES completion:nil];
     [Flurry logEvent:@"Share Clicked"];
 }
@@ -216,12 +216,18 @@
     [_delegate showWhenDialog];
 }
 
-- (NSString *)activityViewController:(UIActivityViewController *)activityViewController subjectForActivityType:(NSString *)activityType
+- (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(NSString *)activityType
 {
     if([activityType isEqualToString:UIActivityTypePostToTwitter])
-        return @"via @WheelsUpCo";
+        return [NSString stringWithFormat:@"Come with me to %@ via @WheelUpCo",[_outbounds.lastObject valueForKey:@"arrival_name"]];
     else
-        return @"WheelsUpCo";
+        return [NSString stringWithFormat:@"Come with me to %@",[_outbounds.lastObject valueForKey:@"arrival_name"]];
+}
+
+- (NSString *)activityViewController:(UIActivityViewController *)activityViewController subjectForActivityType:(NSString *)activityType
+{
+
+    return @"WheelsUpCo";
 }
 
 @end
